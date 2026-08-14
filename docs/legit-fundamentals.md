@@ -9,7 +9,7 @@ LeGIT stands for "Learning Environment with Git Infrastructure Technology." It's
 - Allows SMEs to write learning content in markdown (plain text)
 - Stores content in GitHub for version control
 - Provides live preview in VSCode
-- Builds content into multiple formats automatically:
+- Builds content into multiple output formats automatically:
   - PDFs (lab manuals, guides)
   - HTML presentations (RevealJS)
   - SCORM modules (e-learning)
@@ -55,26 +55,70 @@ Manual document building is time-consuming and error-prone. LeGIT automates:
 
 ## Project Structure
 
-Content is organized by **skill** — the smallest reusable unit of learning content.
+Following RAU's instructional design framework, content is organized hierarchically by **skill**, **learning outcome**, and **learning objective**. This structure enables modular reuse while keeping related files organized together.
+
+**Design Hierarchy:**
+- **Skill** → Job- or product-level capability; serves as the course-level container
+- **Learning Outcome** → Measurable evidence of skill attainment; minimum complete unit of skill verification
+- **Learning Objective** → Step-level actions supporting an outcome
+- **Activities** → Passive (lecture), Interactive (lab), Assessment (quiz)
+
+**Folder and File Organization:**
 
 ```
 skills/
-├── skill-name-1/
-│   ├── objective-01-lecture.md
-│   ├── objective-02-lecture.md
-│   ├── outcome-01-lecture.md
-│   ├── outcome-01-lab.md
-│   ├── outcome-01-quiz.md
-│   └── media/
+├── skill-name-1/                    # Container for one skill
+│   ├── outcome-01/                  # Container for one outcome
+│   │   ├── objectives/              # Folder for objective-level content
+│   │   │   ├── objective-01/
+│   │   │   │   ├── lecture.md       # Objective-level lecture content
+│   │   │   │   └── media/           # Images, diagrams, etc.
+│   │   │   ├── objective-02/
+│   │   │   │   ├── lecture.md
+│   │   │   │   └── media/
+│   │   │   └── objective-03/
+│   │   │       └── ...
+│   │   ├── lecture.md               # Aggregated outcome-level lecture
+│   │   ├── lab.md                   # Interactive practice
+│   │   ├── quiz.md                  # Assessment questions
+│   │   └── media/                   # Outcome-level media
+│   ├── outcome-02/
+│   │   └── ...
+│   ├── outcome-03/
+│   │   └── ...
+│   └── media/                       # Skill-level media (shared across outcomes)
 ├── skill-name-2/
 │   └── ...
+└── skill-name-3/
+    └── ...
 ```
 
-Each skill can be published to:
-- **PDF** — Printable lab manuals
-- **RevealJS** — Web presentations
-- **SCORM** — E-learning modules
-- **Video** — Recorded presentations
+**Key Design Patterns:**
+
+1. **Objective-Level Content:**
+   - Each objective has its own lecture file (`lecture.md`) containing explanation, terminology, concepts, and key teaching points
+   - Media (images, diagrams) can be co-located in each objective's `media/` folder
+
+2. **Outcome-Level Aggregation:**
+   - Objective-level lectures are authored separately, then aggregated into `lecture.md` at the outcome level
+   - This aggregated lecture is presented to students
+   - Labs and quizzes are typically designed at the outcome level
+
+3. **Coverage Requirements:**
+   - Each outcome **must** include passive (lecture), interactive (lab), and assessment (quiz) coverage
+   - Objectives may share the outcome-level lab and assessment
+   - Objective-level lectures should be modular and reusable
+
+4. **Media Organization:**
+   - Objective-level `media/` folders: specific to that objective's content
+   - Outcome-level `media/` folders: shared across multiple objectives within that outcome
+   - Skill-level `media/` folders: shared across all outcomes in the skill
+
+Each skill can be published to multiple formats while maintaining instructional integrity:
+- **PDF** — Printable lab manuals and student guides
+- **RevealJS** — Web-based presentations for instructors
+- **SCORM** — E-learning modules for online delivery
+- **Video** — Recorded presentations with narration
 
 ---
 
