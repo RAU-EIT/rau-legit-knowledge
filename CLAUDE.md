@@ -1,16 +1,104 @@
 ---
-title: "LeGIT Knowledge Base Index"
-description: "Complete guide for creating skills-based learning content in RAU LeGIT"
-version: "1.0.0"
-last_updated: "2026-08-14"
+title: "LeGIT Knowledge Base - Reorganized Index"
+description: "RAU LeGIT Knowledge: Content Design & Content Development tracks"
+version: "2.0.0"
+last_updated: "2026-08-20"
 maintained_by: "pfranci@rockwellautomation.com"
 repo_url: "https://github.com/RAU-EIT/rau-legit-knowledge"
 type: "knowledge-index"
 ---
 
-# LeGIT Knowledge Base Index
+# RAU LeGIT Knowledge Base
 
-Welcome to the RAU LeGIT Knowledge Base. This is your complete guide to creating learning content from **design through development and publication**.
+Welcome to the RAU LeGIT Knowledge Base. This is your complete guide to **designing** and **developing** learning content from skills through publication.
+
+⭐ **NEW**: This knowledge base is now organized into two clear tracks. Choose your path below.
+
+## Quick Navigation
+
+### 👨‍🏫 Content Design Track
+**For**: Instructional Designers, Product Managers, SMEs  
+**Goal**: Design learning (outcomes, objectives, modalities, activities)  
+**Go to**: [`CLAUDE_REORGANIZED.md#content-design-guide`](./CLAUDE_REORGANIZED.md#content-design-guide)
+
+### 📝 Content Development Track  
+**For**: SMEs, Technical Writers, Content Developers  
+**Goal**: Author training content (lectures, labs, quizzes in LeGIT format)  
+**Go to**: [`CLAUDE_REORGANIZED.md#content-development-guide`](./CLAUDE_REORGANIZED.md#content-development-guide)
+
+---
+
+## Choose Your Path
+
+**Starting a new training project?**  
+→ [Content Design Guide](./CLAUDE_REORGANIZED.md#content-design-guide)
+
+**Ready to author content?**  
+→ [Content Development Guide](./CLAUDE_REORGANIZED.md#content-development-guide)
+
+**Want a quick overview?**  
+→ [Quick Reference Card](./QUICK_REFERENCE_CARD.md)
+
+---
+
+## 🤖 Documentation Maintenance: Automatic Sync Validation
+
+**Important**: When you commit changes to `docs/` files, Claude automatically validates that `.claude/rules/` files stay in sync.
+
+### How It Works
+
+When you commit changes to documentation files (anything in `docs/` folder):
+
+1. **Git hook triggers** → Claude Code runs automatic review
+2. **Comparison happens** → Current rules vs. updated documentation
+3. **Claude provides guidance** → Shows what needs updating in rules
+4. **Team makes decision** → You review Claude's recommendations and approve changes
+5. **Rules auto-update** → Once approved, `.claude/rules/` files update to match docs
+
+### Claude's Role: Advisory, Not Enforcement
+
+Claude will:
+- ✅ **Identify differences** between docs and rules
+- ✅ **Suggest updates** to keep them in sync
+- ✅ **Provide rationale** for why updates matter
+- ✅ **Recommend changes** for team review and approval
+
+Claude will NOT:
+- ❌ Enforce rules rigidly without context
+- ❌ Auto-update rules without team review
+- ❌ Replace team judgment with automation
+
+### Example Workflow
+
+```
+You: Commit updated decision framework to docs/content-design-process.md
+  ↓
+Git hook: Triggers Claude sync validation
+  ↓
+Claude: "I see you updated the publication strategy decision framework.
+         The version in .claude/rules/content-design-validation.md is outdated.
+         Here's what should change:
+         [Shows side-by-side comparison]
+         
+         Recommendation: Update Rule 5 to match the new criteria.
+         Rationale: This ensures Claude Code skills use the latest guidance."
+  ↓
+Team: Reviews Claude's analysis
+  ↓
+Team: Approves and applies the recommended changes to rules
+  ↓
+Rules auto-update to match documentation
+```
+
+### For More Details
+
+See: [`KEEPING_DOCS_IN_SYNC.md`](./KEEPING_DOCS_IN_SYNC.md)
+
+---
+
+## What is LeGIT?
+
+LeGIT is **RAU's skills-based content development system** using Markdown, Git, and cloud-native publishing. It enables SMEs to author **atomic learning content** that automatically builds into PDFs, presentations, SCORM modules, and videos.
 
 ## Quick Navigation
 
@@ -120,11 +208,19 @@ Claude Code enforces these rules:
 
 ```
 skills/[skill-name]/
-├── objective-##-lecture.md      (Always)
-├── outcome-##-lecture.md        (Always; uses !include)
-├── objective-##-lab.md          (Only if standalone)
-└── outcome-##-quiz.md           (Outcome-level assessment)
+├── [outcome-title]/                    (e.g., analyze-hydraulic-components)
+│   ├── objective-##/
+│   │   ├── lecture.md           (Always; core instruction)
+│   │   ├── knowledge-check.md   (Always; embedded checks)
+│   │   ├── lab.md               (Only if standalone)
+│   │   ├── quiz-questions.md    (Always; feeds outcome quiz)
+│   │   └── media/               (Objective-specific images/files)
+│   ├── outcome-##-lecture.md    (Always; uses !include)
+│   └── outcome-##-quiz.md       (Outcome-level assessment)
+└── media/                        (Shared media across outcomes)
 ```
+
+**Outcome Titles**: Use the outcome title in kebab-case as the folder name for clarity in build outputs and file navigation.
 
 **Detailed guide**: [`docs/file-mapping-guide.md`](/docs/file-mapping-guide.md)
 

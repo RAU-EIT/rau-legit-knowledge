@@ -55,19 +55,32 @@ Manual document building is time-consuming and error-prone. LeGIT automates:
 
 ## Project Structure
 
-Content is organized by **skill** — the smallest reusable unit of learning content.
+Content is organized by **skill** — the smallest reusable unit of learning content. Skills contain outcomes, which contain objectives, which contain content files.
 
 ```
 skills/
 ├── skill-name-1/
-│   ├── objective-01-lecture.md
-│   ├── objective-02-lecture.md
-│   ├── outcome-01-lecture.md
-│   ├── outcome-01-lab.md
-│   ├── outcome-01-quiz.md
-│   └── media/
+│   ├── [outcome-title-1]/                    (e.g., analyze-system-components)
+│   │   ├── objective-01/
+│   │   │   ├── lecture.md                   (Core instruction)
+│   │   │   ├── knowledge-check.md           (Embedded ungraded checks)
+│   │   │   ├── lab.md                       (Only if standalone)
+│   │   │   ├── quiz-questions.md            (Graded assessment pool)
+│   │   │   └── media/                       (Objective-specific images)
+│   │   ├── objective-02/
+│   │   │   └── [same structure]
+│   │   ├── outcome-01-lecture.md            (Aggregates objectives via !include)
+│   │   └── outcome-01-quiz.md               (Outcome-level assessment)
+│   │
+│   ├── [outcome-title-2]/                    (e.g., diagnose-failures)
+│   │   └── [same structure as outcome-title-1]
+│   │
+│   ├── skill-01-practical.md                (Skill-level capstone, optional)
+│   ├── skill-01-presentation.md             (Classroom presentation, optional)
+│   └── media/                                (Shared media across outcomes)
+│
 ├── skill-name-2/
-│   └── ...
+│   └── [same structure]
 ```
 
 Each skill can be published to:

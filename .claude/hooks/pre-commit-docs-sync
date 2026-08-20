@@ -1,0 +1,51 @@
+#!/bin/bash
+# Pre-commit hook: Auto-validate docs and rules sync
+#
+# Purpose: When docs/ files change, automatically trigger Claude to validate
+#          that .claude/rules/ files are in sync and suggest updates.
+#
+# Installation:
+#   1. Copy this file to .git/hooks/pre-commit (or create a symlink)
+#   2. chmod +x .git/hooks/pre-commit
+#   3. It will run automatically before each commit
+
+# Exit early if no docs/ changes
+if ! git diff --cached --name-only | grep -q '^docs/'; then
+    exit 0
+fi
+
+# Check if any docs/ files were modified
+DOCS_CHANGED=$(git diff --cached --name-only | grep '^docs/')
+
+if [ -z "$DOCS_CHANGED" ]; then
+    exit 0
+fi
+
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "🔄 Documentation files detected"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo ""
+echo "📝 Files changed in docs/:"
+echo "$DOCS_CHANGED" | sed 's/^/   /'
+echo ""
+echo "🤖 Running automatic sync validation with Claude..."
+echo "   (This checks if .claude/rules/ needs updating)"
+echo ""
+echo "NEXT STEPS:"
+echo "   1. Claude will analyze the changes"
+echo "   2. Review Claude's recommendations"
+echo "   3. Apply suggested updates to .claude/rules/ files"
+echo "   4. Run: claude sync-docs-to-rules"
+echo ""
+echo "For details, see: KEEPING_DOCS_IN_SYNC.md"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+# NOTE: To invoke Claude validation automatically, you would need:
+# 1. Claude Code integration (when available)
+# 2. A skill called "sync-docs-to-rules"
+# 3. Webhook/integration to trigger from pre-commit
+#
+# For now, this hook provides visibility and reminders.
+# Future enhancement: Wire this to Claude Code for automatic validation.
+
+exit 0

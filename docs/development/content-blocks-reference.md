@@ -7,9 +7,9 @@ RAU markdown content blocks provide simple markdown structures that are rendered
 - [Quick Start with Snippets](#quick-start-with-snippets)
 - [Fenced Div Fundamentals](#fenced-div-fundamentals)
 - [Basic Blocks](#basic-blocks)
-- [Print Output Blocks](#print-output-blocks)
-- [SCORM/E-Learning Blocks](#scormes-learning-blocks)
-- [Presentation Blocks](#presentation-blocks)
+- [Complete Block Reference](#complete-block-reference)
+
+**Note**: This is a quick reference guide. For complete documentation of all content blocks including print, SCORM/e-learning, and presentation-specific blocks, see [rau-md-blocks.md](https://github.com/RAU-EIT/rau-start-here) in the rau-start-here repository.
 
 ## Quick Start with Snippets
 
@@ -100,5 +100,31 @@ Draw attention to important information with five alert types: Reference, Warnin
 
 **Intended Output:** SCORM
 
-See the rau-md-blocks.md from rau-start-here for complete block documentation including all content blocks: accordion, hero, steps, content divider, image hotspot, flip cards, quiz, and presentation slides.
+## Complete Block Reference
+
+This guide provides quick reference for the most commonly used content blocks. For comprehensive documentation of all available blocks organized by output type, see:
+
+**[rau-md-blocks.md](https://github.com/RAU-EIT/rau-start-here)** in the rau-start-here repository includes:
+
+**Print Output Blocks**:
+- Page breaks
+- Input fields (with fillable forms)
+- Column layouts
+
+**SCORM/E-Learning Blocks**:
+- Accordion (expandable sections)
+- Hero (banner/intro blocks)
+- Image hotspots (clickable images)
+- Flip cards (interactive cards)
+- Steps (procedural sequences)
+- Quiz blocks (interactive assessment)
+- Knowledge checks (ungraded inline quizzes)
+
+**Presentation Blocks**:
+- Slide layouts (title, content, two-column)
+- Speaker notes
+- Transition effects
+- Fragment reveals
+
+All blocks use the fenced div syntax documented above.
 
