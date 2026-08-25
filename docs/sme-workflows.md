@@ -75,15 +75,32 @@ After design is approved, content is authored in markdown.
 ### File Organization
 
 ```
-skills/
-├── skill-123/
-│   ├── objective-01-lecture.md
-│   ├── objective-02-lecture.md
-│   ├── outcome-01-lecture.md
-│   ├── outcome-01-lab.md
-│   ├── outcome-01-quiz.md
-│   └── media/
+skills/[skill-name]/
+├── [outcome-01-title]/                    (e.g., "analyze-hydraulic-components")
+│   ├── objective-01/
+│   │   ├── lecture.md
+│   │   ├── knowledge-check.md
+│   │   ├── lab.md                     (only if standalone)
+│   │   ├── quiz-questions.md
+│   │   └── media/
+│   ├── objective-02/
+│   │   ├── lecture.md
+│   │   ├── knowledge-check.md
+│   │   ├── quiz-questions.md
+│   │   └── media/
+│   ├── outcome-01-lecture.md          (aggregates objective lectures)
+│   └── outcome-01-quiz.md
+├── [outcome-02-title]/                (repeat structure)
+├── skill-01-practical.md              (skill-level capstone)
+└── media/                             (shared images across outcomes)
 ```
+
+**Key points:**
+
+- Outcome folders use outcome title in kebab-case (e.g., `analyze-hydraulic-components`)
+- Each objective gets its own subfolder (`objective-01`, `objective-02`, etc.)
+- Objective lectures use `!include()` in outcome-level files
+- Media can be at objective level (objective-specific) or skill level (shared)
 
 ### Writing Objectives
 

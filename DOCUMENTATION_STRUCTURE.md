@@ -46,7 +46,8 @@ Guides for the DEVELOPMENT phase (how to author content in LeGIT)
 - `content-blocks-reference.md` - What content blocks exist and how to use them
 - `best-practices.md` - General best practices for writing and structure
 - `yaml-guide.md` - How to write YAML frontmatter in files
-- (Missing files that should be here): legit-markdown-standards.md, legit-presentations.md
+- `markdown-standards.md` - Markdown formatting and structure standards
+- `presentations.md` - Reveal.js presentation standards and structure
 
 **When to read**: You're authoring content files
 
@@ -141,9 +142,9 @@ CLAUDE.md (entry)
 | Design process + steps | `docs/design/content-design-process.md` | Learning how to design |
 | How design maps to files | `docs/design/file-mapping-guide.md` | Understanding file structure |
 | Content block syntax | `docs/development/content-blocks-reference.md` | Using blocks in content |
-| Markdown writing rules | `.claude/rules/legit-markdown-standards.md` | Validation + enforcing standards |
-| YAML frontmatter | `docs/development/yaml-guide.md` + `.claude/rules/legit-yaml.md` | Writing + validation |
-| Presentation rules | `.claude/rules/legit-presentations.md` | Validation for presentations |
+| Markdown writing standards | `docs/development/markdown-standards.md` (guide) → `.claude/rules/legit-markdown-standards.md` (rules) | Learning + validation |
+| YAML frontmatter | `docs/development/yaml-guide.md` (guide) → `.claude/rules/legit-yaml.md` (rules) | Learning + validation |
+| Presentation standards | `docs/development/presentations.md` (guide) → `.claude/rules/legit-presentations.md` (rules) | Learning + validation |
 | Design validation rules | `.claude/rules/content-design-validation.md` | Validating designs |
 | Content block validation | `.claude/rules/legit-blocks.md` | Validating block syntax |
 | General best practices | `docs/development/best-practices.md` | Overall quality principles |
@@ -152,38 +153,26 @@ CLAUDE.md (entry)
 
 ## Current Issues & Recommendations
 
-### Issue 1: Duplicate Files
-Some content appears in BOTH `docs/` (human guide) AND `.claude/rules/` (validation rule):
-- **`legit-markdown-standards.md`**: Only in `.claude/rules/` (missing from `docs/development/`)
-- **`legit-presentations.md`**: Only in `.claude/rules/` (missing from `docs/development/`)
+### ✅ RESOLVED: Missing Development Guides
 
-**Recommendation**: Copy these to `docs/development/` so they're discoverable in the "development guides" section.
+**Status**: Fixed (2026-08-25)
 
----
+Guide files created in `docs/development/`:
 
-### Issue 2: Unclear Separation
-The files in `.claude/rules/` serve two purposes:
-1. **Validation rules** (machine-readable for enforcement)
-2. **Reference guides** (human-readable for understanding requirements)
+- **`markdown-standards.md`** — Guide to markdown standards with reference link to validation rules
+- **`presentations.md`** — Guide to presentation standards with reference link to validation rules
 
-**Examples**:
-- `content-design-validation.md` explains the 6 rules AND is used for validation
-- `legit-yaml.md` explains YAML requirements AND enforces them
+**Approach**:
 
-**Recommendation**: Keep them where they are (.claude/rules/) since they serve both purposes. The key is that `docs/development/` should REFERENCE these rules, not duplicate them.
+- Guides serve as discoverable entry points in `docs/development/`
+- Authoritative validation rules remain in `.claude/rules/` (source of truth)
+- Guides reference the detailed rules files to avoid duplication
+- Developers can find standards naturally by browsing `docs/development/`
+- Single source of truth reduces maintenance burden
 
 ---
 
-### Issue 3: Missing Development Guides
-Some standards that should have guides in `docs/development/` are only in `.claude/rules/`:
-- Markdown standards guide (only in rules, not in docs)
-- Presentation standards guide (only in rules, not in docs)
-
-**Recommendation**: These should be copied/linked from `docs/development/` so new developers can find them naturally.
-
----
-
-## Proposed Structure (Post-Consolidation)
+## Final Structure (Current)
 
 ```
 docs/
@@ -194,8 +183,8 @@ docs/
 │   ├── content-blocks-reference.md        (block syntax + usage)
 │   ├── best-practices.md                  (general practices)
 │   ├── yaml-guide.md                      (YAML frontmatter)
-│   ├── markdown-standards.md               ⭐ (markdown rules - COPY from .claude/rules/)
-│   └── presentations.md                    ⭐ (presentation rules - COPY from .claude/rules/)
+│   ├── markdown-standards.md              (markdown guide → links to rules)
+│   └── presentations.md                   (presentation guide → links to rules)
 ├── legit-fundamentals.md                  (shared - system overview)
 └── sme-workflows.md                       (shared - full lifecycle)
 
@@ -207,10 +196,12 @@ docs/
 └── legit-presentations.md                 (presentation validation)
 ```
 
-**Notes**:
-- `.claude/rules/` remains the source of truth for validation
-- `docs/development/` gets copies so they're discoverable as guides
-- Both can exist; they serve different purposes (guide vs. validation)
+**Approach**:
+
+- `.claude/rules/` remains the **authoritative source of truth** for all validation
+- `docs/development/` provides **discoverable guide entry points** that link to rules
+- Avoids duplication while maintaining single source of truth
+- Developers find guides naturally when browsing `docs/development/`
 
 ---
 
@@ -220,9 +211,9 @@ docs/
 |--------|---------|---------|----------|
 | Root files | Entry points | Users choosing path | CLAUDE.md, QUICK_REFERENCE_CARD.md |
 | `docs/design/` | Design guides | Instructional designers | content-design-process.md |
-| `docs/development/` | Development guides | Content authors | content-blocks-reference.md |
-| `docs/` (shared) | System fundamentals | Everyone | legit-fundamentals.md |
-| `.claude/rules/` | Validation rules | Claude Code, automation | content-design-validation.md |
+| `docs/development/` | Development guides | Content authors | markdown-standards.md, presentations.md, content-blocks-reference.md |
+| `docs/` (shared) | System fundamentals | Everyone | legit-fundamentals.md, sme-workflows.md |
+| `.claude/rules/` | Validation rules (source of truth) | Claude Code, automation, developers | content-design-validation.md, legit-markdown-standards.md |
 
 ---
 
