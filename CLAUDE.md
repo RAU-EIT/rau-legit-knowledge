@@ -19,22 +19,22 @@ Welcome to the RAU LeGIT Knowledge Base. This is your complete guide to **design
 ### 👨‍🏫 Content Design Track
 **For**: Instructional Designers, Product Managers, SMEs  
 **Goal**: Design learning (outcomes, objectives, modalities, activities)  
-**Go to**: [`CLAUDE_REORGANIZED.md#content-design-guide`](./CLAUDE_REORGANIZED.md#content-design-guide)
+**Go to**: [`CLAUDE_REORGANIZED.md#content-design-guide`](./docs/repo-info/CLAUDE_REORGANIZED.md#content-design-guide)
 
 ### 📝 Content Development Track  
 **For**: SMEs, Technical Writers, Content Developers  
 **Goal**: Author training content (lectures, labs, quizzes in LeGIT format)  
-**Go to**: [`CLAUDE_REORGANIZED.md#content-development-guide`](./CLAUDE_REORGANIZED.md#content-development-guide)
+**Go to**: [`CLAUDE_REORGANIZED.md#content-development-guide`](./docs/repo-info/CLAUDE_REORGANIZED.md#content-development-guide)
 
 ---
 
 ## Choose Your Path
 
 **Starting a new training project?**  
-→ [Content Design Guide](./CLAUDE_REORGANIZED.md#content-design-guide)
+→ [Content Design Guide](./docs/repo-info/CLAUDE_REORGANIZED.md#content-design-guide)
 
 **Ready to author content?**  
-→ [Content Development Guide](./CLAUDE_REORGANIZED.md#content-development-guide)
+→ [Content Development Guide](./docs/repo-info/CLAUDE_REORGANIZED.md#content-development-guide)
 
 **Want a quick overview?**  
 → [Quick Reference Card](./QUICK_REFERENCE_CARD.md)
@@ -92,7 +92,7 @@ Rules auto-update to match documentation
 
 ### For More Details
 
-See: [`KEEPING_DOCS_IN_SYNC.md`](./KEEPING_DOCS_IN_SYNC.md)
+See: [`KEEPING_DOCS_IN_SYNC.md`](./docs/repo-info/KEEPING_DOCS_IN_SYNC.md)
 
 ---
 
