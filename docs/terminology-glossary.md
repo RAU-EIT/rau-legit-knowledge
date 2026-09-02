@@ -231,24 +231,6 @@ DELIVERY PHASE (Offerings Packaged)
 | **Offering** | Delivery | Product/Marketing | Packaged Product | Present to customers |
 | **Offering Strategy** | Design | Instructional Designer | Decision/Rationale | Guide deliverable and publication decisions |
 
----
-
-## Common Confusions & Clarifications
-
-### "Publication Strategy" vs. "Offering Strategy"
-- **Old term**: "Publication Strategy" was ambiguous
-- **New term**: "Offering Strategy" is clearer—it's the decision about HOW to deliver AND PACKAGE for the customer
-- **Relationship**: Offering strategy drives both which deliverables are needed AND what publications are created
-
-### "Deliverables" (Design-Phase) vs. "Deliverables" (Development-Phase)
-- **Design-phase**: "Required deliverables" meant the content packages needed (lecture + quiz + lab)
-- **Development-phase**: "Deliverables" means the actual files SMEs author (lecture.md, quiz-questions.md, lab.md)
-- **Mapping**: Design-phase packages → Development-phase files (1:1 mapping)
-
-### "Publications" vs. "Offerings"
-- **Publications**: System outputs (SCORM.zip, PDF, HTML, MP4) — what the build system creates
-- **Offerings**: Customer packages (e-learning course, lab manual, blended program) — what customers receive
-- **Relationship**: Publications are often packaged into offerings; sometimes a publication IS the offering
 
 ---
 
@@ -271,7 +253,7 @@ DELIVERY PHASE (Offerings Packaged)
 - Produce: Publications (PDF, SCORM, HTML, MP4)
 - Outcome: Publishable outputs ready for delivery
 
-### Product / Marketing
+### Customer Training / PODs
 - Focus on: Offerings, Customer packaging, Branding
 - Consume: Publications from build system
 - Package: Publications into customer-facing offerings
