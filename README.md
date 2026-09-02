@@ -31,7 +31,8 @@ This knowledge base provides:
 | File | Purpose |
 |------|---------|
 | [`CLAUDE.md`](CLAUDE.md) | Main knowledge index (11 comprehensive sections) |
-| [`docs/content-design-process.md`](docs/content-design-process.md) | Step-by-step guide for defining outcomes, objectives, modality, coverage |
+| [`docs/terminology-glossary.md`](docs/terminology-glossary.md) | Definitions of key terms: Offering, Publication, Deliverable, etc. |
+| [`docs/content-design-process.md`](docs/content-design-process.md) | Step-by-step guide for defining outcomes, objectives, offering strategy, coverage |
 | [`docs/file-mapping-guide.md`](docs/file-mapping-guide.md) | How design decisions translate to markdown file structure |
 | [`.claude/rules/content-design-validation.md`](.claude/rules/content-design-validation.md) | Design validation rules Claude Code enforces |
 | [`.claude/rules/legit-*.md`](.claude/rules/) | Rules for markdown, YAML, blocks, presentations (coming) |
@@ -52,7 +53,7 @@ Before writing any markdown, content must be designed:
    - Break outcomes into 2-5 specific steps
    - Each objective needs core lecture content
 
-3. **Decide Publication Strategy** (e-learning, classroom, or blended)
+3. **Determine Offering Strategy** (e-learning, classroom, or blended)
    - Decision tree: Can learner be competent without practice?
    - Recommendations by audience type and skill complexity
 
@@ -112,7 +113,7 @@ Claude Code checks:
 - ✅ Objective-to-outcome alignment
 - ✅ Coverage matrix completeness (Passive + Interactive + Assessment)
 - ✅ Standalone objective designation
-- ✅ Modality-deliverable alignment
+- ✅ Offering strategy-deliverable alignment
 - ✅ File mapping completeness
 
 ### Escalation to Aba Azeem

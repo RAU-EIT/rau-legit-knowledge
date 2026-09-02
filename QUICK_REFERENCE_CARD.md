@@ -31,8 +31,8 @@ Skills + Audiences    ────→    /design-training     ────→   
 **The 7-Step Design Process**:
 1. Define Learning Outcomes (ABCD)
 2. Define Learning Objectives (2-5 per outcome)
-3. Determine Publication Strategy (e-learning/classroom/blended)
-4. Map to Required Deliverables
+3. Determine Offering Strategy (e-learning/classroom/blended)
+4. Map Activities to Development Deliverables
 5. Plan Activity Coverage (Passive + Interactive + Assessment)
 6. Enter Design into CDD Workbook
 7. Validate Your Design
@@ -42,7 +42,7 @@ Skills + Audiences    ────→    /design-training     ────→   
 - Objective alignment
 - Coverage completeness
 - Standalone designation
-- Modality-deliverable alignment
+- Offering strategy-deliverable alignment
 - File mapping completeness
 
 ---
@@ -116,7 +116,7 @@ OUTPUT: Markdown files + validation report
 |---|---|
 | Design and dev mixed together | Design FIRST, dev SECOND |
 | Outcomes unclear | ABCD clarity enforced |
-| Modality decided late | Modality drives deliverables |
+| Modality decided late | Offering strategy drives deliverables |
 | Manual authoring | Guided, validated authoring |
 | Inconsistent standards | Automated validation |
 | High error rate | Errors caught early |

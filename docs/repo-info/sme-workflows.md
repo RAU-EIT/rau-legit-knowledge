@@ -29,22 +29,22 @@ Using the ABCD method, define measurable learning outcomes:
 
 Break each outcome into 3-5 specific learning objectives.
 
-### Step 3: Make Modality Decision
+### Step 3: Determine Offering Strategy
 
-Determine **how** this content will be delivered:
-- **E-Learning (SCORM)** — Self-paced, online, interactive
-- **Classroom (ILT)** — Instructor-led, hands-on labs
-- **Blended** — Mix of online and classroom
+Determine **how** this content will be delivered to customers:
+- **E-Learning** — Self-paced, online, interactive offering
+- **Classroom (ILT)** — Instructor-led, hands-on labs offering
+- **Blended** — Mix of online and classroom offering
 
-### Step 4: Define Deliverables
+### Step 4: Map Activities to Deliverables
 
-Based on modality, determine what content packages are needed:
+Based on offering strategy, design activities translate to deliverables—the files SMEs will author:
 
-| Modality | Required Deliverables |
+| Offering Strategy | Required Deliverables (Files to Author) |
 |----------|------------------------|
-| E-Learning | Lecture + Quiz + Knowledge checks |
-| Classroom | Presentation + Lab manual + Practicals |
-| Blended | Presentation + Lecture + Lab manual + Quiz |
+| E-Learning | Lecture files + Quiz question files + Knowledge check files |
+| Classroom | Presentation files + Lab manual files + Practical assessment files |
+| Blended | Presentation files + Lecture files + Lab manual files + Quiz files |
 
 ### Step 5: Validate Coverage
 

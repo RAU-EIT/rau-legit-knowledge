@@ -157,8 +157,8 @@ For detailed guide: See [`docs/content-design-process.md`](/docs/content-design-
 See detailed step-by-step guide in [`docs/content-design-process.md`](/docs/content-design-process.md):
 
 - Step 2: Define Learning Objectives (2-5 per outcome)
-- Step 3: Determine Publication Strategy (e-learning, classroom, blended)
-- Step 4: Map to Required Deliverables
+- Step 3: Determine Offering Strategy (e-learning, classroom, blended)
+- Step 4: Map Design Activities to Development Deliverables
 - Step 5: Plan Activity Coverage (Passive + Interactive + Assessment)
 - Step 6: Enter Design into CDD Workbook
 - Step 7: Validate Your Design (Claude Code + Aba Azeem)
@@ -193,7 +193,7 @@ Claude Code enforces these rules:
 - Objective-to-outcome alignment
 - Coverage completeness (Passive + Interactive + Assessment)
 - Standalone objective designation
-- Modality-deliverable alignment
+- Offering strategy-deliverable alignment
 - File mapping completeness
 
 **Link**: [`.claude/rules/content-design-validation.md`](/.claude/rules/content-design-validation.md)

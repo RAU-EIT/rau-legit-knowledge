@@ -128,12 +128,12 @@ Break each outcome into **2-5 step-level objectives**. Objectives are the buildi
 - You specifically need separate SCORM packages per objective
 - Examples: micro-credentials, prerequisite modules, remedial learning units
 
-## Step 3: Determine Publication Strategy (RAU Recommendation)
+## Step 3: Determine Offering Strategy (RAU Recommendation)
 
 **Last synced**: 2026-08-20  
 **Rule reference**: [.claude/rules/content-design-validation.md Rule 5](/.claude/rules/content-design-validation.md#rule-5-modality-deliverable-alignment--selection)
 
-**Publication strategy** answers: "What delivery modality best serves this skill?"
+**Offering strategy** answers: "What delivery modality and packaging best serves this skill, and what will the customer receive?"
 
 **Important**: RAU training professionals make the **modality recommendation** based on instructional design principles, not on stakeholder requests alone. While we gather input during intake, the final recommendation comes after the design phase when we have full clarity on learning requirements.
 
@@ -346,60 +346,68 @@ Present recommendation with reasoning. Address any conflicts with original reque
 
 **The answers to these questions drive the recommendation.**
 
-## Step 4: Define Business Logic for Automated File Generation
+## Step 4: Map Design Activities to Development Deliverables
 
-In this step, you define the **decision rules** that a tool (Claude or other automation) will use to generate the bare minimum file structure and activity shells for your design. This step is about **formalizing what the tool needs to know** to make intelligent decisions about file organization.
+In this step, the design activities you defined (lecture, labs, quizzes, etc.) are translated into **deliverables**—the actual markdown files SMEs will author during development.
 
-### Decision Rules: Modality and File Generation
+**Key principle**: Every activity defined during design maps directly to a deliverable during development:
+- **Lecture activity** → `lecture.md` deliverable
+- **Knowledge check activity** → `knowledge-check.md` deliverable  
+- **Lab activity** → `lab.md` deliverable
+- **Quiz activity** → `quiz-questions.md` deliverable
 
-Based on your publication strategy from Step 3, define which files and activities will be generated:
+This step formalizes what files need to be created based on your design decisions.
 
-#### E-Learning Modality
+### Decision Rules: Modality and Deliverable Generation
 
-**File Structure Rules**:
+Based on your offering strategy from Step 3, define which deliverables (files) will be authored:
+
+#### E-Learning Offering Strategy
+
+**Deliverable Structure Rules**:
 - One folder per outcome (using outcome title in kebab-case)
 - One subfolder per objective within each outcome
 - Outcome-level aggregated lecture and quiz at the outcome folder level
 
-**Files Generated**:
-- `objective-##/lecture.md` — Objective-level lecture (required for all objectives)
-- `objective-##/knowledge-check.md` — Embedded checks within lecture (required for all objectives)
-- `objective-##/lab.md` — Interactive lab/scenario (required for all objectives in e-learning)
+**Deliverables (Files SMEs Author)**:
+- `objective-##/lecture.md` — Objective-level lecture deliverable (required for all objectives)
+- `objective-##/knowledge-check.md` — Knowledge check deliverable (required for all objectives)
+- `objective-##/lab.md` — Interactive lab deliverable (required for all objectives in e-learning)
 - `outcome-##-lecture.md` — Aggregated outcome lecture (includes all objective lectures)
 - `outcome-##-quiz.md` — Outcome-level assessment (pulls from all objective quiz questions)
-- `objective-##/quiz-questions.md` — Objective-level questions feeding outcome quiz (required for all objectives)
+- `objective-##/quiz-questions.md` — Objective-level quiz question deliverables (required for all objectives)
 
-**Rule**: Every objective in e-learning modality gets a complete P+I+A coverage: lecture, knowledge check, lab, and quiz questions.
+**Rule**: Every objective in e-learning offering gets a complete P+I+A coverage: lecture, knowledge check, lab, and quiz question deliverables.
 
-#### Classroom Modality (ILT)
+#### Classroom Offering Strategy (ILT)
 
-**File Structure Rules**:
+**Deliverable Structure Rules**:
 - One folder per outcome
 - One subfolder per objective within each outcome
 - Outcome-level presentation and practical assessment
 
-**Files Generated**:
-- `objective-##/lecture.md` — Objective-level lecture content (required for all objectives)
-- `outcome-##-presentation.md` — Presentation content for instructor delivery
-- `outcome-##-lab.md` — Hands-on practical lab/exercise (required for all outcomes)
-- `outcome-##-quiz.md` — Assessment and rubrics
-- `objective-##/quiz-questions.md` — Objective quiz questions (optional for ILT; assessment may be practical)
+**Deliverables (Files SMEs Author)**:
+- `objective-##/lecture.md` — Objective-level lecture deliverable (required for all objectives)
+- `outcome-##-presentation.md` — Presentation deliverable for instructor delivery
+- `outcome-##-lab.md` — Hands-on practical lab deliverable (required for all outcomes)
+- `outcome-##-quiz.md` — Assessment and rubrics deliverable
+- `objective-##/quiz-questions.md` — Objective quiz question deliverables (optional for ILT; assessment may be practical)
 
-**Rule**: Classroom delivery emphasizes presentation and practical labs; objectives contribute lecture content rolled into outcome-level presentation.
+**Rule**: Classroom delivery emphasizes presentation and practical labs; objectives contribute lecture deliverables rolled into outcome-level presentation.
 
-#### Blended Modality
+#### Blended Offering Strategy
 
-**File Structure Rules**:
+**Deliverable Structure Rules**:
 - One folder per outcome
 - One subfolder per objective within each outcome
-- Both e-learning and classroom files generated
+- Both e-learning and classroom deliverables
 
-**Files Generated**:
+**Deliverables (Files SMEs Author)**:
 - Same as **E-Learning** (for self-paced online component)
 - PLUS same as **Classroom** (for synchronous/classroom component)
-- `outcome-##-handout.md` — Reference guide for learners
+- `outcome-##-handout.md` — Reference guide deliverable for learners
 
-**Rule**: Blended generates all files from both E-Learning and Classroom modalities.
+**Rule**: Blended offering requires all deliverables from both E-Learning and Classroom strategies.
 
 ### Decision Rules: Standalone vs. Non-Standalone Objectives
 
@@ -437,32 +445,46 @@ Based on your publication strategy from Step 3, define which files and activitie
 - **If outcome assessment is quiz-based**: Generate `outcome-##-quiz.md` with questions
 - **If both**: Generate both files
 
-### Summary: What the Tool Needs to Generate Files
+### Summary: What the Tool Needs to Generate Deliverables
 
 The tool needs to know:
-1. **Modality**: E-Learning, ILT, or Blended
+1. **Offering Strategy** (Modality): E-Learning, ILT, or Blended
 2. **Outcomes**: Count and titles
 3. **Objectives per outcome**: Count and titles, plus standalone designation
 4. **Labs required**: Yes/No per outcome
 5. **Assessment type**: Quiz-based, practical-based, or both
 6. **Standalone exceptions**: Which objectives are standalone vs. non-standalone
 
-Armed with these decisions, the tool generates:
-- ✅ File structure (folders and subfolders)
-- ✅ All required .md files with proper YAML frontmatter
+Armed with these decisions, the tool generates **deliverables**:
+- ✅ Folder structure (folders and subfolders for organization)
+- ✅ All required markdown files (.md) with proper YAML frontmatter
 - ✅ Template structures (lecture headers, lab setup, quiz structure)
 - ✅ Naming conventions applied consistently
 - ✅ Include statements pre-populated where needed
 
+These deliverables are the actual files SMEs will author during the development phase.
+
 ---
 
-### Customer-Facing Content Adds
+### Publications and Offerings
 
-**These are planned separately, after core design is approved**:
-- TLB (Training Lab Book) — Standalone lab manual
-- TSL (Training Summary/Lesson Book) — Standalone reference guide
+**Publications** are all outputs generated by the build system from your deliverables:
+- SCORM 1.2 modules (.zip files for LMS)
+- PDF documents (printable guides, lab manuals)
+- HTML presentations (RevealJS)
+- Video recordings (MP4 with narration)
+- Reference materials
 
-These are typically derivatives of the core learning content, generated after the primary skill design is validated.
+**Offerings** are customer-facing packages built from publications. These are planned separately, after core design is approved:
+- **E-learning offering**: Complete SCORM module enrolled in LMS (built from publications)
+- **Classroom offering**: Instructor presentation + printed lab manual + handouts (built from publications)
+- **Blended offering**: Both online and classroom components (built from publications)
+
+Some publications can be further packaged into customer offerings:
+- **TLB (Training Lab Book)** — Standalone lab manual offering (derived from lab publications)
+- **TSL (Training Summary/Lesson Book)** — Standalone reference guide offering (derived from lecture publications)
+
+These customer-facing offerings are typically created after the primary skill design and publication strategy are validated.
 
 ## Step 5: Generate File Shell (Automated)
 
@@ -541,9 +563,10 @@ If the generated structure doesn't match your design:
 - ☐ All objectives support outcomes
 - ☐ Coverage matrix complete (passive + interactive + assessment per outcome)
 - ☐ Standalone designations documented
-- ☐ Publication strategy selected with rationale
+- ☐ Offering strategy (modality) selected with rationale
+- ☐ Deliverables mapped to design activities
 - ☐ File structure reviewed and approved by team
-- ☐ All generated files named correctly and in place
+- ☐ All deliverable files named correctly and in place
 - ☐ CDD Workbook entry complete
 
 ### Claude Code Validation
