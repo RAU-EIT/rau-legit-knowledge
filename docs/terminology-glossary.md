@@ -1,19 +1,19 @@
-# LeGIT Terminology Glossary
+# RAU Terminology Glossary
 
-This glossary defines key terms used throughout the LeGIT system, from design through publication to customer delivery.
+This glossary defines key terms used throughout the RAU development system, from design through publication to student delivery.
 
 ---
 
 ## The Three Tiers: Design → Development → Delivery
 
-LeGIT has a clear hierarchy from design decisions through customer delivery:
+RAU has a clear hierarchy from design decisions through student delivery:
 
 ```
 DESIGN PHASE                DEVELOPMENT PHASE           BUILD & DELIVERY PHASE
 ─────────────────           ─────────────────           ─────────────────
 
 Design Activities       →    Deliverables (Files)   →   Publications (Outputs)   →   Offerings (Packages)
-(What learners need)        (What SMEs author)          (What system builds)         (What customers get)
+(What learners need)        (What SMEs author)          (What system builds)         (What students get)
 
 Lecture activity        →    lecture.md              →   SCORM, PDF, HTML        →   E-learning course
 Quiz activity           →    quiz-questions.md      →   Assessment tools        →   Online assessment
@@ -161,22 +161,6 @@ Lab activity            →    lab.md                 →   Lab manual PDF      
 - Columns blocks
 
 **Used in**: Content authoring, markdown files (deliverables)
-
----
-
-### CDD (Content Design Document)
-**Definition**: The formal documentation of all design decisions for a skill, created during the design phase.
-
-**Contains**:
-- Learning outcomes (ABCD)
-- Learning objectives
-- Offering strategy with rationale
-- Activity coverage matrix (Passive + Interactive + Assessment)
-- Deliverables list (files to author)
-- Standalone objective designations
-- File structure plan
-
-**Used in**: Design approval, team handoff, development planning
 
 ---
 
