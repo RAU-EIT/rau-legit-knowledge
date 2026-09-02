@@ -112,8 +112,9 @@ VALIDATE: Run through .claude/rules/ checks
 ```
 CLAUDE.md (entry)
   ↓
-  ├─→ CLAUDE_REORGANIZED.md (two-track structure)
+  ├─→ docs/repo-info/CLAUDE_REORGANIZED.md (two-track structure)
   ├─→ QUICK_REFERENCE_CARD.md (visual overview)
+  ├─→ README.md (project info)
   └─→ docs/
         ├─→ design/
         │     ├─→ content-design-process.md
@@ -121,8 +122,26 @@ CLAUDE.md (entry)
         ├─→ development/
         │     ├─→ content-blocks-reference.md
         │     ├─→ best-practices.md
-        │     └─→ yaml-guide.md
-        └─→ legit-fundamentals.md
+        │     ├─→ yaml-guide.md
+        │     ├─→ markdown-standards.md
+        │     ├─→ presentations.md
+        │     └─→ legit-fundamentals.md
+        └─→ repo-info/
+              ├─→ CLAUDE_REORGANIZED.md
+              ├─→ DOCUMENTATION_STRUCTURE.md
+              ├─→ REPO_STRUCTURE.md
+              ├─→ KEEPING_DOCS_IN_SYNC.md
+              └─→ sme-workflows.md
+
+specifications/ (technical specs)
+  └─→ CLAUDE_CODE_SKILLS_SPEC.md
+
+archive/ (historical records)
+  ├─→ PHASE_1_2_SUMMARY.md
+  ├─→ PHASE_4_IMPLEMENTATION_STATUS.md
+  ├─→ PHASE_4_SUMMARY.md
+  ├─→ [and other phase/sync reports...]
+  └─→ SYNC_REPORT_2026-08-20.md
 
 .claude/rules/ (validation)
   ├─→ content-design-validation.md
@@ -138,16 +157,19 @@ CLAUDE.md (entry)
 
 | Content | Location | Purpose |
 |---------|----------|---------|
-| System overview | `docs/legit-fundamentals.md` | Understanding the big picture |
+| System overview | `docs/development/legit-fundamentals.md` | Understanding the big picture |
 | Design process + steps | `docs/design/content-design-process.md` | Learning how to design |
 | How design maps to files | `docs/design/file-mapping-guide.md` | Understanding file structure |
 | Content block syntax | `docs/development/content-blocks-reference.md` | Using blocks in content |
 | Markdown writing standards | `docs/development/markdown-standards.md` (guide) → `.claude/rules/legit-markdown-standards.md` (rules) | Learning + validation |
 | YAML frontmatter | `docs/development/yaml-guide.md` (guide) → `.claude/rules/legit-yaml.md` (rules) | Learning + validation |
 | Presentation standards | `docs/development/presentations.md` (guide) → `.claude/rules/legit-presentations.md` (rules) | Learning + validation |
+| SME workflows | `docs/repo-info/sme-workflows.md` | Content development lifecycle |
 | Design validation rules | `.claude/rules/content-design-validation.md` | Validating designs |
 | Content block validation | `.claude/rules/legit-blocks.md` | Validating block syntax |
 | General best practices | `docs/development/best-practices.md` | Overall quality principles |
+| Repository structure info | `docs/repo-info/REPO_STRUCTURE.md` | Understanding project layout |
+| Documentation sync | `docs/repo-info/KEEPING_DOCS_IN_SYNC.md` | Maintaining docs-to-rules sync |
 
 ---
 
@@ -207,13 +229,15 @@ docs/
 
 ## Summary
 
-| Folder | Purpose | Used By | Examples |
-|--------|---------|---------|----------|
-| Root files | Entry points | Users choosing path | CLAUDE.md, QUICK_REFERENCE_CARD.md |
-| `docs/design/` | Design guides | Instructional designers | content-design-process.md |
-| `docs/development/` | Development guides | Content authors | markdown-standards.md, presentations.md, content-blocks-reference.md |
-| `docs/` (shared) | System fundamentals | Everyone | legit-fundamentals.md, sme-workflows.md |
-| `.claude/rules/` | Validation rules (source of truth) | Claude Code, automation, developers | content-design-validation.md, legit-markdown-standards.md |
+| Location                | Purpose                          | Used By                        | Examples                                                             |
+| ----------------------- | -------------------------------- | ------------------------------ | -------------------------------------------------------------------- |
+| Root (3 files)          | Entry points                     | Users choosing path            | CLAUDE.md, README.md, QUICK_REFERENCE_CARD.md                        |
+| `docs/design/`          | Design guides                    | Instructional designers        | content-design-process.md, file-mapping-guide.md                     |
+| `docs/development/`     | Development guides & references  | Content authors                | markdown-standards.md, presentations.md, yaml-guide.md               |
+| `docs/repo-info/`       | Repository documentation         | Everyone                       | CLAUDE_REORGANIZED.md, DOCUMENTATION_STRUCTURE.md, sme-workflows.md  |
+| `specifications/`       | Technical specifications         | Developers                     | CLAUDE_CODE_SKILLS_SPEC.md                                           |
+| `archive/`              | Historical project records       | Project history                | Phase summaries, sync reports                                        |
+| `.claude/rules/`        | Validation rules (source truth)  | Claude Code, automation        | content-design-validation.md, legit-markdown-standards.md            |
 
 ---
 

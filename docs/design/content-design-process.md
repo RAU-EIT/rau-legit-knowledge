@@ -346,41 +346,227 @@ Present recommendation with reasoning. Address any conflicts with original reque
 
 **The answers to these questions drive the recommendation.**
 
-## Step 4: Map to Required Deliverables
+## Step 4: Define Business Logic for Automated File Generation
 
-Once you know the publication strategy, the required deliverables are determined.
+In this step, you define the **decision rules** that a tool (Claude or other automation) will use to generate the bare minimum file structure and activity shells for your design. This step is about **formalizing what the tool needs to know** to make intelligent decisions about file organization.
 
-### E-Learning Modality
+### Decision Rules: Modality and File Generation
 
-**Output Format**: SCORM 1.2 module (1 output file)
+Based on your publication strategy from Step 3, define which files and activities will be generated:
 
-**Module Contents** (components aggregated into the SCORM):
-- Lectures (organized by objective)
-- Knowledge checks (embedded within lectures)
-- Labs (if applicable, interactive scenarios)
-- Quiz questions (graded assessment)
+#### E-Learning Modality
 
-### Classroom Modality
+**File Structure Rules**:
+- One folder per outcome (using outcome title in kebab-case)
+- One subfolder per objective within each outcome
+- Outcome-level aggregated lecture and quiz at the outcome folder level
 
-**Output Formats**: 
-- Instructor presentation (RevealJS or PowerPoint)
-- Student labs and practicals
-- Assessment quizzes and rubrics
-- Handouts/reference guides (PDF)
+**Files Generated**:
+- `objective-##/lecture.md` — Objective-level lecture (required for all objectives)
+- `objective-##/knowledge-check.md` — Embedded checks within lecture (required for all objectives)
+- `objective-##/lab.md` — Interactive lab/scenario (required for all objectives in e-learning)
+- `outcome-##-lecture.md` — Aggregated outcome lecture (includes all objective lectures)
+- `outcome-##-quiz.md` — Outcome-level assessment (pulls from all objective quiz questions)
+- `objective-##/quiz-questions.md` — Objective-level questions feeding outcome quiz (required for all objectives)
 
-### Blended Modality
+**Rule**: Every objective in e-learning modality gets a complete P+I+A coverage: lecture, knowledge check, lab, and quiz questions.
 
-**Output Formats**: All of the above
-- SCORM module (e-learning component)
-- Instructor presentation (classroom component)
-- Lab manuals and practicals
-- Reference guides
+#### Classroom Modality (ILT)
 
-### Customer-Facing Adds
-- TLB (Training Lab Book)
-- TSL (Training Summary/Lesson Book)
+**File Structure Rules**:
+- One folder per outcome
+- One subfolder per objective within each outcome
+- Outcome-level presentation and practical assessment
 
-## Step 5: Plan Activity Coverage
+**Files Generated**:
+- `objective-##/lecture.md` — Objective-level lecture content (required for all objectives)
+- `outcome-##-presentation.md` — Presentation content for instructor delivery
+- `outcome-##-lab.md` — Hands-on practical lab/exercise (required for all outcomes)
+- `outcome-##-quiz.md` — Assessment and rubrics
+- `objective-##/quiz-questions.md` — Objective quiz questions (optional for ILT; assessment may be practical)
+
+**Rule**: Classroom delivery emphasizes presentation and practical labs; objectives contribute lecture content rolled into outcome-level presentation.
+
+#### Blended Modality
+
+**File Structure Rules**:
+- One folder per outcome
+- One subfolder per objective within each outcome
+- Both e-learning and classroom files generated
+
+**Files Generated**:
+- Same as **E-Learning** (for self-paced online component)
+- PLUS same as **Classroom** (for synchronous/classroom component)
+- `outcome-##-handout.md` — Reference guide for learners
+
+**Rule**: Blended generates all files from both E-Learning and Classroom modalities.
+
+### Decision Rules: Standalone vs. Non-Standalone Objectives
+
+#### Non-Standalone Objectives (Default)
+
+**File Generation Rule**:
+- Lecture authored separately but included in outcome-level lecture via `!include()`
+- Knowledge checks authored separately, included in outcome lecture
+- Labs and quizzes authored at outcome level (not individually)
+- Tool generates: lecture.md, knowledge-check.md only at objective level
+
+**Tool Decision**: Default to non-standalone unless explicitly marked otherwise.
+
+#### Standalone Objectives
+
+**File Generation Rule**:
+- Each objective is a complete, independent unit
+- Must have its own lecture, lab, and quiz (full P+I+A)
+- May generate its own SCORM package
+- Tool generates: lecture.md, lab.md, quiz-questions.md at objective level
+
+**Tool Decision**: Only generate standalone file sets if objective is explicitly marked as "standalone: true" in design.
+
+### Decision Rules: Labs and Practicals
+
+**Lab Generation Logic**:
+
+- **E-Learning**: Lab file always required (`objective-##/lab.md` or `outcome-##-lab.md`)
+- **Classroom**: Lab file required at outcome level (`outcome-##-lab.md`)
+- **Blended**: Both objective and outcome labs may be required; clarify in design
+
+**Practical Exercise Generation Logic**:
+
+- **If outcome requires hands-on assessment**: Generate `outcome-##-practical.md` with rubrics
+- **If outcome assessment is quiz-based**: Generate `outcome-##-quiz.md` with questions
+- **If both**: Generate both files
+
+### Summary: What the Tool Needs to Generate Files
+
+The tool needs to know:
+1. **Modality**: E-Learning, ILT, or Blended
+2. **Outcomes**: Count and titles
+3. **Objectives per outcome**: Count and titles, plus standalone designation
+4. **Labs required**: Yes/No per outcome
+5. **Assessment type**: Quiz-based, practical-based, or both
+6. **Standalone exceptions**: Which objectives are standalone vs. non-standalone
+
+Armed with these decisions, the tool generates:
+- ✅ File structure (folders and subfolders)
+- ✅ All required .md files with proper YAML frontmatter
+- ✅ Template structures (lecture headers, lab setup, quiz structure)
+- ✅ Naming conventions applied consistently
+- ✅ Include statements pre-populated where needed
+
+---
+
+### Customer-Facing Content Adds
+
+**These are planned separately, after core design is approved**:
+- TLB (Training Lab Book) — Standalone lab manual
+- TSL (Training Summary/Lesson Book) — Standalone reference guide
+
+These are typically derivatives of the core learning content, generated after the primary skill design is validated.
+
+## Step 5: Generate File Shell (Automated)
+
+**Input**: Your completed design from Steps 1-4  
+**Tool**: Claude Code or equivalent automation  
+**Output**: Complete file structure + empty activity shells with frontmatter
+
+Ask Claude Code: **"Generate the file shell for this design"**
+
+The tool will:
+1. Analyze your modality, outcomes, and objectives
+2. Apply the business logic from Step 4
+3. Generate folder structure
+4. Create all required .md files with YAML frontmatter
+5. Pre-populate template structures (lecture headers, lab sections, quiz structure)
+6. Output a summary of what was generated
+
+**Example Output**:
+
+```text
+skills/troubleshoot-hydraulic-systems/
+├── diagnose-pump-failures/
+│   ├── objective-01/
+│   │   ├── lecture.md (frontmatter: skill, docType, title)
+│   │   ├── knowledge-check.md
+│   │   ├── lab.md
+│   │   └── quiz-questions.md
+│   ├── objective-02/
+│   │   ├── lecture.md
+│   │   ├── knowledge-check.md
+│   │   ├── lab.md
+│   │   └── quiz-questions.md
+│   ├── outcome-01-lecture.md (aggregates objectives via !include)
+│   └── outcome-01-quiz.md
+└── media/
+    └── (ready for images/diagrams)
+
+Generated 7 files with YAML frontmatter and template structures.
+```
+
+## Step 6: Review & Refine Generated Structure
+
+**Input**: Generated file shell from Step 5  
+**Participants**: Design team (SMEs, instructional designer, technical writer)  
+**Output**: Approved, modified file structure ready for content authoring
+
+### Review Checklist
+
+- [ ] File structure matches your mental model of the design
+- [ ] All required files are present
+- [ ] Naming conventions are consistent
+- [ ] YAML frontmatter is correct (title, skill ID, docType)
+- [ ] Template structures (lecture headers, sections) make sense
+- [ ] Include statements are pre-positioned correctly
+- [ ] Any missing files? (e.g., you need a `media/` subfolder?)
+- [ ] Any files that shouldn't be there? (e.g., remove a lab you don't need)
+- [ ] File count matches expectations
+
+### Modifications
+
+If the generated structure doesn't match your design:
+
+**Common Changes**:
+- Rename files to better reflect content
+- Add additional folders for media organization
+- Merge or split objectives if structure feels wrong
+- Add standalone designation to objectives that need independence
+- Remove lab or quiz files if those activities won't be authored
+
+**Make changes before moving to Step 7.** It's easier to adjust the structure now than to reorganize files once content authoring begins.
+
+## Step 7: Validate Your Design
+
+### Self-Check Checklist
+- ☐ All outcomes follow ABCD method
+- ☐ All objectives support outcomes
+- ☐ Coverage matrix complete (passive + interactive + assessment per outcome)
+- ☐ Standalone designations documented
+- ☐ Publication strategy selected with rationale
+- ☐ File structure reviewed and approved by team
+- ☐ All generated files named correctly and in place
+- ☐ CDD Workbook entry complete
+
+### Claude Code Validation
+
+Ask Claude Code: **"Validate my content design"**
+
+Claude Code will check for ABCD completeness, objective alignment, coverage matrix, modality-deliverable alignment, AND file structure completeness.
+
+### Escalation to Aba Azeem
+
+If Claude Code finds complex design questions, it escalates to **Aba Azeem** (aba.azeem@rockwellautomation.com) for guidance.
+
+### Design Approval & Export Prep
+
+Once validation passes:
+1. Design is **approved for content authoring**
+2. File structure is **locked** (no more structural changes without escalation)
+3. Team begins **content development** using the generated shells
+4. Optional: Export design to build.yaml or other publishing systems
+
+For more details, see the complete guide in CLAUDE.md Section 0.
+
+## Step 8: Plan Activity Coverage
 
 **Critical Rule**: Every learning outcome must have three types of activities that collectively cover the outcome:
 
@@ -410,39 +596,3 @@ Once you know the publication strategy, the required deliverables are determined
 **Objective-Level Coverage** (Only for standalone objectives):
 - Standalone objectives must each have their own complete P+I+A coverage
 - Non-standalone objectives are NOT validated for individual P+I+A coverage (they roll up to outcome)
-
-## Step 6: Enter Your Design into the CDD Workbook
-
-The **CDD Workbook** (Excel) is the system of record for instructional alignment. Your design team completes:
-
-- Skills tab
-- Outcomes tab (ABCD)
-- Objectives tab
-- Activities tab
-- Coverage validation tab
-- Deliverables tab
-- Modality/Publication tab
-
-## Step 7: Validate Your Design
-
-### Self-Check Checklist
-- ☐ All outcomes follow ABCD method
-- ☐ All objectives support outcomes
-- ☐ Coverage matrix complete (passive + interactive + assessment per outcome)
-- ☐ Standalone designations documented
-- ☐ Publication strategy selected with rationale
-- ☐ Deliverables list matches modality
-- ☐ File mapping plan started
-- ☐ CDD Workbook entry complete
-
-### Claude Code Validation
-
-Ask Claude Code: **"Validate my content design"**
-
-Claude Code will check for ABCD completeness, objective alignment, coverage matrix, and modality-deliverable alignment.
-
-### Escalation to Aba Azeem
-
-If Claude Code finds complex design questions, it escalates to **Aba Azeem** (aba.azeem@rockwellautomation.com) for guidance.
-
-For more details, see the complete guide in CLAUDE.md Section 0.
