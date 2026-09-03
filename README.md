@@ -7,7 +7,7 @@ This repository contains the shared knowledge base for RAU's LeGIT content devel
 RAU LeGIT is a **skills-based content development system** that enables SMEs to author atomic learning content in Markdown, store it in Git, and publish to multiple formats (PDFs, presentations, SCORM modules, videos).
 
 This knowledge base provides:
-- **Content Design Framework** — ABCD outcomes, objectives, modality selection, coverage planning
+- **Content Design Framework** — ABCD outcomes, objectives, delivery strategy, coverage planning
 - **Content Development Guide** — Markdown authoring, content blocks, build configuration
 - **Validation Rules** — Claude Code checks for instructional alignment and completeness
 - **Integration Patterns** — How to use this in your content repositories
@@ -32,7 +32,7 @@ This knowledge base provides:
 |------|---------|
 | [`CLAUDE.md`](CLAUDE.md) | Main knowledge index (11 comprehensive sections) |
 | [`docs/terminology-glossary.md`](docs/terminology-glossary.md) | Definitions of key terms: Offering, Publication, Deliverable, etc. |
-| [`docs/content-design-process.md`](docs/content-design-process.md) | Step-by-step guide for defining outcomes, objectives, offering strategy, coverage |
+| [`docs/content-design-process.md`](docs/content-design-process.md) | Step-by-step guide for defining outcomes, objectives, delivery strategy, coverage |
 | [`docs/file-mapping-guide.md`](docs/file-mapping-guide.md) | How design decisions translate to markdown file structure |
 | [`.claude/rules/content-design-validation.md`](.claude/rules/content-design-validation.md) | Design validation rules Claude Code enforces |
 | [`.claude/rules/legit-*.md`](.claude/rules/) | Rules for markdown, YAML, blocks, presentations (coming) |
@@ -53,8 +53,8 @@ Before writing any markdown, content must be designed:
    - Break outcomes into 2-5 specific steps
    - Each objective needs core lecture content
 
-3. **Determine Offering Strategy** (e-learning, classroom, or blended)
-   - Decision tree: Can learner be competent without practice?
+3. **Determine Delivery Strategy** (e-learning, classroom, or blended)
+   - Decision framework: Can learner be competent without practice?
    - Recommendations by audience type and skill complexity
 
 4. **Plan Activity Coverage** (passive + interactive + assessment)

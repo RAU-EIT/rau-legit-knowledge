@@ -13,7 +13,7 @@ LeGIT content development follows a design-first workflow:
 
 ## Design Phase Workflow
 
-The design phase establishes learning outcomes, objectives, and modality decisions **before** any content is written.
+The design phase establishes learning outcomes, objectives, and delivery strategy **before** any content is written.
 
 **Deliverable:** Content Design Document (CDD)
 
@@ -29,18 +29,18 @@ Using the ABCD method, define measurable learning outcomes:
 
 Break each outcome into 3-5 specific learning objectives.
 
-### Step 3: Determine Offering Strategy
+### Step 3: Determine Delivery Strategy
 
 Determine **how** this content will be delivered to customers:
-- **E-Learning** — Self-paced, online, interactive offering
-- **Classroom (ILT)** — Instructor-led, hands-on labs offering
-- **Blended** — Mix of online and classroom offering
+- **E-Learning** — Self-paced, online, interactive delivery
+- **Classroom (ILT)** — Instructor-led, hands-on labs delivery
+- **Blended** — Mix of online and classroom delivery
 
 ### Step 4: Map Activities to Deliverables
 
-Based on offering strategy, design activities translate to deliverables—the files SMEs will author:
+Based on delivery strategy, design activities translate to deliverables—the files SMEs will author:
 
-| Offering Strategy | Required Deliverables (Files to Author) |
+| Delivery Strategy | Required Deliverables (Files to Author) |
 |----------|------------------------|
 | E-Learning | Lecture files + Quiz question files + Knowledge check files |
 | Classroom | Presentation files + Lab manual files + Practical assessment files |
@@ -57,7 +57,7 @@ Every outcome must have:
 
 Document the design in the CDD Workbook:
 - Outcomes and objectives
-- Modality decision with rationale
+- Delivery strategy with rationale
 - Coverage matrix
 - Deliverables list
 

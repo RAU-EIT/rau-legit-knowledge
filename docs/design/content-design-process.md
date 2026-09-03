@@ -128,14 +128,14 @@ Break each outcome into **2-5 step-level objectives**. Objectives are the buildi
 - You specifically need separate SCORM packages per objective
 - Examples: micro-credentials, prerequisite modules, remedial learning units
 
-## Step 3: Determine Offering Strategy (RAU Recommendation)
+## Step 3: Determine Delivery Strategy (RAU Recommendation)
 
 **Last synced**: 2026-08-20  
-**Rule reference**: [.claude/rules/content-design-validation.md Rule 5](/.claude/rules/content-design-validation.md#rule-5-modality-deliverable-alignment--selection)
+**Rule reference**: [.claude/rules/content-design-validation.md Rule 5](/.claude/rules/content-design-validation.md#rule-5-delivery-strategy--deliverable-alignment)
 
-**Offering strategy** answers: "What delivery modality and packaging best serves this skill, and what will the customer receive?"
+**Delivery strategy** answers: "What delivery modality and packaging best serves this skill, and what will the customer receive?"
 
-**Important**: RAU training professionals make the **modality recommendation** based on instructional design principles, not on stakeholder requests alone. While we gather input during intake, the final recommendation comes after the design phase when we have full clarity on learning requirements.
+**Important**: RAU training professionals make the **delivery strategy recommendation** based on instructional design principles, not on stakeholder requests alone. While we gather input during intake, the final recommendation comes after the design phase when we have full clarity on learning requirements.
 
 ### Decision Framework (Not a Rigid Rule)
 
@@ -294,7 +294,7 @@ During the initial project discussion, collect:
 - Instructor availability
 - Budget constraints
 
-Set expectations: "We'll make a modality recommendation after the design phase."
+Set expectations: "We'll make a delivery strategy recommendation after the design phase."
 
 **Step 2: Complete Design Phase**
 Work through outcomes, objectives, and activity coverage. This clarifies:
@@ -334,7 +334,7 @@ Present recommendation with reasoning. Address any conflicts with original reque
 
 ### Questions to Guide Discussion
 
-**Use these questions in design conversations to determine modality:**
+**Use these questions in design conversations to determine the delivery strategy:**
 
 1. "What exactly must learners be able to DO?" (Performance)
 2. "Could they learn this effectively from a simulation, or do they need physical equipment?" (Hardware)
@@ -358,11 +358,11 @@ In this step, the design activities you defined (lecture, labs, quizzes, etc.) a
 
 This step formalizes what files need to be created based on your design decisions.
 
-### Decision Rules: Modality and Deliverable Generation
+### Decision Rules: Delivery Strategy and Deliverable Generation
 
-Based on your offering strategy from Step 3, define which deliverables (files) will be authored:
+Based on your delivery strategy from Step 3, define which deliverables (files) will be authored:
 
-#### E-Learning Offering Strategy
+#### E-Learning Delivery Strategy
 
 **Deliverable Structure Rules**:
 - One folder per outcome (using outcome title in kebab-case)
@@ -379,7 +379,7 @@ Based on your offering strategy from Step 3, define which deliverables (files) w
 
 **Rule**: Every objective in e-learning offering gets a complete P+I+A coverage: lecture, knowledge check, lab, and quiz question deliverables.
 
-#### Classroom Offering Strategy (ILT)
+#### Classroom Delivery Strategy (ILT)
 
 **Deliverable Structure Rules**:
 - One folder per outcome
@@ -395,7 +395,7 @@ Based on your offering strategy from Step 3, define which deliverables (files) w
 
 **Rule**: Classroom delivery emphasizes presentation and practical labs; objectives contribute lecture deliverables rolled into outcome-level presentation.
 
-#### Blended Offering Strategy
+#### Blended Delivery Strategy
 
 **Deliverable Structure Rules**:
 - One folder per outcome
@@ -448,7 +448,7 @@ Based on your offering strategy from Step 3, define which deliverables (files) w
 ### Summary: What the Tool Needs to Generate Deliverables
 
 The tool needs to know:
-1. **Offering Strategy** (Modality): E-Learning, ILT, or Blended
+1. **Delivery Strategy**: E-Learning, ILT, or Blended
 2. **Outcomes**: Count and titles
 3. **Objectives per outcome**: Count and titles, plus standalone designation
 4. **Labs required**: Yes/No per outcome
@@ -563,7 +563,7 @@ If the generated structure doesn't match your design:
 - ☐ All objectives support outcomes
 - ☐ Coverage matrix complete (passive + interactive + assessment per outcome)
 - ☐ Standalone designations documented
-- ☐ Offering strategy (modality) selected with rationale
+- ☐ Delivery strategy selected with rationale
 - ☐ Deliverables mapped to design activities
 - ☐ File structure reviewed and approved by team
 - ☐ All deliverable files named correctly and in place
@@ -573,7 +573,7 @@ If the generated structure doesn't match your design:
 
 Ask Claude Code: **"Validate my content design"**
 
-Claude Code will check for ABCD completeness, objective alignment, coverage matrix, modality-deliverable alignment, AND file structure completeness.
+Claude Code will check for ABCD completeness, objective alignment, coverage matrix, delivery-strategy-deliverable alignment, AND file structure completeness.
 
 ### Escalation to Aba Azeem
 

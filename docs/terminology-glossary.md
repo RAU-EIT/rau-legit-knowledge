@@ -25,26 +25,25 @@ Lab activity            →    lab.md                 →   Lab manual PDF      
 ## Core Terminology
 
 ### Offering
-**Definition**: A customer-facing, packaged learning product that a customer enrolls in, purchases, or downloads.
+**Definition**: A student-facing, packaged learning product that a student enrolls in, purchases, or downloads.
 
 **Examples**:
 - An e-learning module enrolled in an LMS
 - A classroom training course with instructor
-- A lab manual available for download
 - A blended learning experience (online + classroom)
 
 **Characteristics**:
-- Customer-facing (what they experience)
+- Student-facing (what they experience)
 - Branded and packaged for delivery
 - May combine multiple publications
 - May include supporting materials (certificates, references, job aids)
 
-**Used in**: Marketing, stakeholder communication, customer delivery, LMS enrollment
+**Used in**: Marketing, stakeholder communication, student delivery, LMS enrollment
 
 ---
 
 ### Publication
-**Definition**: A concrete output produced by the LeGIT build system from authored deliverables. Publications are the intermediate products that either get deployed directly to customers or packaged into customer-facing offerings.
+**Definition**: A concrete output produced by the LeGIT build system from authored deliverables. Publications are the intermediate products that either get deployed directly to students or packaged into student-facing offerings.
 
 **Examples of Publications**:
 - SCORM 1.2 module (.zip file)
@@ -58,7 +57,7 @@ Lab activity            →    lab.md                 →   Lab manual PDF      
 **Characteristics**:
 - System-generated from deliverables via build process
 - Format-specific (PDF, SCORM, HTML, video, etc.)
-- Not customer-branded yet (may be rebranded into offerings)
+- Not student-branded yet (may be rebranded into offerings)
 - Versioned and tracked in source control
 - May be intermediate (combined into offerings) or final (deployed as-is)
 
@@ -70,12 +69,12 @@ Lab activity            →    lab.md                 →   Lab manual PDF      
 **Definition**: The concrete work product that a subject matter expert (SME) creates during the development phase. Deliverables are the actual markdown files and supporting assets that become the source content for publications.
 
 **Examples of Deliverables**:
-- `lecture.md` — Lecture content file
-- `lab.md` — Lab/hands-on exercise file
-- `quiz-questions.md` — Assessment question file
-- `knowledge-check.md` — Embedded knowledge check file
-- `presentation.md` — Presentation content file
-- `practical.md` — Practical assessment file
+- Lecture content
+- Lab/hands-on exercise content
+- Assessment questions
+- Knowledge checks
+- Presentation slides
+- Practical assessment
 - Supporting media files (images, diagrams, videos)
 - Virtual machines (VMs) or test environments
 - Supporting documentation
@@ -91,8 +90,8 @@ Lab activity            →    lab.md                 →   Lab manual PDF      
 
 ---
 
-### Offering Strategy
-**Definition**: The strategic decision about how a skill will be delivered to customers. It answers: "What modality and packaging will best serve this learning?"
+### Delivery Strategy
+**Definition**: The strategic decision about how a skill will be delivered to students. It answers: "What modality and packaging will best serve this learning?"
 
 **Options**:
 - **E-Learning** — Self-paced, online, interactive offering
@@ -103,7 +102,7 @@ Lab activity            →    lab.md                 →   Lab manual PDF      
 - Determined during design phase (Step 3)
 - Drives which deliverables must be created
 - Drives which publications will be generated
-- Drives what offerings are packaged for customers
+- Drives what offerings are packaged for students
 
 **Used in**: Design phase, content planning, team communication
 
@@ -123,19 +122,7 @@ Lab activity            →    lab.md                 →   Lab manual PDF      
 
 ---
 
-### Modality
-**Definition**: The instructional delivery method chosen for a skill.
-
-**Options**:
-- **E-Learning** — Self-paced, asynchronous online learning
-- **ILT (Instructor-Led Training)** — Synchronous, in-person or virtual classroom
-- **Blended** — Mix of asynchronous online and synchronous classroom
-
-**Note**: "Modality" and "Offering Strategy" are closely related. The offering strategy encompasses the modality plus the customer packaging and branding.
-
----
-
-### Output Type / Output Format
+### Publication Type
 **Definition**: The technical format that publications are built into.
 
 **Options**:
@@ -145,7 +132,7 @@ Lab activity            →    lab.md                 →   Lab manual PDF      
 - **scorm1.2** → SCORM 1.2 e-learning modules
 - **presentation-video** → MP4 video recordings
 
-**Relationship**: Output types are determined by offering strategy. E-learning offerings use scorm1.2 output type. Classroom offerings use revealjs or pptx output types.
+**Relationship**: Output types are determined by delivery strategy. E-learning offerings use scorm1.2 output type. Classroom offerings use revealjs or pptx output types.
 
 ---
 
@@ -166,13 +153,13 @@ Lab activity            →    lab.md                 →   Lab manual PDF      
 
 ## Workflow Mapping
 
-### From Design to Customer
+### From Design to Student
 
 ```
 DESIGN PHASE (CDD Created)
 ├─ Outcomes defined (ABCD)
 ├─ Objectives defined (2-5 per outcome)
-├─ Offering strategy chosen (e-learning/classroom/blended)
+├─ Delivery strategy chosen (e-learning/classroom/blended)
 ├─ Activities mapped (lecture, lab, quiz, etc.)
 └─ Deliverables list created
 
@@ -190,7 +177,7 @@ DEVELOPMENT PHASE (Deliverables Authored)
 
 BUILD PHASE (Publications Generated)
 ├─ Build system processes deliverables
-├─ Applies offering strategy rules
+├─ Applies delivery strategy rules
 ├─ Creates output formats (PDF, SCORM, HTML, MP4)
 └─ Generates publications (final outputs)
 
@@ -198,9 +185,9 @@ BUILD PHASE (Publications Generated)
 
 DELIVERY PHASE (Offerings Packaged)
 ├─ Publications branded/packaged
-├─ Customer offerings created
+├─ Student offerings created
 ├─ Deployed to LMS, websites, or distribution channels
-└─ Customers enroll/access offerings
+└─ Students enroll/access offerings
 ```
 
 ---
@@ -212,7 +199,7 @@ DELIVERY PHASE (Offerings Packaged)
 | **Activity** | Design | Instructional Designer | Abstract | Define what learners will do |
 | **Deliverable** | Development | SME/Technical Writer | Markdown + YAML | Author source content |
 | **Publication** | Build | Build System | PDF/SCORM/HTML/MP4 | Create technical outputs |
-| **Offering** | Delivery | Product/Marketing | Packaged Product | Present to customers |
+| **Offering** | Delivery | Product/Marketing | Packaged Product | Present to students |
 | **Offering Strategy** | Design | Instructional Designer | Decision/Rationale | Guide deliverable and publication decisions |
 
 
@@ -221,8 +208,8 @@ DELIVERY PHASE (Offerings Packaged)
 ## For Different Audiences
 
 ### Instructional Designers
-- Focus on: Activities, Offering Strategy, CDD, Modality decisions
-- Create: Design documents defining activities and offering strategy
+- Focus on: Activities, Delivery Strategy, CDD
+- Create: Design documents defining activities and delivery strategy
 - Outcome: Deliverables list that drives development
 
 ### Content Developers / SMEs
@@ -237,11 +224,11 @@ DELIVERY PHASE (Offerings Packaged)
 - Produce: Publications (PDF, SCORM, HTML, MP4)
 - Outcome: Publishable outputs ready for delivery
 
-### Customer Training / PODs
-- Focus on: Offerings, Customer packaging, Branding
+### Student Training / PODs
+- Focus on: Offerings, Student packaging, Branding
 - Consume: Publications from build system
-- Package: Publications into customer-facing offerings
-- Outcome: Customer offerings deployed to LMS, websites, etc.
+- Package: Publications into student-facing offerings
+- Outcome: Student offerings deployed to LMS, websites, etc.
 
 ---
 

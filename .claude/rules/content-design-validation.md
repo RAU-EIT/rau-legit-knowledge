@@ -63,14 +63,14 @@ Coverage validation applies at the **outcome level** only:
 - Shares interactive activities and assessment with other objectives at outcome level
 - **Coverage is NOT validated at objective level** (only at outcome level)
 
-## Rule 5: Offering Strategy & Deliverable Alignment
+## Rule 5: Delivery Strategy & Deliverable Alignment
 
 **Last synced**: 2026-09-02  
 **Source**: docs/design/content-design-process.md Steps 3-4
 
 ### Overview
 
-**Offering strategy** determines what modality (e-learning, classroom, blended) will be used to deliver the skill to customers. This strategy directly drives which **deliverables** (markdown files) SMEs must author:
+**Delivery strategy** determines what modality (e-learning, classroom, blended) will be used to deliver the skill to customers. This strategy directly drives which **deliverables** (markdown files) SMEs must author:
 - E-Learning → requires lecture, knowledge checks, labs, quiz files
 - Classroom → requires presentation, lab manual, practical files
 - Blended → requires all of the above
@@ -239,7 +239,7 @@ For each outcome/objective, corresponding markdown files must be planned:
 - ☐ **Standalone objectives** have individual P+I+A coverage
 - ☐ **Non-standalone objectives** marked and rolled into outcomes
 - ☐ Standalone designations documented
-- ☐ Publication modality selected with rationale
+- ☐ Delivery strategy selected with rationale
 - ☐ Deliverables list complete
 - ☐ File mapping complete with outcome title folder structure
 - ☐ CDD Workbook entry complete

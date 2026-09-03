@@ -2,7 +2,7 @@
 
 **Problem**: When we update guides in `docs/`, the `.claude/rules/` files that Claude Code actually uses may not be updated, causing Claude to use outdated information.
 
-**Example**: We just updated the delivery modality decision framework in `docs/content-design-process.md`, but the Claude Code skills use `.claude/rules/content-design-validation.md`. If they're not kept in sync, Claude will use old rules.
+**Example**: We just updated the delivery strategy framework in `docs/content-design-process.md`, but the Claude Code skills use `.claude/rules/content-design-validation.md`. If they're not kept in sync, Claude will use old rules.
 
 ---
 
@@ -171,11 +171,11 @@ For the authoritative decision framework, see below:
 **Current situation**: We updated `docs/content-design-process.md` Step 3 with the new decision framework, but `.claude/rules/content-design-validation.md` Rule 5 may still have old information.
 
 **Action items**:
-1. Review `.claude/rules/content-design-validation.md` Rule 5 (Modality-Deliverable Alignment)
+1. Review `.claude/rules/content-design-validation.md` Rule 5 (Delivery Strategy & Deliverable Alignment)
 2. Compare with new framework in `docs/content-design-process.md` Step 3
 3. Update `.claude/rules/content-design-validation.md` to match the new framework
 4. Add note in both files: "Last synced: 2026-08-20"
-5. Create commit: "sync: update publication strategy decision framework (docs + rules)"
+5. Create commit: "sync: update delivery strategy decision framework (docs + rules)"
 
 ---
 
