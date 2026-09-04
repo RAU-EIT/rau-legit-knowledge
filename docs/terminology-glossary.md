@@ -23,7 +23,7 @@ Delivery Strategy  →  Offering  →  Publication  →  Activity  →  Delivera
                        enrolls in)                 must do)
 ```
 
-Read as: *"We chose blended. That means a self-paced course plus a regional practicum. To deliver those we need a SCORM module, an instructor deck, and a lab manual. Those require lecture, lab, and quiz activities. Those become an authored lecture, an authored lab, an authored question pool, plus a hydraulic simulator VM."*
+Read as: *"We chose blended. That means a self-paced course plus an ILT course for customer training. To deliver those we need a SCORM module, an instructor deck, a TSL (Training Summary/Lesson Book), and a TLB (Training Lab Book). Those require lecture, lab, and quiz activities. Those activities convert to deliverables the SME must create, plus a VM environment for the instructors and students to use for the labs."*
 
 ### Build produces bottom-up
 
@@ -35,7 +35,7 @@ Deliverable  →  Publication  →  Offering
                  output)         product)
 ```
 
-Read as: *"The authored lecture content builds into a SCORM package. That SCORM package, plus a certificate and job aid, is packaged as the e-learning course a student enrolls in."*
+Read as: *"The authored lecture content, knowledge check, and quiz build into a SCORM package. That SCORM package is loaded as the e-learning course a student enrolls in."*
 
 ### Why this matters
 
@@ -328,22 +328,6 @@ In LeGIT, the publication type is set by the **`docType`** field in YAML frontma
 | **Activity** | Design (Step 6) | Development | Instructional Designer | Abstract learning activity |
 | **Deliverable** | Design (Step 7) | Development | SME / Technical Writer | Authored content, or a supporting asset |
 | **Content Database** | Design (Step 9) | Build / Export | Content Ops | System of record |
-
----
-
-## Terms We Do Not Use
-
-These terms have appeared in RAU documentation and are **retired**. Use the canonical replacement.
-
-| Do not use | Use instead | Why |
-| --- | --- | --- |
-| **Task** | **Deliverable** | "Task" was introduced with the same definition deliverable already had. There is no distinct concept for it to name. |
-| **Publication Strategy** | **Delivery Strategy** | Confusingly implies the decision is about publications. It is about modality. Publications are a separate, downstream design decision (Step 5). |
-| **Offering Strategy** | **Delivery Strategy** | Same problem in the other direction. Offerings are their own design decision (Step 4). |
-| **Output Type** | **Publication Type** | Aligns the name with "Publication." The LeGIT YAML field remains `docType`. |
-| **Format** | **Delivery Strategy** *or* **Publication Type** | Ambiguous: historically meant ILT vs. e-learning, but was also being used for `pdf`/`scorm`/`revealjs`. Say which one you mean. |
-| **Modality** (as the decision's name) | **Delivery Strategy** | "Modality" is fine for the *value* (e-learning / classroom / blended). It is not the name of the decision. |
-| **Customer** (for the learner) | **Student** | RAU standardized on student-focused language. |
 
 ---
 

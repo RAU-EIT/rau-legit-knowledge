@@ -194,7 +194,7 @@ It is the **first link in the derivation chain**. Once confirmed, it determines 
 
 **Important**: RAU training professionals make the **delivery strategy recommendation** based on instructional design principles, not on stakeholder requests alone. While we gather input during intake, the final recommendation comes after the design phase when we have full clarity on learning requirements.
 
-> **Terminology note**: this decision is called **delivery strategy**: never "publication strategy" or "offering strategy." Publications and offerings are separate, downstream decisions with their own steps. See [Terms We Do Not Use](../terminology-glossary.md#terms-we-do-not-use).
+> **Terminology note**: this decision is called **delivery strategy**. Publications and offerings are separate, downstream decisions with their own steps (Steps 5 and 4). See [Delivery Strategy](../terminology-glossary.md#delivery-strategy) in the glossary.
 
 ### Decision Framework (Not a Rigid Rule)
 
