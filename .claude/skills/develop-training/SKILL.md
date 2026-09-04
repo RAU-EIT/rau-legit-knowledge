@@ -1,13 +1,18 @@
 ---
 name: develop-training
-description: Help content authors translate learning designs into LeGIT markdown files ready for building
-aliases: [develop, author, create-content, write-training]
-whenToUse: You have a validated design and are ready to write content files
+description: Help content authors translate learning designs into LeGIT markdown files ready for building. Use when a validated design exists and it is time to author, write, or develop the actual content files (lectures, labs, knowledge checks, quizzes).
 ---
 
 # Develop RAU Training Content
 
 Ready to author your training content? This skill guides you through translating your design into complete, validated LeGIT markdown files.
+
+## Read This First
+
+Before authoring anything, read [`engine.md`](./engine.md) in this directory. It holds the
+phase-by-phase implementation: loading the design, scaffolding files, the authoring templates
+for each file type, YAML frontmatter generation, and the validation routines. This document is
+the overview; do not author from it alone.
 
 ## Quick Start
 

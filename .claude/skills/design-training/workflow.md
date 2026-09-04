@@ -1,9 +1,3 @@
----
-name: design-training-workflow
-description: Internal workflow implementation for /design-training skill
-internal: true
----
-
 # Design Training Workflow - Internal Implementation
 
 This document describes the step-by-step workflow for guiding users through the design process.
@@ -46,7 +40,7 @@ START
 ```
 
 Each state in the derivation chain is an input to the next. See
-[docs/terminology-glossary.md](../../docs/terminology-glossary.md#the-two-directions).
+[docs/terminology-glossary.md](../../../docs/terminology-glossary.md#the-two-directions).
 
 ---
 

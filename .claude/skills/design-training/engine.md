@@ -1,9 +1,3 @@
----
-name: design-training-engine
-description: Core implementation engine for /design-training skill
-internal: true
----
-
 # Design Training Skill - Core Engine Implementation
 
 This document contains the complete working implementation of the `/design-training` skill, handling all 9 interactive steps of the design process.
