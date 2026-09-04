@@ -128,4 +128,4 @@ Before considering a block valid:
 - [ ] Media files exist and referenced correctly
 - [ ] Alt text is present and descriptive
 - [ ] Block serves a functional purpose
-- [ ] Tested in target output format
+- [ ] Tested in target publication type

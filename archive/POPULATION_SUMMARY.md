@@ -210,11 +210,11 @@ Each file can be used independently:
 ## Usage in Knowledge Base
 
 These files serve as:
-1. **Training Materials** — Learn how to create content
-2. **Reference Guides** — Look up specific attributes or syntax
-3. **Validation Rules** — Check content against standards
-4. **Best Practices** — Learn recommended approaches
-5. **Troubleshooting** — Solve common problems
+1. **Training Materials**: Learn how to create content
+2. **Reference Guides**: Look up specific attributes or syntax
+3. **Validation Rules**: Check content against standards
+4. **Best Practices**: Learn recommended approaches
+5. **Troubleshooting**: Solve common problems
 
 ## Quality Assurance
 

@@ -14,10 +14,10 @@ This document contains the actual detection and comparison logic for the sync-do
 const syncMappings = [
   {
     docFile: "docs/design/content-design-process.md",
-    docSection: "Step 3: Publication Strategy Decision Framework",
+    docSection: "Step 3: Delivery Strategy Decision Framework",
     ruleFile: ".claude/rules/content-design-validation.md",
-    ruleSection: "Rule 5: Modality-Deliverable Alignment",
-    name: "Publication Strategy Framework",
+    ruleSection: "Rule 5: Delivery Strategy & Deliverable Alignment",
+    name: "Delivery Strategy Framework",
     critical: true
   },
   {
@@ -126,7 +126,7 @@ function compareDocToRule(docFile, ruleFile, docSection, ruleSection) {
 
 ## Key Comparison Points
 
-### 1. Publication Strategy Framework (Most Critical)
+### 1. Delivery Strategy Framework (Most Critical)
 
 **What to look for in docs**:
 - Presence of "six-factor framework" or similar
@@ -249,7 +249,7 @@ Mapping to rules:
 COMPARING VERSIONS...
 
 File: docs/design/content-design-process.md
-Section: Step 3 - Publication Strategy Decision Framework
+Section: Step 3 - Delivery Strategy Decision Framework
 
 EXTRACTING CONTENT...
 ✓ Found section (612 lines)
@@ -258,7 +258,7 @@ EXTRACTING CONTENT...
 ✓ Found examples
 
 Comparing to: .claude/rules/content-design-validation.md
-Section: Rule 5 - Modality-Deliverable Alignment
+Section: Rule 5 - Delivery Strategy & Deliverable Alignment
 
 ✓ Found rule section (145 lines)
 ⚠️ Found binary framework (old)
@@ -394,7 +394,7 @@ When approved, the skill would prepare:
 APPLYING CHANGES...
 
 ✓ Reading: .claude/rules/content-design-validation.md
-✓ Updating: Rule 5 - Modality-Deliverable Alignment
+✓ Updating: Rule 5 - Delivery Strategy & Deliverable Alignment
 ✓ Adding: New 6-factor framework
 ✓ Adding: New examples
 ✓ Adding: Sync date stamp
@@ -403,7 +403,7 @@ APPLYING CHANGES...
 PREVIEW OF CHANGES:
 
 File: .claude/rules/content-design-validation.md
-Rule: 5 - Modality-Deliverable Alignment
+Rule: 5 - Delivery Strategy & Deliverable Alignment
 
 --- OLD ---
 [old definition]
@@ -420,7 +420,7 @@ Rule: 5 - Modality-Deliverable Alignment
 Ready to commit? (This would be done by the user)
 
 Commit message:
-"sync: update publication strategy decision framework (docs + rules)"
+"sync: update delivery strategy decision framework (docs + rules)"
 ```
 
 ## Edge Cases & Handling
@@ -462,7 +462,7 @@ Loading validation rules...
 Checking sync status: .claude/rules/content-design-validation.md
 Last synced: 2026-08-20 ✓ (current)
 
-Using Rule 5: Six-factor publication strategy framework
+Using Rule 5: Six-factor delivery strategy framework
 Decision engine loaded with latest criteria
 ```
 

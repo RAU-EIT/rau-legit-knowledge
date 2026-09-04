@@ -27,21 +27,21 @@ skill:
 ```
 
 **Required fields:**
-- `title` — Document title (single line, sentence case)
-- `docType` — Output type (print, revealjs, or scorm)
-- `css` — Relative path to stylesheet
-- `skill.id` — Unique skill identifier
-- `skill.revisionDate` — Revision date in YYYY-MM format
-- `skill.classification` — Public, Internal, or Confidential
+- `title`: Document title (single line, sentence case)
+- `docType`: Output type (print, revealjs, or scorm)
+- `css`: Relative path to stylesheet
+- `skill.id`: Unique skill identifier
+- `skill.revisionDate`: Revision date in YYYY-MM format
+- `skill.classification`: Public, Internal, or Confidential
 
 ## docType Rules
 
 ### Rule: Use Valid docType Values Only
 
 **Valid values:**
-- `print` — PDF output (lab manuals, guides)
-- `revealjs` — HTML presentations (reveal.js)
-- `scorm` — E-learning modules
+- `print`: PDF output (lab manuals, guides)
+- `revealjs`: HTML presentations (reveal.js)
+- `scorm`: E-learning modules
 
 **Good:**
 ```yaml

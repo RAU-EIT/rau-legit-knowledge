@@ -2,7 +2,7 @@
 
 **Problem**: When we update guides in `docs/`, the `.claude/rules/` files that Claude Code actually uses may not be updated, causing Claude to use outdated information.
 
-**Example**: We just updated the delivery strategy framework in `docs/content-design-process.md`, but the Claude Code skills use `.claude/rules/content-design-validation.md`. If they're not kept in sync, Claude will use old rules.
+**Example**: We just updated the delivery strategy framework in `docs/design/content-design-process.md`, but the Claude Code skills use `.claude/rules/content-design-validation.md`. If they're not kept in sync, Claude will use old rules.
 
 ---
 
@@ -92,7 +92,7 @@ Every time you update a rule, follow this checklist:
 
 **Example**:
 ```markdown
-# Step 3: Publication Strategy
+# Step 3: Delivery Strategy
 
 For the authoritative decision framework, see below:
 
@@ -168,11 +168,11 @@ For the authoritative decision framework, see below:
 
 ## Immediate Action: Sync the Decision Framework
 
-**Current situation**: We updated `docs/content-design-process.md` Step 3 with the new decision framework, but `.claude/rules/content-design-validation.md` Rule 5 may still have old information.
+**Current situation**: We updated `docs/design/content-design-process.md` Step 3 with the new decision framework, but `.claude/rules/content-design-validation.md` Rule 5 may still have old information.
 
 **Action items**:
 1. Review `.claude/rules/content-design-validation.md` Rule 5 (Delivery Strategy & Deliverable Alignment)
-2. Compare with new framework in `docs/content-design-process.md` Step 3
+2. Compare with new framework in `docs/design/content-design-process.md` Step 3
 3. Update `.claude/rules/content-design-validation.md` to match the new framework
 4. Add note in both files: "Last synced: 2026-08-20"
 5. Create commit: "sync: update delivery strategy decision framework (docs + rules)"
@@ -217,11 +217,18 @@ Keep this up-to-date as you add new rules:
 
 | `.claude/rules/` File | Referenced in `docs/` Files | Last Sync |
 |---|---|---|
-| `content-design-validation.md` | `docs/design/content-design-process.md` (Step 7) | TBD |
+| `content-design-validation.md` Rule 5 | `docs/design/content-design-process.md` (**Step 3**: six-factor framework, duplicated verbatim) | 2026-09-03 |
+| `content-design-validation.md` Rule 6 | `docs/design/file-mapping-guide.md` (file creation rules) | 2026-09-03 |
+| `content-design-validation.md` (terms) | `docs/terminology-glossary.md` (source of truth) | 2026-09-03 |
 | `legit-yaml.md` | `docs/development/yaml-guide.md` | TBD |
 | `legit-markdown-standards.md` | `docs/development/best-practices.md` | TBD |
-| `legit-presentations.md` | `docs/development/presentations.md` (missing) | TBD |
+| `legit-presentations.md` | `docs/development/presentations.md` | TBD |
 | `legit-blocks.md` | `docs/development/content-blocks-reference.md` | TBD |
+
+**The most sync-sensitive pair** is Rule 5 Part A ↔ content-design-process Step 3. The
+six-factor decision framework is duplicated verbatim in both, deliberately: rules are the
+primary source for Claude Code skills, docs carry the human-facing narrative. Both copies
+must change together.
 
 ---
 
@@ -240,7 +247,7 @@ Keep this up-to-date as you add new rules:
   └─→ Uses: Standards from these files
 ```
 
-**No reason for Claude Code to read `docs/` files directly** — those are for human guidance, not machine enforcement.
+**No reason for Claude Code to read `docs/` files directly**: those are for human guidance, not machine enforcement.
 
 ---
 
@@ -285,10 +292,10 @@ Keep this up-to-date as you add new rules:
 **Implement Path 1 immediately** (1-2 hours):
 
 1. [ ] Create `DOCS_SYNC_PROCESS.md` with the checklist above
-2. [ ] Review `.claude/rules/content-design-validation.md` vs. `docs/content-design-process.md` Step 3
+2. [ ] Review `.claude/rules/content-design-validation.md` vs. `docs/design/content-design-process.md` Step 3
 3. [ ] Sync the decision framework (update both files)
 4. [ ] Add sync date stamps to both
-5. [ ] Create commit: "sync: update publication strategy decision framework"
+5. [ ] Create commit: "sync: update delivery strategy decision framework"
 6. [ ] Add this file to project workflow as required reading
 
 **Plan Path 2** (low-priority, when you have time):

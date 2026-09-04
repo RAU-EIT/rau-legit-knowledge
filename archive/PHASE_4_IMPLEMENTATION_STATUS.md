@@ -1,6 +1,6 @@
 # Phase 4 Implementation Status
 
-**Status**: In Progress — Core Skills Scaffolded  
+**Status**: In Progress: Core Skills Scaffolded  
 **Date**: 2026-08-20  
 **Progress**: Foundation complete, ready for enhancement
 
@@ -8,7 +8,7 @@
 
 ## What's Been Completed
 
-### ✅ Skill 1: `/design-training` — Design Assistant
+### ✅ Skill 1: `/design-training`: Design Assistant
 **Location**: `.claude/skills/design-training.md`
 
 **Delivered**:
@@ -27,7 +27,7 @@
 
 ---
 
-### ✅ Skill 2: `/develop-training` — Development Assistant
+### ✅ Skill 2: `/develop-training`: Development Assistant
 **Location**: `.claude/skills/develop-training.md`
 
 **Delivered**:
@@ -47,7 +47,7 @@
 
 ---
 
-### ✅ Skill 3: `/sync-docs-to-rules` — Sync Validation
+### ✅ Skill 3: `/sync-docs-to-rules`: Sync Validation
 **Location**: `.claude/skills/sync-docs-to-rules.md`
 
 **Delivered**:
@@ -421,7 +421,7 @@ All three skills need the core implementation work (weeks 1-5) to:
 
 **Timeline to Full Implementation**: 5-6 weeks (with dedicated development)
 
-**Current Blockers**: None — ready to proceed with implementation
+**Current Blockers**: None; ready to proceed with implementation
 
 **Path Forward**: Wire workflows, implement validation logic, test with real content
 

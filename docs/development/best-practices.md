@@ -50,8 +50,8 @@ Let CSS handle appearance. Markdown should describe **what** it is, not **how** 
 - Use **consistent heading hierarchy** (no skipped levels)
 - Maintain **consistent list formatting**
 - Use **code fences** (``` ```) for code blocks, not inline HTML
-- **Avoid inline HTML** — use markdown syntax instead
-- **Avoid inline styles** — let CSS handle appearance
+- **Avoid inline HTML**: use markdown syntax instead
+- **Avoid inline styles**: let CSS handle appearance
 
 ## Accessibility and Readability
 

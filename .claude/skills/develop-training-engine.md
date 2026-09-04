@@ -153,7 +153,7 @@ async function phase1_LoadDesign() {
     
     console.log(`\n✓ Design loaded: ${design.skill.name}`);
     console.log(`  Outcomes: ${design.outcomes.length}`);
-    console.log(`  Modality: ${design.publicationStrategy.modality}\n`);
+    console.log(`  Modality: ${design.deliveryStrategy.modality}\n`);
     
     return design;
     
@@ -170,31 +170,41 @@ async function phase1_LoadDesign() {
 ```javascript
 function phase2_ScaffoldFiles(design) {
   const fileStructure = {
-    skillFolder: design.fileMapping.skillFolder,
+    skillFolder: design.deliverableManifest.skillFolder,
     files: [],
     folders: new Set()
   };
   
   // Create folder structure
-  for (const outcomeMapping of design.fileMapping.outcomes) {
+  for (const outcomeMapping of design.deliverableManifest.outcomes) {
     // Add outcome folder
     fileStructure.folders.add(outcomeMapping.folder);
     fileStructure.folders.add(`${outcomeMapping.folder}/media`);
     
-    // Add outcome files
-    fileStructure.files.push({
-      path: outcomeMapping.files.lecture,
-      type: 'outcome-lecture',
-      outcome: outcomeMapping.title,
-      template: 'outcome-lecture'
-    });
-    
-    fileStructure.files.push({
-      path: outcomeMapping.files.quiz,
-      type: 'outcome-quiz',
-      outcome: outcomeMapping.title,
-      template: 'outcome-quiz'
-    });
+    // Add outcome files. The manifest only includes the keys this design actually
+    // needs: outcome-level lab appears when there are non-standalone objectives;
+    // presentation/handout/practical depend on delivery strategy and assessment type.
+    // Iterate the manifest rather than hard-coding, so the two never drift apart.
+    const OUTCOME_FILE_TYPES = {
+      lecture: 'outcome-lecture',
+      lab: 'outcome-lab',
+      quiz: 'outcome-quiz',
+      presentation: 'outcome-presentation',
+      practical: 'outcome-practical',
+      handout: 'outcome-handout'
+    };
+
+    for (const [key, type] of Object.entries(OUTCOME_FILE_TYPES)) {
+      const path = outcomeMapping.files[key];
+      if (!path) continue;
+
+      fileStructure.files.push({
+        path: path,
+        type: type,
+        outcome: outcomeMapping.title,
+        template: type
+      });
+    }
     
     // Add objective files
     for (const objMapping of outcomeMapping.objectives) {
@@ -219,7 +229,18 @@ function phase2_ScaffoldFiles(design) {
         template: 'knowledge-check'
       });
       
-      // Lab (only if standalone)
+      // Quiz questions (always required): Rule 6. Authored per objective so the
+      // outcome quiz can draw a pool traceable to each objective.
+      fileStructure.files.push({
+        path: objMapping.files.quizQuestions,
+        type: 'quiz-questions',
+        outcome: outcomeMapping.title,
+        objective: objMapping.title,
+        template: 'quiz-questions'
+      });
+
+      // Lab (only if standalone): a non-standalone objective shares the
+      // outcome-level lab with its siblings.
       if (objMapping.standalone) {
         fileStructure.files.push({
           path: objMapping.files.lab,
@@ -228,18 +249,6 @@ function phase2_ScaffoldFiles(design) {
           objective: objMapping.title,
           standalone: true,
           template: 'lab'
-        });
-      }
-      
-      // Quiz questions (only if standalone)
-      if (objMapping.standalone) {
-        fileStructure.files.push({
-          path: objMapping.files.quizQuestions,
-          type: 'quiz-questions',
-          outcome: outcomeMapping.title,
-          objective: objMapping.title,
-          standalone: true,
-          template: 'quiz-questions'
         });
       }
     }
@@ -257,14 +266,16 @@ function showFileStructureOverview(fileStructure) {
   console.log(`${fileStructure.skillFolder}/`);
   console.log('├── [outcome-folders]/');
   console.log('│   ├── objective-01/');
-  console.log('│   │   ├── lecture.md');
-  console.log('│   │   ├── knowledge-check.md');
-  console.log('│   │   ├── lab.md (if standalone)');
-  console.log('│   │   ├── quiz-questions.md (if standalone)');
+  console.log('│   │   ├── lecture.md              (always)');
+  console.log('│   │   ├── knowledge-check.md      (always)');
+  console.log('│   │   ├── quiz-questions.md       (always - feeds outcome quiz pool)');
+  console.log('│   │   ├── lab.md                  (only if standalone)');
   console.log('│   │   └── media/');
   console.log('│   ├── outcome-01-lecture.md');
+  console.log('│   ├── outcome-01-lab.md           (for non-standalone objectives)');
   console.log('│   ├── outcome-01-quiz.md');
   console.log('│   └── media/');
+  console.log('├── assets/                         (supporting assets)');
   console.log('└── media/\n');
 }
 ```
@@ -590,7 +601,7 @@ async function phase6_CreateQuizzes(design, knowledgeChecks) {
     console.log(`\n--- OUTCOME QUIZ: ${outcome.title} ---\n`);
     
     const quiz = {
-      path: `${design.fileMapping.skillFolder}/${outcome.id.split('-').join('-')}/outcome-quiz.md`,
+      path: `${design.deliverableManifest.skillFolder}/${outcome.id.split('-').join('-')}/outcome-quiz.md`,
       title: outcome.title,
       questions: [],
       passingScore: 80
@@ -657,8 +668,8 @@ function phase7_GenerateYAML(design) {
   for (const outcome of design.outcomes) {
     yaml[outcome.id] = {
       title: outcome.title,
-      docType: getDocType(design.publicationStrategy.modality),
-      css: getCSSPath(design.publicationStrategy.modality),
+      docType: getDocType(design.deliveryStrategy.modality),
+      css: getCSSPath(design.deliveryStrategy.modality),
       skill: {
         id: 'SKL' + Math.random().toString(36).substr(2, 9).toUpperCase(),
         revisionDate: getCurrentDateYYYYMM(),
@@ -848,7 +859,7 @@ function showCompletionSummary(session) {
   console.log('╚════════════════════════════════════════════════════════════╝\n');
   
   console.log(`Skill: ${session.design.skill.name}`);
-  console.log(`Modality: ${session.design.publicationStrategy.modality.toUpperCase()}\n`);
+  console.log(`Modality: ${session.design.deliveryStrategy.modality.toUpperCase()}\n`);
   
   console.log('Content Created:');
   console.log(`  ✓ ${Object.keys(session.lecturFiles).length} lectures`);
@@ -861,7 +872,7 @@ function showCompletionSummary(session) {
   console.log(`  ✓ All YAML correct`);
   console.log(`  ✓ No blockers found\n`);
   
-  console.log('NEXT STEP: Build output formats\n');
+  console.log('NEXT STEP: Build the publications\n');
   console.log('Ready for:');
   console.log('  • PDF building (print modality)');
   console.log('  • SCORM packaging (e-learning)');

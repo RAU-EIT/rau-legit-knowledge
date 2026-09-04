@@ -10,7 +10,7 @@
 
 ### Three Claude Code Skills (Fully Specified)
 
-#### 1. `/design-training` — Content Design Assistant
+#### 1. `/design-training`: Content Design Assistant
 **Purpose**: Guide SMEs through structured learning design using ABCD framework
 
 **Delivered**:
@@ -23,7 +23,7 @@
 
 ---
 
-#### 2. `/develop-training` — Content Development Assistant
+#### 2. `/develop-training`: Content Development Assistant
 **Purpose**: Help content authors translate designs into LeGIT markdown files
 
 **Delivered**:
@@ -37,7 +37,7 @@
 
 ---
 
-#### 3. `/sync-docs-to-rules` — Documentation Validation & Sync
+#### 3. `/sync-docs-to-rules`: Documentation Validation & Sync
 **Purpose**: Keep documentation and validation rules in sync, provide advisory recommendations
 
 **Delivered**:

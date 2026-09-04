@@ -13,12 +13,12 @@ This skill keeps your documentation and validation rules synchronized, ensuring 
 
 When you update files in `docs/`, the rules in `.claude/rules/` might become outdated. This skill:
 
-1. **Detects changes** — Identifies which docs/ files were modified
-2. **Compares versions** — Reads the updated docs and corresponding rules
-3. **Identifies gaps** — Shows what's different
-4. **Recommends updates** — Suggests specific changes to rules
-5. **Provides rationale** — Explains why sync matters
-6. **Awaits approval** — Team reviews and approves before applying
+1. **Detects changes**: Identifies which docs/ files were modified
+2. **Compares versions**: Reads the updated docs and corresponding rules
+3. **Identifies gaps**: Shows what's different
+4. **Recommends updates**: Suggests specific changes to rules
+5. **Provides rationale**: Explains why sync matters
+6. **Awaits approval**: Team reviews and approves before applying
 
 ## Key Principle: Advisory, Not Enforcement
 
@@ -96,7 +96,7 @@ This will:
 
 ### Scenario
 
-You updated `docs/design/content-design-process.md` Step 3 with a new publication strategy decision framework. Now you want to sync the corresponding rule.
+You updated `docs/design/content-design-process.md` Step 3 with a new delivery strategy decision framework. Now you want to sync the corresponding rule.
 
 ### Run Skill
 
@@ -112,12 +112,12 @@ You updated `docs/design/content-design-process.md` Step 3 with a new publicatio
 ═══════════════════════════════════════════════════════════════
 
 Changed Files:
-  • docs/design/content-design-process.md (Step 3: Publication Strategy)
+  • docs/design/content-design-process.md (Step 3: Delivery Strategy)
 
 Comparison Results:
 
 FILE: docs/design/content-design-process.md
-SECTION: Step 3 - Publication Strategy Decision Framework
+SECTION: Step 3 - Delivery Strategy Decision Framework
 
 CHANGE DETECTED:
   Updated decision criteria from "Can learner become competent without practice?"
@@ -131,12 +131,12 @@ CHANGE DETECTED:
 
 IMPACT ON RULES:
   File: .claude/rules/content-design-validation.md
-  Rule: Rule 5 (Modality-Deliverable Alignment)
+  Rule: Rule 5 (Delivery Strategy & Deliverable Alignment)
   Issue: Based on outdated decision framework
 
 RECOMMENDED CHANGES:
 
-1. UPDATE: Rule 5 - Modality-Deliverable Alignment
+1. UPDATE: Rule 5 - Delivery Strategy & Deliverable Alignment
    
    FROM (old):
    "Binary yes/no questions determine if classroom or e-learning is appropriate."
@@ -210,7 +210,7 @@ Changes made:
 ✓ Added sync date stamp
 ✓ Added reference back to docs/design/content-design-process.md
 
-Commit: sync: update publication strategy decision framework (docs + rules)
+Commit: sync: update delivery strategy decision framework (docs + rules)
 
 Next time /design-training runs, it will use the updated rule.
 ```
@@ -257,7 +257,7 @@ When you update a docs file, the skill automatically identifies related rules.
 
 **Process**:
 ```markdown
-# Step 3: Publication Strategy
+# Step 3: Delivery Strategy
 
 For the authoritative decision framework:
 
@@ -296,18 +296,18 @@ For the authoritative decision framework:
 File: `docs/design/content-design-process.md`
 
 ```markdown
-## Step 3: Publication Strategy
+## Step 3: Delivery Strategy
 
 NEW:
 We use a six-factor framework to choose modality:
 
-1. **Performance Type** — What kind of learning?
+1. **Performance Type**: What kind of learning?
    - Recall/Knowledge
    - Procedure
    - Problem-Solving
    - Complex (requires practice)
 
-2. **Instructor Involvement** — How much teaching?
+2. **Instructor Involvement**: How much teaching?
    - None (self-paced)
    - Minimal (support only)
    - Moderate (guidance)
@@ -320,7 +320,7 @@ We use a six-factor framework to choose modality:
 
 ```bash
 git add docs/design/content-design-process.md
-git commit -m "Update publication strategy decision framework"
+git commit -m "Update delivery strategy decision framework"
 # Pre-commit hook runs /sync-docs-to-rules
 ```
 

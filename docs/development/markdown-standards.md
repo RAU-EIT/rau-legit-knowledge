@@ -14,10 +14,10 @@ All markdown content in LeGIT must follow consistent formatting and structure st
 
 ### Heading Hierarchy
 Use proper heading levels to structure your content:
-- **H1** (`#`) — One per document for the main title
-- **H2** (`##`) — Major sections
-- **H3** (`###`) — Subsections
-- **H4+** — Content within subsections
+- **H1** (`#`): One per document for the main title
+- **H2** (`##`): Major sections
+- **H3** (`###`): Subsections
+- **H4+**: Content within subsections
 
 Never skip heading levels (e.g., don't jump from H1 to H4).
 
@@ -27,7 +27,7 @@ Use formatting intentionally:
 - *Italic* for foreign words and variable names
 - `Code` for file names, commands, and technical terms
 
-Avoid using ALL CAPS for emphasis — use **bold** instead.
+Avoid using ALL CAPS for emphasis; use **bold** instead.
 
 ### Images and Media
 - Always provide descriptive alt text
@@ -100,6 +100,6 @@ This file contains:
 
 ## Related Guides
 
-- [Content Blocks Reference](./content-blocks-reference.md) — Using special LeGIT blocks
-- [YAML Guide](./yaml-guide.md) — Writing YAML frontmatter
-- [Best Practices](./best-practices.md) — General authoring best practices
+- [Content Blocks Reference](./content-blocks-reference.md): Using special LeGIT blocks
+- [YAML Guide](./yaml-guide.md): Writing YAML frontmatter
+- [Best Practices](./best-practices.md): General authoring best practices

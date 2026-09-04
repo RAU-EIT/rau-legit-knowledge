@@ -69,7 +69,7 @@ async function handleBuildTraining(skillPath, options = {}) {
     buildSession.status = 'CONTENT_PREPARED';
     
     // Phase 4: Build outputs
-    console.log('\nPHASE 4: Building Output Formats\n');
+    console.log('\nPHASE 4: Building Publications\n');
     const modality = buildSession.yamlMetadata.modality;
     
     if (modality === 'e-learning' || modality === 'blended') {

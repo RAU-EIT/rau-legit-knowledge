@@ -178,7 +178,7 @@ parseRequest('Check if documentation is in sync')
 parseRequest('Apply sync changes to Rule 5')
 // → { command: 'apply', scope: 'content-design-validation.md', mode: 'manual' }
 
-parseRequest('I updated publication strategy in docs')
+parseRequest('I updated delivery strategy in docs')
 // → { command: 'sync-check', scope: 'content-design-validation.md', mode: 'manual' }
 ```
 
@@ -243,7 +243,7 @@ function mapChangedFilesToRules(changedFiles) {
 //     docSection: "Step 3",
 //     ruleFile: ".claude/rules/content-design-validation.md",
 //     ruleSection: "Rule 5",
-//     name: "Publication Strategy Framework",
+//     name: "Delivery Strategy Framework",
 //     status: "pending"
 //   },
 //   {
@@ -564,7 +564,7 @@ EXECUTION:
 OUTPUT:
   ⚠️  OUT OF SYNC:
   
-  Publication Strategy Framework
+  Delivery Strategy Framework
   File: .claude/rules/content-design-validation.md
   Changes needed: 3
   ➕ Add: "6-factor decision framework"
@@ -594,7 +594,7 @@ OUTPUT:
   Next step: Review and commit changes
     git status
     git add .
-    git commit -m "sync: add publication strategy decision framework"
+    git commit -m "sync: add delivery strategy decision framework"
     git push origin main
 ```
 

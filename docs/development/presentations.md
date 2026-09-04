@@ -35,9 +35,9 @@ disableLayout: true
 
 ### Heading Hierarchy
 Reveal.js uses heading levels to create navigation:
-- **H2** (`##`) — Main slides (horizontal navigation)
-- **H3** (`###`) — Vertical sub-slides (stack beneath main slide)
-- **H4+** (`####`) — Content within a slide
+- **H2** (`##`): Main slides (horizontal navigation)
+- **H3** (`###`): Vertical sub-slides (stack beneath main slide)
+- **H4+** (`####`): Content within a slide
 
 ### Example Structure
 ```markdown
@@ -147,9 +147,9 @@ Before finalizing your presentation:
 ## Templates and Examples
 
 Starter templates for common presentation types:
-- **Instructor-led** — Include detailed speaker notes
-- **Self-paced e-learning** — Include comprehensive speaker notes and scripts
-- **Short update** — Minimal notes, focused content
+- **Instructor-led**: Include detailed speaker notes
+- **Self-paced e-learning**: Include comprehensive speaker notes and scripts
+- **Short update**: Minimal notes, focused content
 
 ## Complete Standards Reference
 
@@ -164,7 +164,7 @@ This file contains:
 
 ## Related Guides
 
-- [Content Blocks Reference](./content-blocks-reference.md) — Using special LeGIT blocks in presentations
-- [Markdown Standards](./markdown-standards.md) — Basic markdown syntax standards
-- [YAML Guide](./yaml-guide.md) — YAML frontmatter reference
-- [Best Practices](./best-practices.md) — General authoring best practices
+- [Content Blocks Reference](./content-blocks-reference.md): Using special LeGIT blocks in presentations
+- [Markdown Standards](./markdown-standards.md): Basic markdown syntax standards
+- [YAML Guide](./yaml-guide.md): YAML frontmatter reference
+- [Best Practices](./best-practices.md): General authoring best practices

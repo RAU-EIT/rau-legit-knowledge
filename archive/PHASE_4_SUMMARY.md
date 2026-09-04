@@ -10,7 +10,7 @@
 
 ### Three Claude Code Skills Created
 
-#### 1. `/design-training` — Learning Content Design
+#### 1. `/design-training`: Learning Content Design
 **File**: `.claude/skills/design-training.md` (5.3 KB)  
 **Implementation**: User-facing skill definition + detailed workflow
 
@@ -22,11 +22,11 @@
 - Design JSON output
 - 6-rule validation
 
-**State**: ⭐ Scaffolded — ready for workflow logic implementation
+**State**: ⭐ Scaffolded, ready for workflow logic implementation
 
 ---
 
-#### 2. `/develop-training` — Content Authoring
+#### 2. `/develop-training`: Content Authoring
 **File**: `.claude/skills/develop-training.md` (11 KB)  
 **Implementation**: User-facing skill definition with complete workflow
 
@@ -38,11 +38,11 @@
 - YAML frontmatter generation
 - Multi-standard validation (markdown, YAML, blocks)
 
-**State**: ⭐ Scaffolded — ready for authoring workflow implementation
+**State**: ⭐ Scaffolded, ready for authoring workflow implementation
 
 ---
 
-#### 3. `/sync-docs-to-rules` — Documentation Sync
+#### 3. `/sync-docs-to-rules`: Documentation Sync
 **File**: `.claude/skills/sync-docs-to-rules.md` (13 KB)  
 **Implementation**: Advisory sync validation skill
 
@@ -54,14 +54,14 @@
 - Conflict resolution guidance
 - Git pre-commit hook integration
 
-**State**: ⭐ Scaffolded — ready for detection and comparison engine
+**State**: ⭐ Scaffolded, ready for detection and comparison engine
 
 ---
 
 ### Implementation Framework Created
 
 **Workflow Documentation**:
-- `design-training-workflow.md` (22 KB) — Complete step-by-step implementation guide
+- `design-training-workflow.md` (22 KB): Complete step-by-step implementation guide
   - State machine definition
   - Validation functions (pseudocode)
   - Data structures (JSON schemas)
@@ -69,7 +69,7 @@
   - Output formatting
 
 **Implementation Roadmap**:
-- `PHASE_4_IMPLEMENTATION_STATUS.md` — 5-week development plan
+- `PHASE_4_IMPLEMENTATION_STATUS.md`: 5-week development plan
   - Week 1-2: Design-training implementation
   - Week 3-4: Develop-training implementation
   - Week 5: Sync-docs-to-rules implementation
@@ -352,11 +352,11 @@ SYNC PHASE:
 **Phase 4 Foundation**: Complete ✅
 
 Three Claude Code skills are now:
-- **Discoverable** — Users know what they do
-- **Documented** — Complete workflow guidance
-- **Scaffolded** — Implementation framework in place
-- **Integrated** — Mapped to existing systems
-- **Ready** — For workflow logic implementation
+- **Discoverable**: Users know what they do
+- **Documented**: Complete workflow guidance
+- **Scaffolded**: Implementation framework in place
+- **Integrated**: Mapped to existing systems
+- **Ready**: For workflow logic implementation
 
 **Phase 4 Enhancement**: Ready to begin (5-week timeline)
 

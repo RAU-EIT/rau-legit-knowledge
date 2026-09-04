@@ -26,24 +26,39 @@ Skills + Audiences    ────→    /design-training     ────→   
 
 **Who**: Instructional Designers, Product Managers, SMEs  
 **Input**: "What skills need training and for whom?"  
-**Output**: Design decisions (outcomes, objectives, modalities) → design.json
+**Output**: Design decisions (outcomes, objectives, delivery strategy, offerings, publications) → design.json
 
-**The 7-Step Design Process**:
+**Design derives top-down**: each decision determines the next:
+
+```text
+Delivery Strategy → Offering → Publication → Activity → Deliverable
+```
+
+The build system runs this chain in reverse. Same chain, opposite directions.
+See [The Two Directions](./docs/terminology-glossary.md#the-two-directions).
+
+**The 9-Step Design Process**:
+
 1. Define Learning Outcomes (ABCD)
 2. Define Learning Objectives (2-5 per outcome)
-3. Determine Offering Strategy (e-learning/classroom/blended)
-4. Map Activities to Development Deliverables
-5. Plan Activity Coverage (Passive + Interactive + Assessment)
-6. Enter Design into CDD Workbook
-7. Validate Your Design
+3. Determine Delivery Strategy (e-learning/classroom/blended)
+4. Define Offerings (what students enroll in, per audience/role)
+5. Define Publications (what the build system must produce)
+6. Determine Activities (Passive + Interactive + Assessment)
+7. Define Deliverables (activities + supporting assets: VMs, project files)
+8. Validate & Refine Design
+9. Load into Content Database
 
-**Validation**: 6 Rules Checked
+**Validation**: 6 Rules Enforced
+
 - ABCD completeness
 - Objective alignment
 - Coverage completeness
 - Standalone designation
-- Offering strategy-deliverable alignment
-- File mapping completeness
+- Delivery Strategy & Deliverable Alignment
+- Deliverable file completeness
+
+(Rule 7, publication-to-activity derivation, is a placeholder and not enforced yet.)
 
 ---
 
@@ -73,8 +88,8 @@ START: "What skills need training?"
 ANSWERS: Interactive questionnaire
   ├─ Outcomes (ABCD)
   ├─ Objectives per outcome
-  ├─ Modality selection
-  └─ Activity coverage
+  ├─ Delivery strategy, offerings, publications
+  └─ Activity coverage & deliverables
   ↓
 VALIDATION: Check 6 rules
   ↓
@@ -116,7 +131,7 @@ OUTPUT: Markdown files + validation report
 |---|---|
 | Design and dev mixed together | Design FIRST, dev SECOND |
 | Outcomes unclear | ABCD clarity enforced |
-| Modality decided late | Offering strategy drives deliverables |
+| Modality decided late | Delivery strategy drives the whole chain |
 | Manual authoring | Guided, validated authoring |
 | Inconsistent standards | Automated validation |
 | High error rate | Errors caught early |
@@ -161,12 +176,12 @@ OUTPUT: Markdown files + validation report
 ## Getting Started
 
 ### As an Instructional Designer
-1. Read: [Content Design Track](./CLAUDE_REORGANIZED.md#content-design-guide)
+1. Read: [Content Design Track](./docs/repo-info/CLAUDE_REORGANIZED.md#content-design-guide)
 2. Use: `/design-training` (coming in Phase 3)
 3. Output: design.json ready for authoring
 
 ### As a Content Developer
-1. Read: [Content Development Track](./CLAUDE_REORGANIZED.md#content-development-guide)
+1. Read: [Content Development Track](./docs/repo-info/CLAUDE_REORGANIZED.md#content-development-guide)
 2. Use: `/develop-training` (coming in Phase 3)
 3. Input: Source materials (PPT, docs)
 4. Output: Markdown files ready to build
@@ -192,19 +207,19 @@ OUTPUT: Markdown files + validation report
 ## Questions?
 
 **About Design Process?**  
-→ See [Content Design Guide](./CLAUDE_REORGANIZED.md#content-design-guide)
+→ See [Content Design Guide](./docs/repo-info/CLAUDE_REORGANIZED.md#content-design-guide)
 
 **About Development Standards?**  
-→ See [Content Development Guide](./CLAUDE_REORGANIZED.md#content-development-guide)
+→ See [Content Development Guide](./docs/repo-info/CLAUDE_REORGANIZED.md#content-development-guide)
 
 **About the Skills Implementation?**  
-→ See [Claude Code Skills Spec](./CLAUDE_CODE_SKILLS_SPEC.md)
+→ See [Claude Code Skills Spec](./specifications/CLAUDE_CODE_SKILLS_SPEC.md)
 
 **About the Overall Plan?**  
-→ See [Phase 1-2 Summary](./PHASE_1_2_SUMMARY.md)
+→ See [Phase 1-2 Summary](./archive/PHASE_1_2_SUMMARY.md)
 
 ---
 
-**Version**: 1.0  
-**Date**: 2026-08-20  
+**Version**: 2.0  
+**Date**: 2026-09-03  
 **Status**: Complete - Ready for Leadership Review

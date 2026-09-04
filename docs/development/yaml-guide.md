@@ -17,16 +17,16 @@ This guide documents the YAML metadata attributes used in LeGIT markdown documen
 
 YAML metadata can be provided in three places:
 
-1. **`build.yaml`** — Build configuration file
-2. **Frontmatter YAML files** — Standalone YAML documents (typically for cover pages)
-3. **Markdown file headers** — YAML block at the top of markdown files (most common)
+1. **`build.yaml`**: Build configuration file
+2. **Frontmatter YAML files**: Standalone YAML documents (typically for cover pages)
+3. **Markdown file headers**: YAML block at the top of markdown files (most common)
 
 ---
 
 ## Common Attributes
 
 ### docType
-Sets the output format for the document.
+Sets the publication type for the document.
 
 **Required:** Yes  
 **Valid Values:** `print`, `revealjs`, `scorm`
@@ -52,10 +52,10 @@ CSS stylesheet for styling the document.
 **Required:** Yes
 
 Available stylesheets:
-- `rau-print.css` — Lab manuals and print documents
-- `rau-scorm.css` — E-learning content
-- `rau-presentation-basic.css` — Internal/informal presentations
-- `rau-presentation-customer.css` — Customer-facing presentations
+- `rau-print.css`: Lab manuals and print documents
+- `rau-scorm.css`: E-learning content
+- `rau-presentation-basic.css`: Internal/informal presentations
+- `rau-presentation-customer.css`: Customer-facing presentations
 
 ### skill
 Skill metadata used in footers and publication information.
@@ -63,9 +63,9 @@ Skill metadata used in footers and publication information.
 **Required:** Yes
 
 **Subattributes:**
-- **id** — Skill identifier (e.g., ITM55555)
-- **revisionDate** — Last revision date (YYYY-MM format)
-- **classification** — Public, Internal, Confidential, or Restricted
+- **id**: Skill identifier (e.g., ITM55555)
+- **revisionDate**: Last revision date (YYYY-MM format)
+- **classification**: Public, Internal, Confidential, or Restricted
 
 ### vars
 Custom variables for use in document content.

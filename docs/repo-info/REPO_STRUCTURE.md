@@ -186,7 +186,7 @@ git submodule add https://github.com/RAU-EIT/rau-legit-knowledge.git .claude/sha
 | Development guidance | [CLAUDE_REORGANIZED.md - Development Track](./CLAUDE_REORGANIZED.md#content-development-guide) |
 | Skill specs | [CLAUDE_CODE_SKILLS_SPEC.md](./CLAUDE_CODE_SKILLS_SPEC.md) |
 | Leadership summary | [PHASE_1_2_SUMMARY.md](./PHASE_1_2_SUMMARY.md) |
-| Design process | [docs/content-design-process.md](./docs/content-design-process.md) |
+| Design process | [docs/design/content-design-process.md](./docs/design/content-design-process.md) |
 | Markdown standards | [docs/legit-markdown-standards.md](./docs/legit-markdown-standards.md) |
 | Content blocks | [docs/content-blocks-reference.md](./docs/content-blocks-reference.md) |
 | System overview | [docs/legit-fundamentals.md](./docs/legit-fundamentals.md) |

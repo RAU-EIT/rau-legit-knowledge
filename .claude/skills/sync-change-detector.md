@@ -65,10 +65,10 @@ function detectChangedDocFiles(since = 'HEAD~1') {
 const FILE_MAPPINGS = [
   {
     docFile: "docs/design/content-design-process.md",
-    docSection: "Step 3: Publication Strategy",
+    docSection: "Step 3: Delivery Strategy",
     ruleFile: ".claude/rules/content-design-validation.md",
-    ruleSection: "Rule 5: Modality-Deliverable Alignment & Selection",
-    name: "Publication Strategy Framework",
+    ruleSection: "Rule 5: Delivery Strategy & Deliverable Alignment & Selection",
+    name: "Delivery Strategy Framework",
     critical: true
   },
   {
@@ -139,10 +139,10 @@ function mapChangedFilesToRules(changedDocFiles) {
 // [
 //   {
 //     docFile: "docs/design/content-design-process.md",
-//     docSection: "Step 3: Publication Strategy",
+//     docSection: "Step 3: Delivery Strategy",
 //     ruleFile: ".claude/rules/content-design-validation.md",
 //     ruleSection: "Rule 5",
-//     name: "Publication Strategy Framework",
+//     name: "Delivery Strategy Framework",
 //     critical: true,
 //     status: "pending"
 //   }
@@ -471,10 +471,10 @@ const mappings = mapChangedFilesToRules(changedFiles);
 // Returns: [
 //   {
 //     docFile: "docs/design/content-design-process.md",
-//     docSection: "Step 3: Publication Strategy",
+//     docSection: "Step 3: Delivery Strategy",
 //     ruleFile: ".claude/rules/content-design-validation.md",
 //     ruleSection: "Rule 5",
-//     name: "Publication Strategy Framework",
+//     name: "Delivery Strategy Framework",
 //     critical: true
 //   }
 // ]
@@ -503,7 +503,7 @@ In sync: 1 ✓
 Out of sync: 0 ⚠️
 
 ✓ IN SYNC:
-  • Publication Strategy Framework is in sync
+  • Delivery Strategy Framework is in sync
     Last synced: 2026-08-20
 
 ═══════════════════════════════════════════════════════════
@@ -517,21 +517,21 @@ Out of sync: 0 ⚠️
 
 To use this detection:
 
-1. **Git available** — Need git to detect changes
-2. **File access** — Need to read docs/ and rules/ files
-3. **Working directory** — Must be in repository root
-4. **Recent commits** — Need commit history to compare against
+1. **Git available**: Need git to detect changes
+2. **File access**: Need to read docs/ and rules/ files
+3. **Working directory**: Must be in repository root
+4. **Recent commits**: Need commit history to compare against
 
 ---
 
 ## Future Enhancements
 
-- **Incremental sync** — Track per-section sync dates
-- **Merge conflict detection** — Warn if both docs and rules changed differently
-- **Automated formatting** — Fix simple alignment issues automatically
-- **Bulk operations** — Sync multiple rules in one operation
-- **Dashboard** — Overview of all sync statuses
-- **Notifications** — Alert when docs change without rule sync
+- **Incremental sync**: Track per-section sync dates
+- **Merge conflict detection**: Warn if both docs and rules changed differently
+- **Automated formatting**: Fix simple alignment issues automatically
+- **Bulk operations**: Sync multiple rules in one operation
+- **Dashboard**: Overview of all sync statuses
+- **Notifications**: Alert when docs change without rule sync
 
 ---
 

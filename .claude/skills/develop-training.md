@@ -12,11 +12,11 @@ Ready to author your training content? This skill guides you through translating
 ## Quick Start
 
 You'll author:
-1. **Lectures** — Core instruction for each objective
-2. **Knowledge Checks** — Embedded questions within lectures
-3. **Labs** — Hands-on practice exercises
-4. **Quizzes** — Assessment questions
-5. **YAML Frontmatter** — Metadata for each file
+1. **Lectures**: Core instruction for each objective
+2. **Knowledge Checks**: Embedded questions within lectures
+3. **Labs**: Hands-on practice exercises
+4. **Quizzes**: Assessment questions
+5. **YAML Frontmatter**: Metadata for each file
 
 By the end, you'll have:
 - ✅ Complete file set ready for building
@@ -115,16 +115,18 @@ FILE STRUCTURE FOR: [Skill Name]
 skills/[skill-slug]/
 ├── [outcome-1-slug]/
 │   ├── objective-01/
-│   │   ├── lecture.md
-│   │   ├── knowledge-check.md
-│   │   ├── lab.md  (if standalone)
-│   │   ├── quiz-questions.md  (if standalone)
+│   │   ├── lecture.md              (always)
+│   │   ├── knowledge-check.md      (always)
+│   │   ├── quiz-questions.md       (always - feeds outcome quiz pool)
+│   │   ├── lab.md                  (only if standalone)
 │   │   └── media/
 │   ├── objective-02/
 │   │   └── ...
 │   ├── outcome-01-lecture.md
+│   ├── outcome-01-lab.md           (for non-standalone objectives)
 │   ├── outcome-01-quiz.md
 │   └── media/
+├── assets/                         (supporting assets: VMs, project files)
 └── media/
 
 Total files to create: [X] files
@@ -317,12 +319,12 @@ varsLocal:
 ```
 
 **Required for every file:**
-- `title` — File title
-- `docType` — Output format (scorm, print, revealjs)
-- `css` — Path to stylesheet
-- `skill.id` — Skill identifier
-- `skill.revisionDate` — YYYY-MM format
-- `skill.classification` — Public, Internal, Confidential
+- `title`: File title
+- `docType`: Publication type (scorm, print, revealjs)
+- `css`: Path to stylesheet
+- `skill.id`: Skill identifier
+- `skill.revisionDate`: YYYY-MM format
+- `skill.classification`: Public, Internal, Confidential
 
 ---
 
@@ -387,19 +389,19 @@ Right content
 ```
 
 ### For SCORM-Only
-- `rau-accordion` — Expandable tabs
-- `rau-quiz` — Interactive quizzes
-- `rau-steps` — Numbered procedures
-- `rau-image-hotspot` — Clickable images
+- `rau-accordion`: Expandable tabs
+- `rau-quiz`: Interactive quizzes
+- `rau-steps`: Numbered procedures
+- `rau-image-hotspot`: Clickable images
 
 ### For Print
-- `rau-page-break` — Start new page
-- `important` — Important box
+- `rau-page-break`: Start new page
+- `important`: Important box
 
 ### For Presentations
-- `rau-slide-*` — Slide-specific formatting
-- `::: notes` — Speaker notes
-- `::: script` — Recorded narration
+- `rau-slide-*`: Slide-specific formatting
+- `::: notes`: Speaker notes
+- `::: script`: Recorded narration
 
 ---
 

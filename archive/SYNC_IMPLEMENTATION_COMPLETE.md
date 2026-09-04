@@ -21,12 +21,12 @@ Core logic for:
 - Presenting findings to user
 
 **Functions**:
-- `detectChangedDocFiles()` — Find changed docs
-- `mapChangedFilesToRules()` — Map to rules
-- `readAndCompare()` — Extract and compare sections
-- `identifyDifferences()` — Find what changed
-- `generateRecommendations()` — Create actions
-- `presentFindings()` — Show to user
+- `detectChangedDocFiles()`: Find changed docs
+- `mapChangedFilesToRules()`: Map to rules
+- `readAndCompare()`: Extract and compare sections
+- `identifyDifferences()`: Find what changed
+- `generateRecommendations()`: Create actions
+- `presentFindings()`: Show to user
 
 ---
 
@@ -42,12 +42,12 @@ Integration logic for:
 - Error handling
 
 **Functions**:
-- `handleSyncCommand()` — Main entry point
-- `parseRequest()` — Parse user input
-- `compareAllVersions()` — Compare all mappings
-- `presentFindings()` — Display results
-- `awaitApproval()` — Get decision
-- `applyChanges()` — Update rules
+- `handleSyncCommand()`: Main entry point
+- `parseRequest()`: Parse user input
+- `compareAllVersions()`: Compare all mappings
+- `presentFindings()`: Display results
+- `awaitApproval()`: Get decision
+- `applyChanges()`: Update rules
 - Error handlers for 6 failure modes
 
 ---
@@ -271,12 +271,12 @@ const recommendations = differences.map(diff => ({
 
 The implementation handles:
 
-✅ **Git not available** — Clear error, suggest fix  
-✅ **File not found** — Report which file, suggest check  
-✅ **Permission denied** — Request needed permissions  
-✅ **Empty sections** — Handle gracefully, report  
-✅ **Malformed markdown** — Report parsing error  
-✅ **Sync date missing** — Still sync, note date not found  
+✅ **Git not available**: Clear error, suggest fix  
+✅ **File not found**: Report which file, suggest check  
+✅ **Permission denied**: Request needed permissions  
+✅ **Empty sections**: Handle gracefully, report  
+✅ **Malformed markdown**: Report parsing error  
+✅ **Sync date missing**: Still sync, note date not found  
 
 ---
 
@@ -320,13 +320,13 @@ Output: Sort by severity, show HIGH first
 
 The change detection integrates with:
 
-1. **Git** — Detects changes via `git diff`
-2. **File system** — Reads docs/ and rules/ files
-3. **FILE_MAPPINGS** — Maps docs to rules
-4. **Markdown parser** — Extracts sections
-5. **User interface** — Presents findings
-6. **Approval workflow** — Gets team decisions
-7. **File writer** — Updates rules
+1. **Git**: Detects changes via `git diff`
+2. **File system**: Reads docs/ and rules/ files
+3. **FILE_MAPPINGS**: Maps docs to rules
+4. **Markdown parser**: Extracts sections
+5. **User interface**: Presents findings
+6. **Approval workflow**: Gets team decisions
+7. **File writer**: Updates rules
 
 ---
 
@@ -345,11 +345,11 @@ The change detection integrates with:
 
 The `/sync-docs-to-rules` skill is ready to:
 
-1. **Run sync checks** — Detect changes and show status
-2. **Generate recommendations** — Specific, actionable fixes
-3. **Apply changes** — Update rules with team approval
-4. **Track history** — Sync dates for audit trail
-5. **Handle errors** — Graceful failure modes
+1. **Run sync checks**: Detect changes and show status
+2. **Generate recommendations**: Specific, actionable fixes
+3. **Apply changes**: Update rules with team approval
+4. **Track history**: Sync dates for audit trail
+5. **Handle errors**: Graceful failure modes
 
 ---
 
@@ -357,19 +357,19 @@ The `/sync-docs-to-rules` skill is ready to:
 
 ### To activate the skill:
 
-1. **Integrate logic** — Wire sync-skill-integration.md to the skill
-2. **Add git commands** — Ensure git is available
-3. **Test detection** — Run against real docs changes
-4. **Get team feedback** — Refine recommendations
-5. **Deploy** — Make available to users
+1. **Integrate logic**: Wire sync-skill-integration.md to the skill
+2. **Add git commands**: Ensure git is available
+3. **Test detection**: Run against real docs changes
+4. **Get team feedback**: Refine recommendations
+5. **Deploy**: Make available to users
 
 ### To extend:
 
-1. **Add more doc-rule mappings** — Map additional files
-2. **Implement UI** — Better formatting, interactive menus
-3. **Create dashboard** — Overview of all syncs
-4. **Add automation** — Auto-fix simple issues
-5. **Integrate with CI/CD** — Check sync in pipeline
+1. **Add more doc-rule mappings**: Map additional files
+2. **Implement UI**: Better formatting, interactive menus
+3. **Create dashboard**: Overview of all syncs
+4. **Add automation**: Auto-fix simple issues
+5. **Integrate with CI/CD**: Check sync in pipeline
 
 ---
 

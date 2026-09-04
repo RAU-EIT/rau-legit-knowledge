@@ -10,7 +10,7 @@ This document describes the step-by-step workflow for guiding users through the 
 
 ## Workflow State Machine
 
-```
+```text
 START
   ↓
 [Collect Skill Info] → SKILL_DEFINED
@@ -23,16 +23,30 @@ START
   ↓
 [Validate Objectives] → OBJECTIVES_VALID
   ↓
-[Choose Modality] → MODALITY_CHOSEN
+─── derivation chain starts here ────────────────────────
   ↓
-[Plan Activities] → ACTIVITIES_PLANNED
+[Choose Delivery Strategy] → DELIVERY_STRATEGY_CHOSEN
   ↓
-[Create File Mapping] → FILES_MAPPED
+[Define Offerings] → OFFERINGS_DEFINED
+  ↓
+[Define Publications] → PUBLICATIONS_DEFINED
+  ↓
+[Determine Activities] → ACTIVITIES_PLANNED
+  ↓
+[Define Deliverables] → DELIVERABLES_DEFINED
+  ↓
+─────────────────────────────────────────────────────────
   ↓
 [Validate Design] → DESIGN_VALID
   ↓
 [Generate Design JSON] → COMPLETE
+  ↓
+(handoff: the content database creates LeGIT project files
+          and exports deliverables to DevOps)
 ```
+
+Each state in the derivation chain is an input to the next. See
+[docs/terminology-glossary.md](../../docs/terminology-glossary.md#the-two-directions).
 
 ---
 
@@ -294,18 +308,18 @@ as a reference even after completing the main skill")
 ```
 
 ### Next Action
-Once all objectives are defined, validate objective-to-outcome alignment, then proceed to Step 4 (Modality).
+Once all objectives are defined, validate objective-to-outcome alignment, then proceed to Step 4 (Delivery Strategy).
 
 ---
 
-## Step 4: Choose Publication Strategy (Modality)
+## Step 4: Choose Delivery Strategy (Modality)
 
 ### Context
 
 Show decision framework:
 
 ```
-PUBLICATION STRATEGY DECISION FRAMEWORK
+DELIVERY STRATEGY DECISION FRAMEWORK
 
 Six factors determine the best modality:
 
@@ -395,9 +409,9 @@ Ask questions 1-6 above, then show recommendation.
 ```
 Based on your responses, I recommend:
 
-MODALITY: [e-learning | classroom | blended]
+DELIVERY STRATEGY: [e-learning | classroom | blended]
 REASON: [explanation]
-OUTPUT FORMATS: [PDF, RevealJS, SCORM, Video, etc.]
+PUBLICATION TYPES: [print, revealjs, scorm1.2, presentation-video, etc.]
 
 Does this match your vision?
 ☐ Yes, proceed
@@ -409,9 +423,9 @@ Does this match your vision?
 
 ```json
 {
-  "publicationStrategy": {
+  "deliveryStrategy": {
     "modality": "e-learning",
-    "outputFormats": ["scorm1.2"],
+    "publicationTypes": ["scorm1.2"],
     "factors": {
       "performanceType": "procedure",
       "instructorInvolvement": "none",
@@ -425,11 +439,171 @@ Does this match your vision?
 ```
 
 ### Next Action
-Once modality is confirmed, proceed to Step 5 (Activities).
+Once the delivery strategy is confirmed, proceed to Step 5 (Offerings).
 
 ---
 
-## Step 5: Plan Activity Coverage
+## Step 5: Define Offerings
+
+### Context
+
+```text
+OFFERINGS - What the Student Enrolls In
+
+The delivery strategy is confirmed. Now define what students actually receive.
+
+An offering is a student-facing, packaged learning product: something a student
+enrolls in, purchases, or downloads.
+
+TYPICAL OFFERINGS BY DELIVERY STRATEGY:
+• E-Learning  → a self-paced online course enrolled in via the LMS
+• Classroom   → an instructor-led course with a scheduled session and location
+• Blended     → a self-paced online course PLUS a classroom/regional practicum
+
+WHY THIS IS ITS OWN STEP:
+The same skill design often serves different roles differently.
+
+  Field Technician    → blended: e-learning course + regional hands-on practicum
+  Application Engineer → e-learning only: same theory, no practicum, as reference
+
+Both draw on the same outcomes. They differ in which publications they include,
+which is exactly what Step 6 works out.
+```
+
+### User Input
+
+```text
+How many offerings does this skill need?
+(At least one. Define one per audience/role that needs something different.)
+
+For each offering:
+
+OFFERING NAME (student-facing):
+(e.g., "Hydraulic Troubleshooting for Field Technicians")
+
+TARGET AUDIENCE/ROLE:
+(e.g., "Field Technician")
+
+OUTCOME COVERAGE:
+Which outcomes does this offering cover? (all, or a subset)
+
+SUPPORTING MATERIALS:
+(certificates, job aids, reference guides; blank for none)
+```
+
+### Store
+
+```json
+{
+  "offerings": [
+    {
+      "id": "offering-1",
+      "name": "Hydraulic Troubleshooting for Field Technicians",
+      "audienceRole": "Field Technician",
+      "modality": "blended",
+      "outcomeCoverage": ["outcome-1", "outcome-2"],
+      "supportingMaterials": "Completion certificate, quick-reference job aid"
+    }
+  ]
+}
+```
+
+### Next Action
+
+Confirm every audience/role from intake is served by at least one offering, then proceed to
+Step 6 (Publications).
+
+---
+
+## Step 6: Define Publications
+
+### Context
+
+```text
+PUBLICATIONS - What the Build System Must Produce
+
+A publication is decided HERE, during design, and produced later at build time.
+
+Deciding it now is what makes the activity and deliverable sets correct. Deciding
+it later means discovering later that you authored the wrong things.
+
+REQUIRED PUBLICATIONS BY DELIVERY STRATEGY:
+• E-Learning  → SCORM module (scorm1.2)
+• Classroom   → Instructor presentation (revealjs/pptx)
+                Lab manual (print)
+                Practical assessment (print)
+• Blended     → All of the above, plus a learner handout (print)
+
+SCOPING BY DESIGN HIERARCHY:
+• One publication per skill      → the default
+• One publication per outcome    → when outcomes ship separately, or roles need
+                                   different outcome subsets
+• One per standalone objective   → REQUIRED; a standalone objective is by
+                                   definition independently completable
+```
+
+### Flag Standalone Objectives
+
+Before collecting input, list any standalone objectives, each needs its own publication:
+
+```text
+⚠️  2 standalone objective(s) each require their own publication:
+   • Troubleshoot common component failures (in Analyze Hydraulic Components)
+   • Interpret pressure anomalies (in Interpret Pressure Readings)
+```
+
+### User Input
+
+```text
+How many publications does this skill need?
+
+For each publication:
+
+PUBLICATION NAME:
+(e.g., "Hydraulic Troubleshooting - Technician SCORM")
+
+AUDIENCE/ROLE IT SERVES:
+(e.g., "Field Technician")
+
+SCOPE:
+(e.g., "Outcomes 1-3", "Objective 2 standalone")
+
+PUBLICATION TYPE (docType):
+☐ scorm1.2            (SCORM e-learning module)
+☐ print               (PDF: lab manual, handout, practical)
+☐ revealjs            (HTML presentation)
+☐ pptx                (PowerPoint)
+☐ presentation-video  (MP4 recording)
+
+WHICH OFFERING(S) DOES IT FEED?
+(comma-separated offering ids)
+```
+
+### Store
+
+```json
+{
+  "publications": [
+    {
+      "id": "publication-1",
+      "name": "Hydraulic Troubleshooting - Technician SCORM",
+      "audienceRole": "Field Technician",
+      "scope": "Outcomes 1-3",
+      "docType": "scorm1.2",
+      "offeringIds": "offering-1"
+    }
+  ]
+}
+```
+
+### Next Action
+
+Confirm every offering is supported by at least one publication and every publication feeds
+at least one offering (Rule 5 Part D), then proceed to Step 7 (Activities).
+
+---
+
+## Step 7: Determine Activities
 
 ### Context
 
@@ -542,143 +716,206 @@ function validateCoverage(outcome) {
 ```
 
 ### Next Action
-Once all outcome activities are planned and validated for coverage, proceed to Step 6 (File Mapping).
+Once all outcome activities are planned and validated for coverage, proceed to Step 8 (Deliverables).
 
 ---
 
-## Step 6: File Mapping
+## Step 8: Define Deliverables
 
 ### Context
 
-Explain file structure:
+Explain what a deliverable is and where it goes:
 
-```
-FILE MAPPING - Converting Design to File Structure
+```text
+DELIVERABLES - Everything the SME Must Produce
 
-Design specifies WHAT learners do.
-File mapping specifies WHERE content goes.
+Deliverables = every Activity + supporting assets
+
+Most are authored content. Some (VMs, project files) are not authored content at all,
+LeGIT but are still required, tracked, and exported to DevOps.
 
 STRUCTURE:
 skills/[skill-name]/
 ├── [outcome-title]/                (outcome folder in kebab-case)
 │   ├── objective-01/               (objective folder)
-│   │   ├── lecture.md              (objective lecture - always required)
-│   │   ├── knowledge-check.md      (embedded checks - always required)
-│   │   ├── lab.md                  (hands-on - if standalone objective)
-│   │   ├── quiz-questions.md       (questions - if standalone)
+│   │   ├── lecture.md              (always required)
+│   │   ├── knowledge-check.md      (always required)
+│   │   ├── quiz-questions.md       (always required - feeds outcome quiz pool)
+│   │   ├── lab.md                  (ONLY if the objective is standalone)
 │   │   └── media/                  (objective-specific images)
 │   ├── objective-02/
 │   │   └── ...
 │   ├── outcome-01-lecture.md       (aggregates objective lectures)
-│   ├── outcome-01-quiz.md          (aggregates quiz questions)
+│   ├── outcome-01-lab.md           (interactive activity for non-standalone objectives)
+│   ├── outcome-01-quiz.md          (draws from objective quiz-questions pools)
+│   ├── outcome-01-presentation.md  (classroom or blended)
+│   ├── outcome-01-handout.md       (blended)
 │   └── media/                      (outcome-shared images)
+├── assets/                         (supporting assets + required README.md)
 └── media/                          (skill-wide shared images)
 
 KEY POINTS:
 • Outcome titles in kebab-case: "analyze-hydraulic-components"
-• Objective lectures always exist
-• Outcome lectures aggregate objective lectures
-• Labs only for standalone objectives
-• Quizzes aggregate from objective questions
+• lecture.md, knowledge-check.md, and quiz-questions.md exist for EVERY objective
+• lab.md at objective level ONLY for standalone objectives
+• Non-standalone objectives share the outcome-level lab
+• Presentations and practicals are OUTCOME level, not skill level
 ```
 
-### Generate File Structure
+### Collect Supporting Assets
 
-Based on user's outcomes and objectives:
+The generator cannot infer these, so ask explicitly:
+
+```text
+Does any activity depend on something LeGIT does not author?
+
+  • VMs or test environments
+  • Project files (.ACD, configuration exports)
+  • Lab start & finish files
+  • Externally produced media
+  • Supporting documentation (setup guides, equipment lists)
+
+For each: what it is, which deliverable depends on it, who owns it, where it lives.
+```
+
+### Generate the Deliverable Manifest
+
+This produces **design data describing the files**: it does not create files. File creation
+is owned by the content database (design process guide Step 9).
 
 ```javascript
-function generateFileMapping(skill, outcomes) {
-  const mapping = {
+function generateDeliverableManifest(skill, outcomes, deliveryStrategy, supportingAssets) {
+  const modality = deliveryStrategy.modality;
+  const manifest = {
     skillFolder: `skills/${skill.name.toLowerCase().replace(/ /g, '-')}`,
-    outcomes: []
+    outcomes: [],
+    supportingAssets: supportingAssets || []
   };
-  
+
   outcomes.forEach((outcome, idx) => {
     const outcomeFolderName = outcome.title.toLowerCase().replace(/ /g, '-');
-    const outcomeFolder = `${mapping.skillFolder}/${outcomeFolderName}`;
-    
-    mapping.outcomes.push({
+    const outcomeFolder = `${manifest.skillFolder}/${outcomeFolderName}`;
+    const num = String(idx + 1).padStart(2, '0');
+    const hasNonStandalone = outcome.objectives.some(o => !o.standalone);
+
+    // Rule 6, outcome level: lecture and quiz always required.
+    const outcomeFiles = {
+      lecture: `${outcomeFolder}/outcome-${num}-lecture.md`,
+      quiz: `${outcomeFolder}/outcome-${num}-quiz.md`
+    };
+
+    // Non-standalone objectives get their interactive activity here.
+    if (hasNonStandalone) {
+      outcomeFiles.lab = `${outcomeFolder}/outcome-${num}-lab.md`;
+    }
+    if (modality === 'classroom' || modality === 'blended') {
+      outcomeFiles.presentation = `${outcomeFolder}/outcome-${num}-presentation.md`;
+    }
+    if (modality === 'blended') {
+      outcomeFiles.handout = `${outcomeFolder}/outcome-${num}-handout.md`;
+    }
+    if (outcome.assessmentType === 'practical' || outcome.assessmentType === 'both') {
+      outcomeFiles.practical = `${outcomeFolder}/outcome-${num}-practical.md`;
+    }
+
+    manifest.outcomes.push({
       title: outcome.title,
       folder: outcomeFolder,
-      files: {
-        lecture: `${outcomeFolder}/outcome-${String(idx+1).padStart(2,'0')}-lecture.md`,
-        quiz: `${outcomeFolder}/outcome-${String(idx+1).padStart(2,'0')}-quiz.md`
-      },
+      files: outcomeFiles,
       objectives: outcome.objectives.map((obj, objIdx) => {
-        const objFolder = `${outcomeFolder}/objective-${String(objIdx+1).padStart(2,'0')}`;
+        const objFolder = `${outcomeFolder}/objective-${String(objIdx + 1).padStart(2, '0')}`;
+
+        // Rule 6: lecture, knowledge check, and quiz questions for EVERY objective.
+        // Quiz questions live here so the outcome quiz can draw a pool traceable
+        // to each objective.
         const objFiles = {
           lecture: `${objFolder}/lecture.md`,
-          knowledgeCheck: `${objFolder}/knowledge-check.md`
+          knowledgeCheck: `${objFolder}/knowledge-check.md`,
+          quizQuestions: `${objFolder}/quiz-questions.md`
         };
-        
+
+        // A lab is authored at objective level ONLY for standalone objectives.
         if (obj.standalone) {
           objFiles.lab = `${objFolder}/lab.md`;
-          objFiles.quizQuestions = `${objFolder}/quiz-questions.md`;
         }
-        
+
         return {
           title: obj.title,
           folder: objFolder,
-          files: objFiles
+          files: objFiles,
+          standalone: obj.standalone
         };
       })
     });
   });
-  
-  return mapping;
+
+  return manifest;
 }
 ```
 
 ### User Input
 
-Display the generated file mapping:
+Display the generated deliverable manifest (example: blended delivery, objective-02 standalone):
 
-```
-FILE STRUCTURE FOR: [skill name]
+```text
+DELIVERABLES FOR: [skill name]
 
 skills/analyze-hydraulic-components/
 ├── analyze-hydraulic-components/
-│   ├── objective-01/
+│   ├── objective-01/               (non-standalone)
 │   │   ├── lecture.md
 │   │   ├── knowledge-check.md
-│   │   └── media/
-│   ├── objective-02/
-│   │   ├── lecture.md
-│   │   ├── knowledge-check.md
-│   │   ├── lab.md
 │   │   ├── quiz-questions.md
 │   │   └── media/
+│   ├── objective-02/               (STANDALONE - gets its own lab)
+│   │   ├── lecture.md
+│   │   ├── knowledge-check.md
+│   │   ├── quiz-questions.md
+│   │   ├── lab.md
+│   │   └── media/
 │   ├── outcome-01-lecture.md
+│   ├── outcome-01-lab.md           (for objective-01)
 │   ├── outcome-01-quiz.md
+│   ├── outcome-01-presentation.md  (blended)
+│   ├── outcome-01-handout.md       (blended)
 │   └── media/
+├── assets/
+│   ├── vm/                         (hydraulic simulator VM)
+│   └── README.md                   (inventory - required)
 └── media/
 
-Does this structure work for your content?
+NON-LEGIT DELIVERABLES:
+• Hydraulic simulator VM (required by outcome-01-lab.md, owner: Lab Engineering)
+
+Does this set of deliverables look right?
 ☐ Yes, looks good
-☐ No, I need to adjust
+☐ No, I need to add/change/remove something
 ```
 
 ### Store
 
 ```json
 {
-  "fileMapping": {
+  "deliverableManifest": {
     "skillFolder": "skills/analyze-hydraulic-components",
-    "outcomes": [...]
+    "outcomes": [...],
+    "supportingAssets": [...]
   }
 }
 ```
 
 ### Next Action
-Once file mapping is confirmed, proceed to Step 7 (Validation).
+
+Once the deliverables are confirmed, proceed to Step 9 (Validation).
 
 ---
 
-## Step 7: Validation & Summary
+## Step 9: Validation & Summary
 
 ### Validation Checklist
 
-Run all 6 validation rules:
+Run the 6 enforced validation rules. (Rule 7, publication-to-activity derivation, is a
+placeholder in `.claude/rules/content-design-validation.md` and is **not** enforced yet.)
 
 ```javascript
 function validateDesign(designJSON) {
@@ -686,9 +923,11 @@ function validateDesign(designJSON) {
     rule1_abcdCompleteness: validateOutcomeCompleteness(designJSON.outcomes),
     rule2_objectiveAlignment: validateObjectiveAlignment(designJSON.outcomes),
     rule3_coverageCompleteness: validateCoverage(designJSON.outcomes),
-    rule4_standalonDesignation: validateStandalone(designJSON.outcomes),
-    rule5_modalityAlignment: validateModality(designJSON.publicationStrategy),
-    rule6_fileMapping: validateFileMapping(designJSON.fileMapping)
+    rule4_standaloneDesignation: validateStandalone(designJSON.outcomes),
+    // Rule 5 validates the whole derivation chain, not just the strategy:
+    // deliveryStrategy → offerings → publications → deliverables
+    rule5_deliveryStrategyAlignment: validateDeliveryStrategyAlignment(designJSON),
+    rule6_deliverableCompleteness: validateDeliverableManifest(designJSON.deliverableManifest)
   };
 }
 ```
@@ -712,23 +951,32 @@ DESIGN VALIDATION RESULTS
 ✅ Rule 4: Standalone Designation - PASS
    1 standalone objective is properly designated
 
-✅ Rule 5: Modality-Deliverable Alignment - PASS
-   E-learning modality matches output formats (SCORM 1.2)
+✅ Rule 5: Delivery Strategy & Deliverable Alignment - PASS
+   Blended strategy → 2 offerings → 4 publications → all activities → deliverables
+   Every audience/role is served; every offering has a publication
 
-✅ Rule 6: File Mapping Completeness - PASS
+✅ Rule 6: Deliverable File Completeness - PASS
    All files properly named and structured
+   Every objective has lecture + knowledge-check + quiz-questions
+   Outcome-level lab present for non-standalone objectives
+   1 supporting asset recorded with owner
 
-OVERALL: ✅ DESIGN VALID - READY FOR DEVELOPMENT
+⊘ Rule 7: Publication-to-Activity Derivation - NOT ENFORCED
+   Mapping rules not yet specified
+
+OVERALL: ✅ DESIGN VALID - READY TO LOAD INTO CONTENT DATABASE
 ```
 
 ### Generate Design JSON
 
 Create the output JSON:
 
+The fields appear in **derivation order**: each one is an input to the next.
+
 ```json
 {
-  "designVersion": "1.0",
-  "generatedDate": "2026-08-20",
+  "designVersion": "2.0",
+  "generatedDate": "2026-09-03",
   "skill": {
     "name": "Analyze Hydraulic System Components",
     "description": "Train field technicians to identify, diagnose, and repair hydraulic components",
@@ -736,33 +984,83 @@ Create the output JSON:
     "estimatedTime": "3 hours"
   },
   "outcomes": [...],
-  "publicationStrategy": {...},
-  "fileMapping": {...},
+  "objectives": {...},
+  "deliveryStrategy": {
+    "modality": "blended",
+    "publicationTypes": ["scorm1.2", "revealjs", "print"],
+    "factors": {...},
+    "recommendation": "Blended: distributed audience favors e-learning, but hands-on practice requires field equipment"
+  },
+  "offerings": [
+    {
+      "id": "offering-1",
+      "name": "Hydraulic Troubleshooting for Field Technicians",
+      "audienceRole": "Field Technician",
+      "modality": "blended",
+      "outcomeCoverage": ["outcome-1", "outcome-2", "outcome-3"],
+      "supportingMaterials": "Completion certificate, quick-reference job aid"
+    }
+  ],
+  "publications": [
+    {
+      "id": "publication-1",
+      "name": "Hydraulic Troubleshooting - Technician SCORM",
+      "audienceRole": "Field Technician",
+      "scope": "Outcomes 1-3",
+      "docType": "scorm1.2",
+      "offeringIds": "offering-1"
+    }
+  ],
+  "activities": {...},
+  "deliverableManifest": {
+    "skillFolder": "skills/analyze-hydraulic-system-components",
+    "outcomes": [...],
+    "supportingAssets": [...]
+  },
+  "supportingAssets": [
+    {
+      "name": "Hydraulic simulator VM",
+      "category": "VM / test environment",
+      "requiredBy": "outcome-01-lab.md",
+      "owner": "Lab Engineering",
+      "location": "SharePoint > Training Assets > hydraulic-sim v2.1"
+    }
+  ],
   "validation": {
     "rule1_abcdCompleteness": "PASS",
     "rule2_objectiveAlignment": "PASS",
     "rule3_coverageCompleteness": "PASS",
-    "rule4_standalonDesignation": "PASS",
-    "rule5_modalityAlignment": "PASS",
-    "rule6_fileMapping": "PASS",
+    "rule4_standaloneDesignation": "PASS",
+    "rule5_deliveryStrategyAlignment": "PASS",
+    "rule6_deliverableCompleteness": "PASS",
     "overallStatus": "VALID"
   }
 }
 ```
 
+**Contract note**: these field names are consumed by `/develop-training` and by the content
+database. Renaming any of them requires updating `develop-training-engine.md` in the same
+change, or the handoff breaks.
+
 ### Next Steps
 
-```
+```text
 YOUR DESIGN IS COMPLETE! ✅
 
-Next: Use the /develop-training skill to author content files
+Next: load this design into the content database, which creates the LeGIT project
+files and exports the deliverables to DevOps.
+
+(Transitional: until the content database is live, record the design in the CDD
+Workbook and create the project structure from the deliverable manifest.)
+
+Then: use the /develop-training skill to author content into those files.
 
 The /develop-training skill will:
 1. Read this design JSON
-2. Create file scaffolding
+2. Locate the files the content database created
 3. Help you write lectures, labs, and quizzes
 4. Validate against LeGIT standards
-5. Support multiple output formats
+5. Support multiple publication types
 
 Ready to develop? Run:
 /develop-training [design-json]

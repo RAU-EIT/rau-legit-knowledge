@@ -17,7 +17,7 @@ Complete guide for **designing** and **developing** learning content in RAU LeGI
 **For**: Instructional Designers, Product Managers, Subject Matter Experts  
 **Goal**: Turn skills + audiences into structured learning designs  
 **Input**: Skills list, target roles, stakeholder requirements  
-**Output**: Learning outcomes, objectives, modalities, activities, deliverables → CDD Database
+**Output**: Learning outcomes, objectives, delivery strategy, offerings, publications, activities, deliverables → Content Database
 
 **Start Here**: [CONTENT DESIGN GUIDE](#content-design-guide)
 
@@ -43,9 +43,22 @@ Content design answers: **"What should learners be able to do?"** and **"How wil
 
 Design happens FIRST, independent of how content will be delivered. This ensures your learning intent is clear before development begins.
 
-## The Design Process (7 Steps)
+## Design Derives Top-Down
 
-**Complete Guide**: [`docs/content-design-process.md`](./docs/content-design-process.md)
+Each decision determines the next:
+
+```text
+Delivery Strategy → Offering → Publication → Activity → Deliverable
+    (Step 3)        (Step 4)    (Step 5)     (Step 6)    (Step 7)
+```
+
+The build system runs this chain in reverse: deliverables build into publications, which are packaged into offerings. Same chain, opposite directions. See [The Two Directions](../terminology-glossary.md#the-two-directions).
+
+**Terminology**: [`docs/terminology-glossary.md`](../terminology-glossary.md) is the source of truth for every term used below.
+
+## The Design Process (9 Steps)
+
+**Complete Guide**: [`docs/design/content-design-process.md`](../design/content-design-process.md)
 
 ### Step 1: Define Learning Outcomes (ABCD)
 **What**: Create 1-5 measurable outcomes for the skill  
@@ -66,51 +79,89 @@ Design happens FIRST, independent of how content will be delivered. This ensures
 
 **Designation**: Mark each as standalone or non-standalone (non-standalone is default for 90% of objectives)
 
-### Step 3: Determine Publication Strategy
-**What**: Choose delivery modality for each audience  
-**Options**: E-learning, Classroom, Blended  
-**Decision Framework**: [See decision tree in design process guide](./docs/content-design-process.md#step-3-determine-publication-strategy)
+### Step 3: Determine Delivery Strategy
 
-### Step 4: Map to Required Deliverables
-**What**: Define output formats and content components needed
+**What**: Choose how the skill will be taught, the first link in the derivation chain
+**Options**: E-learning, Classroom (ILT), Blended
+**Decision Framework**: [Six-factor framework in the design process guide](../design/content-design-process.md#step-3-determine-delivery-strategy-rau-recommendation)
+**Required**: Record the rationale, not just the label
 
-**E-Learning**:
-- Output: SCORM 1.2 module (single file)
-- Contains: Lectures + Knowledge checks + Labs + Quiz questions
+### Step 4: Define Offerings
 
-**Classroom**:
-- Outputs: Presentations, Labs, Quizzes, Handouts (separate files)
+**What**: Define what students actually enroll in, purchase, or download
+**Scope**: One or more per audience/role; the same design often serves roles differently
 
-**Blended**:
-- Both of the above
+| Delivery Strategy | Typical Offerings |
+| --- | --- |
+| E-Learning | A self-paced online course enrolled in via the LMS |
+| Classroom | An instructor-led course with a scheduled session |
+| Blended | A self-paced course **plus** a classroom or regional practicum |
 
-### Step 5: Plan Activity Coverage
-**What**: Ensure every outcome has three activity types across its objectives
+### Step 5: Define Publications
+
+**What**: Determine what the build system must produce to support those offerings
+**Each records**: name, audience/role, scope, publication type (`docType`), offering(s) it feeds
+**Scoped by**: the design hierarchy: per skill, per outcome, or per standalone objective
+
+| Delivery Strategy | Required Publications |
+| --- | --- |
+| E-Learning | SCORM module (`scorm1.2`) |
+| Classroom | Presentation (`revealjs`/`pptx`), lab manual (`print`), practical (`print`) |
+| Blended | All of the above, plus a learner handout (`print`) |
+
+### Step 6: Determine Activities
+
+**What**: Derive the activities the publications require, then validate coverage
 
 **Coverage Types**:
+
 1. **Passive** (Lecture) - Learner gains exposure
 2. **Interactive** (Lab) - Learner applies with guidance
-3. **Assessment** (Quiz) - Learner demonstrates mastery
+3. **Assessment** (Quiz/Practical) - Learner demonstrates mastery
 
-**Validation**: Check at OUTCOME level (aggregated across objectives)  
+**Validation**: Check at OUTCOME level (aggregated across objectives)
 **Exception**: Standalone objectives must have P+I+A individually
 
-### Step 6: Enter Design into CDD Workbook
-**What**: Document your design decisions  
-**System of Record**: CDD Workbook (Excel) or Design JSON
+### Step 7: Define Deliverables
 
-**Fields**:
+**What**: Everything the SME must produce, the superset of activities plus supporting assets
+
+```text
+Deliverables = every Activity + supporting assets
+```
+
+**Content deliverables**: lectures, knowledge checks, quiz questions, labs, quizzes, presentations, handouts, practicals
+**Supporting assets**: VMs and test environments, project files, lab start/finish files, externally produced media
+
+Supporting assets are still tracked and exported to DevOps. A lab that depends on a VM is not deliverable without it.
+
+### Step 8: Validate & Refine Design
+
+**What**: Review the generated publications, activities, and deliverables; add, change, or remove
+**How**: Validation checklist, or ask Claude Code "Validate my content design"
+
+### Step 9: Load into Content Database
+
+**What**: Load the validated design into the content database
+**System of Record**: Content Database
+
+**The database then**:
+
+- Creates the authoring project structure (in LeGIT: folder structure + file shells with frontmatter)
+- Exports the deliverables list to DevOps for work tracking
+
+**Fields captured**:
+
 - Skills list
 - Outcomes (ABCD)
-- Objectives
-- Activities matrix
-- Coverage validation
-- Deliverables
-- Modality/Publication
+- Objectives with standalone flags
+- Delivery strategy + rationale
+- Offerings (per audience/role)
+- Publications (audience, scope, type)
+- Activities matrix + coverage validation
+- Deliverables, including supporting assets
 
-### Step 7: Validate Your Design
-**What**: Check design against 6 validation rules  
-**How**: Use validation checklist or Claude Code
+> **Transitional**: until the content database is live, the **CDD Workbook (Excel) remains the interim system of record**, and the design JSON carries the same fields.
 
 ---
 
@@ -131,17 +182,28 @@ Design happens FIRST, independent of how content will be delivered. This ensures
 - Standalone objectives have P+I+A individually
 - Non-standalone objectives don't need individual coverage (only outcome-level)
 
-**Rule 5: Modality-Deliverable Alignment**
-- E-Learning → SCORM module with all content
-- Classroom → Separate presentations, labs, quizzes
-- Blended → Both
+**Rule 5: Delivery Strategy & Deliverable Alignment**
 
-**Rule 6: File Mapping Completeness**
+Validates the whole derivation chain, not just the strategy:
+
+- A delivery strategy is selected, with a recorded rationale
+- Every audience/role from intake is served by at least one offering
+- Every offering is supported by at least one publication, and every publication feeds an offering
+- Publication scope is consistent with the design hierarchy
+- Every activity maps to a deliverable; supporting-asset dependencies are captured
+
+**Rule 6: Deliverable File Completeness**
+
 - Outcome folders use outcome titles (kebab-case)
 - Objective folders created for each objective
-- All file types planned (lecture, knowledge-check, lab, quiz-questions)
+- Every objective has `lecture.md` + `knowledge-check.md` + `quiz-questions.md`
+- `lab.md` at objective level **only** for standalone objectives
+- Outcome-level lab present when the outcome has non-standalone objectives
+- Presentations and practicals are outcome level, not skill level
 
-**Full Details**: [`.claude/rules/content-design-validation.md`](./.claude/rules/content-design-validation.md)
+**Rule 7: Publication-to-Activity Derivation**: placeholder, **not enforced yet** (mapping rules TBD)
+
+**Full Details**: [`.claude/rules/content-design-validation.md`](../../.claude/rules/content-design-validation.md)
 
 ---
 
@@ -174,9 +236,9 @@ Design happens FIRST, independent of how content will be delivered. This ensures
 
 | Resource | Purpose |
 |----------|---------|
-| [`docs/content-design-process.md`](./docs/content-design-process.md) | Step-by-step design guide |
-| [`.claude/rules/content-design-validation.md`](./.claude/rules/content-design-validation.md) | 6 validation rules |
-| [`docs/legit-fundamentals.md`](./docs/legit-fundamentals.md) | LeGIT system overview |
+| [`docs/design/content-design-process.md`](../design/content-design-process.md) | Step-by-step design guide |
+| [`.claude/rules/content-design-validation.md`](../../.claude/rules/content-design-validation.md) | 6 validation rules |
+| [`docs/legit-fundamentals.md`](../development/legit-fundamentals.md) | LeGIT system overview |
 
 ---
 
@@ -247,7 +309,7 @@ Development takes the design (outcomes, objectives, activities) and creates actu
 ## LeGIT Technical Standards
 
 ### Markdown Standards
-[`docs/legit-markdown-standards.md`](./docs/legit-markdown-standards.md)
+[`docs/legit-markdown-standards.md`](../development/markdown-standards.md)
 
 **Key Rules**:
 - Proper heading hierarchy (H1 → H2 → H3, no skipping)
@@ -258,7 +320,7 @@ Development takes the design (outcomes, objectives, activities) and creates actu
 - DRY principle (use variables, includes, don't repeat)
 
 ### YAML Frontmatter
-[`docs/legit-yaml.md`](./docs/legit-yaml.md)
+[`docs/legit-yaml.md`](../development/yaml-guide.md)
 
 **Required in every file**:
 ```yaml
@@ -274,7 +336,7 @@ skill:
 ```
 
 ### Content Blocks
-[`docs/content-blocks-reference.md`](./docs/content-blocks-reference.md)
+[`docs/content-blocks-reference.md`](../development/content-blocks-reference.md)
 
 **Available Blocks** (by output type):
 
@@ -303,7 +365,7 @@ skill:
 **Use Snippets**: Press `Ctrl+Space`, type `rau`, select block
 
 ### Presentation Standards
-[`docs/legit-presentations.md`](./docs/legit-presentations.md)
+[`docs/legit-presentations.md`](../development/presentations.md)
 
 **Key Rules**:
 - H2 = main slides (horizontal transitions)
@@ -322,14 +384,15 @@ skill:
 skills/[skill-name]/
 ├── [outcome-title]/                          (e.g., analyze-hydraulic-components)
 │   ├── objective-01/
-│   │   ├── lecture.md
-│   │   ├── knowledge-check.md
-│   │   ├── lab.md                            (if standalone)
-│   │   ├── quiz-questions.md
+│   │   ├── lecture.md                        (always)
+│   │   ├── knowledge-check.md                (always)
+│   │   ├── quiz-questions.md                 (always - feeds outcome quiz pool)
+│   │   ├── lab.md                            (only if standalone)
 │   │   └── media/                            (objective-specific images)
 │   ├── objective-02/
 │   │   └── [same structure]
 │   ├── outcome-01-lecture.md                 (aggregates objectives via !include)
+│   ├── outcome-01-lab.md                     (for non-standalone objectives)
 │   └── outcome-01-quiz.md
 ├── [outcome-title-2]/
 │   └── [same structure]
@@ -387,12 +450,12 @@ skills/[skill-name]/
 
 | Resource | Purpose |
 |----------|---------|
-| [`docs/legit-markdown-standards.md`](./docs/legit-markdown-standards.md) | Markdown rules and best practices |
-| [`docs/legit-yaml.md`](./docs/legit-yaml.md) | YAML frontmatter guide |
-| [`docs/content-blocks-reference.md`](./docs/content-blocks-reference.md) | Content blocks syntax and usage |
-| [`docs/legit-presentations.md`](./docs/legit-presentations.md) | Presentation-specific rules |
-| [`.claude/rules/legit-blocks.md`](./.claude/rules/legit-blocks.md) | Content block validation rules |
-| [`.claude/rules/legit-markdown-standards.md`](./.claude/rules/legit-markdown-standards.md) | Markdown validation rules |
+| [`docs/legit-markdown-standards.md`](../development/markdown-standards.md) | Markdown rules and best practices |
+| [`docs/legit-yaml.md`](../development/yaml-guide.md) | YAML frontmatter guide |
+| [`docs/content-blocks-reference.md`](../development/content-blocks-reference.md) | Content blocks syntax and usage |
+| [`docs/legit-presentations.md`](../development/presentations.md) | Presentation-specific rules |
+| [`.claude/rules/legit-blocks.md`](../../.claude/rules/legit-blocks.md) | Content block validation rules |
+| [`.claude/rules/legit-markdown-standards.md`](../../.claude/rules/legit-markdown-standards.md) | Markdown validation rules |
 
 ---
 

@@ -72,7 +72,7 @@ Guide SMEs through the content design process, capture design decisions, validat
    │  ├─ Objective alignment?
    │  ├─ Coverage completeness?
    │  ├─ Standalone designation?
-   │  ├─ Modality-deliverable alignment?
+   │  ├─ Delivery strategy-deliverable alignment?
    │  └─ File mapping completeness?
    │
    ├─ If fails → Suggest fixes
@@ -148,31 +148,50 @@ Guide SMEs through the content design process, capture design decisions, validat
     }
   ],
   
-  "publicationStrategy": [
+  "deliveryStrategy": {
+    "modality": "blended",
+    "publicationTypes": ["scorm1.2", "revealjs", "print"],
+    "rationale": "Hands-on practice required, distributed workforce"
+  },
+
+  "offerings": [
     {
-      "audience": "field technician",
+      "id": "offering-1",
+      "name": "Hydraulic Troubleshooting for Field Technicians",
+      "audienceRole": "field technician",
       "modality": "blended",
-      "rationale": "Hands-on practice required, distributed workforce",
-      "deliverables": [
-        {
-          "type": "scorm",
-          "name": "Hydraulic Troubleshooting - E-Learning Module",
-          "contents": ["lecture", "knowledge-check", "lab", "quiz"]
-        },
-        {
-          "type": "revealjs",
-          "name": "Hydraulic Troubleshooting - Instructor Presentation",
-          "contents": ["lecture"]
-        },
-        {
-          "type": "print",
-          "name": "Hydraulic Troubleshooting - Lab Manual",
-          "contents": ["lab"]
-        }
-      ]
+      "outcomeCoverage": ["OUT01"],
+      "supportingMaterials": "Completion certificate, quick-reference job aid"
     }
   ],
-  
+
+  "publications": [
+    {
+      "id": "publication-1",
+      "name": "Hydraulic Troubleshooting - E-Learning Module",
+      "audienceRole": "field technician",
+      "scope": "OUT01",
+      "docType": "scorm1.2",
+      "offeringIds": "offering-1"
+    },
+    {
+      "id": "publication-2",
+      "name": "Hydraulic Troubleshooting - Instructor Presentation",
+      "audienceRole": "field technician",
+      "scope": "OUT01",
+      "docType": "revealjs",
+      "offeringIds": "offering-1"
+    },
+    {
+      "id": "publication-3",
+      "name": "Hydraulic Troubleshooting - Lab Manual",
+      "audienceRole": "field technician",
+      "scope": "OUT01",
+      "docType": "print",
+      "offeringIds": "offering-1"
+    }
+  ],
+
   "activityCoverage": [
     {
       "outcomeId": "OUT01",
@@ -197,14 +216,14 @@ Guide SMEs through the content design process, capture design decisions, validat
     "objectiveAlignment": true,
     "outcomeLevelCoverageComplete": true,
     "standaloneCoverageComplete": true,
-    "modalityAligned": true,
-    "mappingComplete": true,
+    "deliveryStrategyAligned": true,
+    "deliverableCompleteness": true,
     "allValid": true,
     "issues": [],
-    "checkedDate": "2026-08-20"
+    "checkedDate": "2026-09-03"
   },
-  
-  "fileMapping": {
+
+  "deliverableManifest": {
     "skillFolder": "skills/hydraulic-troubleshooting",
     "outcomes": [
       {
@@ -214,19 +233,37 @@ Guide SMEs through the content design process, capture design decisions, validat
         "files": [
           "objective-01/lecture.md",
           "objective-01/knowledge-check.md",
-          "objective-01/lab.md",
           "objective-01/quiz-questions.md",
           "objective-02/lecture.md",
           "objective-02/knowledge-check.md",
           "objective-02/quiz-questions.md",
           "outcome-01-lecture.md",
-          "outcome-01-quiz.md"
+          "outcome-01-lab.md",
+          "outcome-01-quiz.md",
+          "outcome-01-presentation.md",
+          "outcome-01-handout.md"
         ]
       }
     ]
-  }
+  },
+
+  "supportingAssets": [
+    {
+      "name": "Hydraulic simulator VM",
+      "category": "VM / test environment",
+      "requiredBy": "outcome-01-lab.md",
+      "owner": "Lab Engineering",
+      "location": "SharePoint > Training Assets > hydraulic-sim v2.1"
+    }
+  ]
 }
 ```
+
+**Note on the manifest above**: OBJ01 and OBJ02 are both `standalone: false`, so neither gets
+an objective-level `lab.md`: they share `outcome-01-lab.md`. Both still get
+`quiz-questions.md`, which feeds the `outcome-01-quiz.md` pool. `outcome-01-presentation.md`
+and `outcome-01-handout.md` appear because the delivery strategy is blended. See
+[Rule 6](../.claude/rules/content-design-validation.md#rule-6-deliverable-file-completeness).
 
 ### Summary Report
 ```
@@ -729,14 +766,14 @@ Changed files:
 Comparison Results:
 
 FILE: docs/design/content-design-process.md
-SECTION: Step 3 - Publication Strategy Decision Framework
+SECTION: Step 3 - Delivery Strategy Decision Framework
 
 CHANGE DETECTED:
 Updated decision criteria from "Can learner become competent without practice?"
 to structured evaluation of 6 factors.
 
 IMPACT ON RULES:
-.claude/rules/content-design-validation.md Rule 5 (Modality-Deliverable Alignment)
+.claude/rules/content-design-validation.md Rule 5 (Delivery Strategy & Deliverable Alignment)
 is based on outdated decision framework.
 
 RECOMMENDED CHANGES:
@@ -773,7 +810,7 @@ IMPACT:
 
 **Automatic (triggered on commit):**
 ```
-git commit -m "Update publication strategy decision framework"
+git commit -m "Update delivery strategy decision framework"
 # Git hook automatically runs:
 # /sync-docs-to-rules --auto --changed-files [list]
 ```

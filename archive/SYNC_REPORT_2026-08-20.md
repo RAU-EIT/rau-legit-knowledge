@@ -21,8 +21,8 @@ The docs include a comprehensive 6-factor decision framework, but the rule only 
 
 | Aspect | `docs/design/` | `.claude/rules/` | Status |
 |--------|---|---|---|
-| **File** | content-design-process.md | content-design-validation.md | — |
-| **Section** | Step 3: Publication Strategy | Rule 5: Modality-Deliverable Alignment | — |
+| **File** | content-design-process.md | content-design-validation.md | - |
+| **Section** | Step 3: Publication Strategy | Rule 5: Modality-Deliverable Alignment | - |
 | **Length** | ~500 lines (comprehensive guide) | ~20 lines (output formats only) | ❌ MISMATCH |
 | **Contains decision framework?** | ✅ YES (6 factors) | ❌ NO | ❌ OUT OF SYNC |
 | **Contains examples?** | ✅ YES (multiple) | ❌ NO | ❌ OUT OF SYNC |
@@ -59,7 +59,7 @@ The documentation describes FOUR decision criteria (with more likely):
 Plus likely 2 more: Hardware Requirements, Content Complexity (not fully read yet)
 
 **Key quote from docs**:
-> "This framework guides discussion and recommendation-making. It's not a checklist or algorithm—it's a tool to ensure consistent evaluation of key factors."
+> "This framework guides discussion and recommendation-making. It's not a checklist or algorithm; it is a tool to ensure consistent evaluation of key factors."
 
 ---
 

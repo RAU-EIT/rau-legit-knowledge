@@ -1,6 +1,6 @@
 # LeGIT System Fundamentals
 
-LeGIT is a markdown-based learning content creation system designed around skills-based learning. It enables authors to write learning content in markdown, organize it by skill, preview it in real-time, and build it into multiple output formats (PDFs, presentations, e-learning modules).
+LeGIT is a markdown-based learning content creation system designed around skills-based learning. It enables authors to write learning content in markdown, organize it by skill, preview it in real-time, and build it into multiple publication types (PDFs, presentations, e-learning modules).
 
 ## What is LeGIT?
 
@@ -47,29 +47,30 @@ Manual document building is time-consuming and error-prone. LeGIT automates:
 
 ## Tools and Technologies
 
-**Pandoc** — Converts markdown to HTML and other formats  
-**Lua Filters** — Transform Pandoc output to implement RAU-specific blocks  
-**WeasyPrint** — Converts HTML to PDF  
-**CSS Stylesheets** — Define visual appearance (style-rau-base)  
-**VSCode Extension** — Provides markdown editing with live preview
+**Pandoc**: Converts markdown to HTML and other formats  
+**Lua Filters**: Transform Pandoc output to implement RAU-specific blocks  
+**WeasyPrint**: Converts HTML to PDF  
+**CSS Stylesheets**: Define visual appearance (style-rau-base)  
+**VSCode Extension**: Provides markdown editing with live preview
 
 ## Project Structure
 
-Content is organized by **skill** — the smallest reusable unit of learning content. Skills contain outcomes, which contain objectives, which contain content files.
+Content is organized by **skill**: the smallest reusable unit of learning content. Skills contain outcomes, which contain objectives, which contain content files.
 
 ```
 skills/
 ├── skill-name-1/
 │   ├── [outcome-title-1]/                    (e.g., analyze-system-components)
 │   │   ├── objective-01/
-│   │   │   ├── lecture.md                   (Core instruction)
-│   │   │   ├── knowledge-check.md           (Embedded ungraded checks)
+│   │   │   ├── lecture.md                   (Always; core instruction)
+│   │   │   ├── knowledge-check.md           (Always; embedded ungraded checks)
+│   │   │   ├── quiz-questions.md            (Always; graded assessment pool)
 │   │   │   ├── lab.md                       (Only if standalone)
-│   │   │   ├── quiz-questions.md            (Graded assessment pool)
 │   │   │   └── media/                       (Objective-specific images)
 │   │   ├── objective-02/
 │   │   │   └── [same structure]
 │   │   ├── outcome-01-lecture.md            (Aggregates objectives via !include)
+│   │   ├── outcome-01-lab.md                (For non-standalone objectives)
 │   │   └── outcome-01-quiz.md               (Outcome-level assessment)
 │   │
 │   ├── [outcome-title-2]/                    (e.g., diagnose-failures)
@@ -84,10 +85,10 @@ skills/
 ```
 
 Each skill can be published to:
-- **PDF** — Printable lab manuals
-- **RevealJS** — Web presentations
-- **SCORM** — E-learning modules
-- **Video** — Recorded presentations
+- **PDF**: Printable lab manuals
+- **RevealJS**: Web presentations
+- **SCORM**: E-learning modules
+- **Video**: Recorded presentations
 
 ---
 

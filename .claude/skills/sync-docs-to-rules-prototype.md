@@ -5,7 +5,7 @@ aliases: [sync, validate-sync, review-sync]
 whenToUse: You've updated documentation and want to check if rules need updating
 ---
 
-# Sync Documentation to Rules — Working Prototype
+# Sync Documentation to Rules: Working Prototype
 
 This is a functional prototype that detects documentation changes and recommends rule updates.
 
@@ -13,14 +13,14 @@ This is a functional prototype that detects documentation changes and recommends
 
 Run this skill anytime you've updated documentation files. It will:
 
-1. **Detect changes** — Find which docs/ files were modified
-2. **Compare** — Read docs and corresponding rules
-3. **Analyze** — Find differences and map to specific rules
-4. **Recommend** — Show what should be updated and why
+1. **Detect changes**: Find which docs/ files were modified
+2. **Compare**: Read docs and corresponding rules
+3. **Analyze**: Find differences and map to specific rules
+4. **Recommend**: Show what should be updated and why
 
 ## Current Implementation
 
-This prototype focuses on the most critical sync relationship: **Publication Strategy Decision Framework**
+This prototype focuses on the most critical sync relationship: **Delivery Strategy Decision Framework**
 
 **Monitors**:
 - `docs/design/content-design-process.md` (Step 3)
@@ -37,7 +37,7 @@ Run sync check
 Or provide context:
 
 ```
-I updated the publication strategy in docs/
+I updated the delivery strategy in docs/
 ```
 
 I will then:
@@ -101,11 +101,11 @@ Decision Framework Difference:
 RECOMMENDATION: Update Rule 5
 
 Current:
-  "Rule 5: Modality-Deliverable Alignment
+  "Rule 5: Delivery Strategy & Deliverable Alignment
    Binary decision tree determines modality"
 
 Recommended:
-  "Rule 5: Modality-Deliverable Alignment
+  "Rule 5: Delivery Strategy & Deliverable Alignment
    Six-factor evaluation determines modality:
    - Performance Type (Recall, Procedure, Problem-Solving, Complex)
    - Instructor Involvement (None, Minimal, Moderate, Required)
@@ -145,7 +145,7 @@ I'll scan for any documentation changes and check sync status.
 ```
 "Check sync for Rule 5"
 or
-"Sync the publication strategy framework"
+"Sync the delivery strategy framework"
 ```
 I'll focus on comparing the decision framework docs vs. rules.
 
@@ -166,7 +166,7 @@ I'll verify all sections related to design validation rules.
 ### Step 1: You Update Documentation
 ```
 Updated: docs/design/content-design-process.md
-Changed: Step 3 - Publication Strategy
+Changed: Step 3 - Delivery Strategy
 New addition: 6-factor decision framework
 ```
 
@@ -177,7 +177,7 @@ New addition: 6-factor decision framework
 
 ### Step 3: I Analyze and Recommend
 ```
-✓ CHANGE DETECTED in publication strategy framework
+✓ CHANGE DETECTED in delivery strategy framework
 
 CURRENT STATE:
 docs/: 6-factor framework (new)
@@ -208,12 +208,12 @@ to match new 6-factor framework in docs/
 ## Current Sync Status
 
 ### ✅ Up to Date
-- `legit-yaml.md` — Matches docs/development/yaml-guide.md
-- `legit-markdown-standards.md` — Matches docs/development/best-practices.md
-- `legit-blocks.md` — Matches docs/development/content-blocks-reference.md
+- `legit-yaml.md`: Matches docs/development/yaml-guide.md
+- `legit-markdown-standards.md`: Matches docs/development/best-practices.md
+- `legit-blocks.md`: Matches docs/development/content-blocks-reference.md
 
 ### ⚠️ Check Needed
-- `content-design-validation.md` Rule 5 — May be out of sync with Step 3 of docs/design/content-design-process.md (depends on whether 6-factor framework is in docs yet)
+- `content-design-validation.md` Rule 5: may be out of sync with Step 3 of docs/design/content-design-process.md (depends on whether 6-factor framework is in docs yet)
 
 ### 📋 Not Yet Tracked
 - New validation rules (none yet)
@@ -256,11 +256,11 @@ I'll document the recommendation and mark it for discussion.
 ## Tips for Using This Skill
 
 ### Best Practices
-1. **Run after doc updates** — Check sync immediately after changes
-2. **Review before approving** — Read recommendations carefully
-3. **Document decisions** — Record why you approved/rejected changes
-4. **Keep sync regular** — Check weekly if docs change frequently
-5. **Escalate as needed** — Use for strategic decisions with Aba Azeem
+1. **Run after doc updates**: Check sync immediately after changes
+2. **Review before approving**: Read recommendations carefully
+3. **Document decisions**: Record why you approved/rejected changes
+4. **Keep sync regular**: Check weekly if docs change frequently
+5. **Escalate as needed**: Use for strategic decisions with Aba Azeem
 
 ### Common Scenarios
 

@@ -181,8 +181,8 @@ archive/ (historical records)
 
 Guide files created in `docs/development/`:
 
-- **`markdown-standards.md`** — Guide to markdown standards with reference link to validation rules
-- **`presentations.md`** — Guide to presentation standards with reference link to validation rules
+- **`markdown-standards.md`**: Guide to markdown standards with reference link to validation rules
+- **`presentations.md`**: Guide to presentation standards with reference link to validation rules
 
 **Approach**:
 
