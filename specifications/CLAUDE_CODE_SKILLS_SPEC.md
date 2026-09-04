@@ -986,4 +986,3 @@ Output: PDF, SCORM, HTML, Video
 **Document Version**: 1.0  
 **Created**: 2026-08-20  
 **Status**: Specification for development  
-**Maintainer**: pfranci@rockwellautomation.com

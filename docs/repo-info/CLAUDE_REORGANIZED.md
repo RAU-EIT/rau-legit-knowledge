@@ -498,5 +498,3 @@ A: Knowledge checks are ungraded, embedded in lecture, check understanding. Quiz
 **Version**: 2.0.0  
 **Status**: Draft for reorganization  
 **Created**: 2026-08-20  
-**Last Updated**: 2026-08-20  
-**Maintainer**: pfranci@rockwellautomation.com

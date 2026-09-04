@@ -207,5 +207,3 @@ To update shared knowledge:
 ---
 
 **Repository**: https://github.com/RAU-EIT/rau-legit-knowledge  
-**Maintained by**: pfranci@rockwellautomation.com  
-**Last Updated**: 2026-08-14

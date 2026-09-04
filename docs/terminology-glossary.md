@@ -365,7 +365,3 @@ In LeGIT, the publication type is set by the **`docType`** field in YAML frontma
 - [File Mapping Guide](./design/file-mapping-guide.md): the file structure deliverables take
 - [Content Design Validation](../.claude/rules/content-design-validation.md): rules Claude Code checks
 
----
-
-**Last Updated**: 2026-09-03
-**Maintained by**: Peter Francis (pfranci@rockwellautomation.com)

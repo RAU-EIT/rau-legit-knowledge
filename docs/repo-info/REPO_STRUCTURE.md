@@ -218,6 +218,5 @@ git submodule add https://github.com/RAU-EIT/rau-legit-knowledge.git .claude/sha
 
 ---
 
-**Last Updated**: 2026-08-20  
 **Repository**: RAU LeGIT Knowledge Base  
 **Status**: Clean, organized, ready for use

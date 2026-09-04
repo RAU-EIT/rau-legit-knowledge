@@ -774,6 +774,3 @@ For authoring guidance, see the Content Development track documentation.
 - [File Mapping Guide](./file-mapping-guide.md): the file structure deliverables take
 - [Content Design Validation](/.claude/rules/content-design-validation.md): rules Claude Code checks
 
----
-
-**Last Updated**: 2026-09-03
