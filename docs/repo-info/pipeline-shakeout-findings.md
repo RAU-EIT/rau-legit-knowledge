@@ -5,9 +5,10 @@
 **Question asked**: can a real stakeholder request be driven through this knowledge base into
 designed, authored, and built training?
 
-**Answer**: yes, but not as documented. Four defects had to be fixed before the knowledge base
+**Answer**: yes, and the result builds. Four defects had to be fixed before the knowledge base
 could be loaded at all, and the file contract it prescribes is not the one the build system
-consumes.
+consumes, but the designed content assembled into a working publication once authored against the
+template instead.
 
 ---
 
@@ -60,6 +61,13 @@ Artifacts to read in order: `design/00-intake.md`, `design/01-design.md`,
 | 25 | The docs-sync hook is advertised as automatic but is not installed | Low | No |
 | 26 | Two skill files declare the same `name` | Low | No |
 | 27 | Prose typo in `workflow.md` | Low | No |
+| 28 | `linkedBuilds` does not fire | High | Yes, worked around |
+| 29 | A build reports success while producing no output | High | Yes, cost one run |
+| 30 | The default build task only ever builds the root `build.yaml` | Medium | Yes, cost one run |
+
+Findings 28 to 30 are defects in the RAU VSCode extension and the template rather than in this
+knowledge base, but they belong here because they cost two of the three build attempts and any
+SME will hit them.
 
 ---
 
@@ -439,26 +447,77 @@ that it cannot be trusted without review.
 
 ## Build verification
 
-**Status: pending.** The build is a VSCode task of `"type": "RAU"`, so only the extension can run
-it and this section cannot be completed without a human at the keyboard.
+Run with the RAU VSCode extension v1.0.1.
 
-Ready to build in the content repo:
+### The central question is answered: objective-level fragments build correctly
 
-| Build file | Publication | Output type |
-| --- | --- | --- |
-| `courses/PST001/builds/presentations.build.yaml` | publication-3, instructor deck | `revealjs` |
-| `courses/PST001/builds/lab-manual.build.yaml` | publication-4, workshop lab manual | `print` |
-| `courses/PST001/builds/scorm-customer.build.yaml` | publication-1, customer SCORM | `scorm1.2` |
-| `courses/PST001/builds/all.build.yaml` | all three, via `linkedBuilds` | n/a |
+`courses/PST001/builds/presentations.build.yaml` produced a 42 KB revealjs deck from
+`presentation.md` plus four frontmatter-free `objective-0N.md` fragments. Verified in the
+artifact, not just the build log:
 
-Pre-build checks already passed: all four build files parse as YAML, all 27 file references
-resolve, and the four punctuation self-checks return zero matches across every authored file.
+- All 23 authored slides are present **in source order**: the framing slides from
+  `presentation.md`, then each objective's divider, teaching slides, and knowledge check, ending
+  with the outcome summary
+- 21 speaker-notes blocks and 6 `::: script` blocks survived
+- All four knowledge-check `ANSWER:` markers landed in the notes, not on the slides
+- `rau-slide-divider` and `rau-slide-question` were correctly transformed into reveal.js section
+  attributes such as `data-state="RACTimportance RACTtop"`
 
-**The open question this answers**: whether objective-level fragment files assembled by ordered
-`files:` arrays actually build, in all three output formats. If they do, the compromise in
-finding 5 is sound and can be recommended as the replacement for `!include`. If they do not, the
-objective-level authoring principle may not be reachable in the current build system at all, which
-would be the most consequential finding of the exercise.
+Outcome 2 and 3 decks skipped as configured, since their content is scaffolded rather than
+authored.
+
+**Therefore the compromise in finding 5 is sound.** An ordered `files:` array is a working
+replacement for the `!include` directive that does not exist, and objective-level authoring is
+reachable in the current build system. This should be documented as the recommended pattern when
+`file-mapping-guide.md` is rewritten.
+
+`print` and `scorm1.2` verification is still outstanding. Those exercise different toolchains
+(WeasyPrint, the `scorm.sections` array) and different block vocabularies, so a revealjs pass does
+not imply they work.
+
+### 28. `linkedBuilds` does not fire
+
+Building `courses/PST001/builds/all.build.yaml` reported "Building 1 documents", skipped the
+deliberately empty aggregator entry, and never followed its three linked build files.
+
+The aggregator copies the pattern from the template's own
+`courses/LGT001/builds/all.build.yaml` verbatim, and the template readme advertises the feature:
+"The `all.build.yaml` file also demonstrates **linked builds**, referring to other build files to
+be built as well." Suggestively, the template's root `build.yaml` ships with its `linkedBuilds`
+block commented out.
+
+A control run against the template's own unmodified aggregator will establish whether the feature
+is broken in the extension or misused here. Until then, treat one build file per set of
+publications as the safe pattern, rather than an aggregator plus links.
+
+### 29. A build reports success while producing no output
+
+The first build run reported "4 build(s) completed, 1 skipped, 2 aborted" and wrote **zero files**
+to `output/`. The cause was an uninitialized `style-rau-base` submodule: every CSS lookup logged
+`File not found - ...\style-rau-base\*.*` and the builds then failed silently while still being
+counted as completed.
+
+Two problems worth separating:
+
+1. **The exit status is misleading.** "Completed" should mean an artifact exists. A build that
+   emits nothing should be counted as aborted, and the missing CSS should be a hard error rather
+   than a logged line the run continues past.
+2. **A fresh clone is not ready to build.** `git clone` without `--recurse-submodules` leaves
+   `style-rau-base` empty, and nothing in the build output says so in those terms. The template
+   readme does mention cloning the style submodule, but the failure mode gives no hint that this
+   is the cause. Worth adding to the knowledge base's getting-started material, since this will
+   catch every SME once.
+
+### 30. The default build task only ever builds the root `build.yaml`
+
+The VSCode build task pipes the repository-root `build.yaml` into `RAU_builder.py`. In a repo
+created from `content-starter-pack`, that file contains only the template's sample regex and SCORM
+builds, so pressing the default build shortcut builds the samples and none of the project's own
+content, with nothing in the output indicating that the project was skipped.
+
+Real project builds must be launched by right-clicking the specific `*.build.yaml`. Either
+document that clearly, or have new projects replace the root `build.yaml` with one that points at
+their own course builds.
 
 ---
 
