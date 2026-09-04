@@ -22,7 +22,7 @@ template instead.
 | Scope designed | The shared core of the role matrix: statements 1, 2, and 27, as one skill with 3 outcomes and 12 objectives |
 | Scope authored | Outcome 1 in full (11 files); outcomes 2 and 3 scaffolded |
 | Publications designed | 8, of which 3 have build files |
-| Skill packaging fix | Branch `feat/skill-packaging` in this repo |
+| Skill packaging fix | Merged to `main` in this repo (PR #8) |
 
 Artifacts to read in order: `design/00-intake.md`, `design/01-design.md`,
 `design/01-design.json`, `design/02-deliverable-manifest.md`, then
@@ -64,8 +64,9 @@ Artifacts to read in order: `design/00-intake.md`, `design/01-design.md`,
 | 28 | `linkedBuilds` does not fire | High | Yes, worked around |
 | 29 | A build reports success while producing no output | High | Yes, cost one run |
 | 30 | The default build task only ever builds the root `build.yaml` | Medium | Yes, cost one run |
+| 31 | Every build run wipes the entire output directory | High | Yes, combined with 28 |
 
-Findings 28 to 30 are defects in the RAU VSCode extension and the template rather than in this
+Findings 28 to 31 are defects in the RAU VSCode extension and the template rather than in this
 knowledge base, but they belong here because they cost two of the three build attempts and any
 SME will hit them.
 
@@ -79,7 +80,7 @@ SME will hit them.
 **Happened**: nothing. Claude Code discovers skills only as `.claude/skills/<name>/SKILL.md`, and
 this repo stored them as flat files (`design-training.md`, `develop-training.md`, ...). No skill
 in this repo has ever been loadable.
-**Fix**: applied on branch `feat/skill-packaging`. `git mv` into skill directories. Registration
+**Fix**: merged to `main` in PR #8. `git mv` into skill directories. Registration
 took effect immediately, with no session restart.
 **Not fixed**: `build-training-engine.md` and the five `sync-*` files, deliberately left out of
 scope. See finding 26 before moving them.
@@ -471,9 +472,33 @@ replacement for the `!include` directive that does not exist, and objective-leve
 reachable in the current build system. This should be documented as the recommended pattern when
 `file-mapping-guide.md` is rewritten.
 
-`print` and `scorm1.2` verification is still outstanding. Those exercise different toolchains
-(WeasyPrint, the `scorm.sections` array) and different block vocabularies, so a revealjs pass does
-not imply they work.
+### The print path also works
+
+`courses/PST001/builds/lab-manual.build.yaml` produced a valid 20 page PDF (5.2 MB, PDF 1.7),
+assembling the course front cover YAML, the template's `user-info.md` and `comments.md`, the
+authored lab, and the back cover. The authored section headings are present in the extracted text,
+including the outcome title, "Before You Begin", and both exercise headings.
+
+This exercises a wholly separate toolchain from revealjs (WeasyPrint) and a different block
+vocabulary, so it is independent evidence that the authored content is sound: `docType: lab`,
+`varsLocal` substitution, `::: steps`, `{.beforeBegin}` style heading attributes, and
+`rau-input-singleline` inside tables all survived.
+
+`scorm1.2` verification is still outstanding.
+
+### 31. Every build run wipes the entire output directory
+
+Each invocation begins with `cleaning <repo>/output`, deleting all previously built artifacts, not
+just the ones the current build file produces. Building the lab manual destroyed the revealjs deck
+built minutes earlier.
+
+On its own this is defensible. Combined with finding 28 it is not: because `linkedBuilds` does not
+fire, a complete publication set cannot be assembled at all. Building each publication separately
+destroys the previous one, and the aggregator that exists to solve that problem does not work.
+
+The workaround is to put every publication for a course in a single build file, which conflicts
+with the template's own convention of separate named build files per publication type. Until
+`linkedBuilds` is fixed, one build file per course is the only pattern that yields a full set.
 
 ### 28. `linkedBuilds` does not fire
 
@@ -523,7 +548,8 @@ their own course builds.
 
 ## Recommended order of remedial work
 
-1. **Merge `feat/skill-packaging`.** Nothing else in the repo is usable until skills load.
+1. ~~**Package the skills so they load.**~~ **Done**, merged in PR #8. Nothing else in the repo
+   was usable until this landed.
 2. **Rewrite `file-mapping-guide.md` and Rule 6 against `content-starter-pack`** (finding 5). This
    is the biggest job and the one that currently sends SMEs down a path that does not build.
 3. **Correct `legit-yaml.md`**: `chunk:` not `skill:`, the real `docType` set, and the separation
