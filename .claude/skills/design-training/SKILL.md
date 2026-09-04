@@ -1,13 +1,23 @@
 ---
 name: design-training
-description: Guide SMEs through structured learning content design using ABCD framework and LeGIT standards
-aliases: [design, design-skill, create-design]
-whenToUse: You're starting a new training project or need to design learning content
+description: Guide SMEs through structured learning content design using the ABCD framework and LeGIT standards. Use when starting a new training project, designing a skill, or when asked to design, create a design, or validate a content design.
 ---
 
 # Design RAU Training Content
 
 Welcome to the RAU LeGIT training design skill. I'll guide you through a structured 9-step process to design learning content that's ready for development.
+
+## Read These First
+
+Before running any step, read both supporting files in this directory. This document is the
+overview; the implementation lives in the other two:
+
+- [`workflow.md`](./workflow.md): the step-by-step state machine. It defines what to ask at each
+  of the 9 steps, what to validate, what to store, and when to advance. Follow it literally.
+- [`engine.md`](./engine.md): the delivery strategy recommendation logic, the validation
+  routines, and the design JSON and deliverable manifest output formats.
+
+Do not run the design process from this overview alone.
 
 ## How Design Works: Derivation, Top-Down
 
@@ -22,7 +32,7 @@ Delivery Strategy  →  Offering  →  Publication  →  Activity  →  Delivera
 
 The build system later runs this chain in reverse: deliverables build into publications,
 which are packaged into offerings. Both directions describe the same chain. See
-[The Two Directions](../../docs/terminology-glossary.md#the-two-directions).
+[The Two Directions](../../../docs/terminology-glossary.md#the-two-directions).
 
 This is why we decide offerings and publications *during* design rather than after: they are
 what tell us which activities and deliverables are actually required. Deciding them late means

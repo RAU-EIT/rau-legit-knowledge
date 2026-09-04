@@ -1,9 +1,3 @@
----
-name: develop-training-engine
-description: Core implementation engine for /develop-training skill
-internal: true
----
-
 # Develop Training Skill - Core Engine Implementation
 
 Complete implementation of the `/develop-training` skill for authoring content files from a validated design.
